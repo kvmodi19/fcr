@@ -1,0 +1,47 @@
+<div class="full-width">
+    <div class="registration-wrapper"></div>
+    <div class="full-width overlay"></div>
+    <div class="registration-content ion-justify-content-center">
+        <app-logo class="app-logo ion-justify-content-center"></app-logo>
+        <div class="registration-items">
+            <div class="registration-text">
+                <div class="create-account ion-justify-content-center">
+                    Create Account
+                </div>
+            </div>
+            <div class="registration-input">
+
+                <div>
+                    <input type="text" placeholder="Name">
+                    <div class="input-wrapper">
+                        <input type="number" placeholder="Age" min="1" max="99">
+                        <select value="Gender">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <textarea rows="4" cols="50" placeholder="Address"></textarea>
+                    <input type="number" placeholder="Mobile No.">
+
+                    <div class="profession-radio-wrapper">
+                        <label id="profession">Profession:</label>
+                        <mat-radio-group aria-labelledby="profession" class="profession-radio">
+                            <mat-radio-button class="example-radio-button" value="employee">
+                                Employee
+                            </mat-radio-button>
+                            <mat-radio-button class="example-radio-button" value="self">
+                                Self-employee
+                            </mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                    <input type="number" placeholder="E-Card Name">
+                    <input type="number" placeholder="E-Card Address">
+                </div>
+                <button mat-flat-button color="warn">Sign Up</button>
+                <div class="no-account">
+                    Already have an account?
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+.app-name {
+  position: absolute;
+  z-index: 1;
+  color: #F2F2F2;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 59px;
+  vertical-align: top;
+  .middle-name {
+    display: inline-block;
+    border-bottom: 5px solid white;
+    padding-bottom: .5px;
+  }
+}
