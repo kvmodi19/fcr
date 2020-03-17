@@ -14,7 +14,6 @@ import {
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MaterialModule } from './material.module';
 
 @NgModule({
 	declarations: [ AppComponent ],
@@ -24,7 +23,6 @@ import { MaterialModule } from './material.module';
 		IonicModule.forRoot(),
 		AppRoutingModule,
 		BrowserAnimationsModule,
-		MaterialModule,
 		FormsModule,
 		HttpClientModule,
 	],

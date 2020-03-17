@@ -90,7 +90,8 @@
     ],
     "indent": [
       true,
-      "tabs"
+      "tabs",
+      4
     ]
   }
 }

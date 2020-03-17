@@ -1,9 +1,11 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoadingComponent } from './loading.component';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { IonicModule } from '@ionic/angular';
+
 import { LogoComponent } from '../../components/logo/logo.component';
-import { MaterialModule } from '../../material.module';
+import { LoadingComponent } from './loading.component';
 
 @NgModule({
 	declarations: [
@@ -12,7 +14,8 @@ import { MaterialModule } from '../../material.module';
 	],
 	imports: [
 		CommonModule,
-		MaterialModule,
+		FormsModule,
+		IonicModule,
 		RouterModule.forChild([
 			{
 				path: '',
