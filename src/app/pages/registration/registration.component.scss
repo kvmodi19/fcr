@@ -1,27 +1,8 @@
-.full-width {
+.full-width-container {
   height: 100%;
   width: 100%;
   display: flex;
 
-  &.overlay {
-    background: rgba(51, 51, 51, 0.8);
-    z-index: 1;
-    position: absolute;
-  }
-
-  .registration-wrapper {
-    background-image: url('/assets/images/background.jpg');
-    background-repeat: no-repeat;
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    background-size: cover;
-    -webkit-filter: blur(2px);
-    -moz-filter: blur(2px);
-    -o-filter: blur(2px);
-    -ms-filter: blur(2px);
-    filter: blur(2px);
-  }
   .registration-content {
     z-index: 1;
     display: flex;
@@ -65,7 +46,6 @@
         background-color: #EB5757;
       }
       input, select, textarea {
-        width: 300px;
         height: 40px;
         padding: 19px;
         margin: 8px 0;
@@ -75,6 +55,45 @@
   }
 }
 
-.input-wrapper {
-  display: flex;
+ion-content {
+  scroll-content {
+    display: flex;
+    flex-direction: column;
+  }
+  ion-grid {
+    height: 100%;
+    padding: 0;
+  }
+  ion-row {
+    flex: 1;
+    background-image: url('/assets/images/background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100%;
+  }
+  ion-col {
+    height: 100%;
+    z-index: 0;
+    position: absolute;
+    background: rgba(51, 51, 51, 0.8);
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      ion-list {
+        background: transparent;
+        ion-item {
+          margin: 16px 0;
+        }
+        .small-text {
+          font-size: 10px;
+          line-height: 12px;
+          margin: 8px 0;
+          color: #F2F2F2;
+        }
+      }
+    }
+  }
+
 }
