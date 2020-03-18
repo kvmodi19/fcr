@@ -1,4 +1,4 @@
-<div class="full-width">
+<!--<div class="full-width-container">
     <div class="registration-wrapper"></div>
     <div class="full-width overlay"></div>
     <div class="registration-content ion-justify-content-center">
@@ -10,38 +10,121 @@
                 </div>
             </div>
             <div class="registration-input">
-
                 <div>
-                    <input type="text" placeholder="Name">
-                    <div class="input-wrapper">
-                        <input type="number" placeholder="Age" min="1" max="99">
-                        <select value="Gender">
+                    <input type="text" placeholder="Name" class="full-width">
+                    <ion-input placeholder="Name" class="full-width"></ion-input>
+                    <div class="input-wrapper full-width">
+                        <input class="full-width" type="number" placeholder="Age" min="1" max="99">
+                        <select value="Gender" class="full-width">
                             <option value="male">Male</option>
                             <option value="female">Female</option>
                         </select>
                     </div>
-                    <textarea rows="4" cols="50" placeholder="Address"></textarea>
-                    <input type="number" placeholder="Mobile No.">
+                    <textarea rows="4" cols="50" placeholder="Address" class="full-width"></textarea>
+                    <input class="full-width" type="number" placeholder="Mobile No.">
 
-                    <div class="profession-radio-wrapper">
+                    <div class="profession-radio-wrapper full-width">
                         <label id="profession">Profession:</label>
-                        <mat-radio-group aria-labelledby="profession" class="profession-radio">
+                        &lt;!&ndash;<mat-radio-group aria-labelledby="profession" class="profession-radio">
                             <mat-radio-button class="example-radio-button" value="employee">
                                 Employee
                             </mat-radio-button>
                             <mat-radio-button class="example-radio-button" value="self">
                                 Self-employee
                             </mat-radio-button>
-                        </mat-radio-group>
+                        </mat-radio-group>&ndash;&gt;
                     </div>
-                    <input type="number" placeholder="E-Card Name">
-                    <input type="number" placeholder="E-Card Address">
+                    <input type="number" class="full-width" placeholder="E-Card Name">
+                    <input type="number" class="full-width" placeholder="E-Card Address">
                 </div>
-                <button mat-flat-button color="warn">Sign Up</button>
+                <ion-button color="danger" expand="full" class="full-width">Danger</ion-button>
                 <div class="no-account">
                     Already have an account?
                 </div>
             </div>
         </div>
     </div>
-</div>
+</div>-->
+
+<ion-content fullscreen>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <form class="ion-justify-content-center">
+                    <ion-list>
+                        <ion-item>
+                            <ion-label position="stacked">Name
+                                <ion-text color="danger">*</ion-text>
+                            </ion-label>
+                            <ion-input required type="text"></ion-input>
+                        </ion-item>
+
+                        <ion-item-group>
+                            <ion-item>
+                                <ion-label position="stacked">Age
+                                    <ion-text color="danger">*</ion-text>
+                                </ion-label>
+                                <ion-input required type="number" min="1" max="99" minlength="2"></ion-input>
+                            </ion-item>
+
+                            <ion-item>
+                                <ion-label>
+                                    Gender
+                                </ion-label>
+                                <ion-select value="dog">
+                                    <ion-select-option value="male">Male</ion-select-option>
+                                    <ion-select-option value="female">Female</ion-select-option>
+                                </ion-select>
+                            </ion-item>
+                        </ion-item-group>
+                        <ion-item>
+                            <ion-label position="stacked">Address</ion-label>
+                            <ion-textarea></ion-textarea>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="stacked">Mobile No.
+                                <ion-text color="danger">*</ion-text>
+                            </ion-label>
+                            <ion-input required type="text"></ion-input>
+                        </ion-item>
+                        <ion-item-group>
+                            <ion-radio-group>
+                                <ion-list-header>
+                                    <ion-label>Proffesion</ion-label>
+                                </ion-list-header>
+
+                                <ion-item>
+                                    <ion-label>Self-employee</ion-label>
+                                    <ion-radio slot="start"></ion-radio>
+                                </ion-item>
+
+                                <ion-item>
+                                    <ion-label>Employee</ion-label>
+                                    <ion-radio slot="start"></ion-radio>
+                                </ion-item>
+                            </ion-radio-group>
+                        </ion-item-group>
+                        <ion-item>
+                            <ion-label position="stacked">E-Card Name
+                                <ion-text color="danger">*</ion-text>
+                            </ion-label>
+                            <ion-input required type="text"></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="stacked">E-Card Address</ion-label>
+                            <ion-textarea></ion-textarea>
+                        </ion-item>
+                        <div>
+                            <ion-button expand="full" type="submit" color="danger">
+                                Sign Up
+                            </ion-button>
+                            <div class="small-text">
+                                Already have an account?
+                            </div>
+                        </div>
+                    </ion-list>
+                </form>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
