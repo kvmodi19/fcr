@@ -1,31 +1,9 @@
-#container {
-  text-align: center;
+ion-tab-bar {
+  background-color: #EB5757;
+  --ion-color-primary: red;
+  ion-tab-button {
+    background-color: #EB5757;
+    color: rgba(242, 242, 242, 0.5);;
 
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
-}
-
-ion-content ion-toolbar {
-  --background: translucent;
+  }
 }

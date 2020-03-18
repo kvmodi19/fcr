@@ -1,21 +1,47 @@
 <ion-header [translucent]="true">
     <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button auto-hide="false"></ion-menu-button>
+        </ion-buttons>
+        <ion-buttons slot="primary">
+            <ion-button>
+                <ion-icon slot="icon-only" name="search"></ion-icon>
+            </ion-button>
+            <ion-button>
+                <ion-icon slot="icon-only" name="bookmarks"></ion-icon>
+            </ion-button>
+            <ion-button>
+                <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+            </ion-button>
+        </ion-buttons>
         <ion-title>
-            Blank
+            News
         </ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-    <ion-header collapse="condense">
-        <ion-toolbar>
-            <ion-title size="large">Blank</ion-title>
-        </ion-toolbar>
-    </ion-header>
+    <ion-tabs>
+        <ion-tab-bar slot="bottom">
+            <ion-tab-button tab="schedule">
+                <ion-icon name="search"></ion-icon>
+                <ion-label>Find</ion-label>
+            </ion-tab-button>
 
-    <div id="container">
-        <strong>Ready to create an app?</strong>
-        <p>Start with Ionic <a target="_blank" rel="noopener noreferrer"
-                               href="https://ionicframework.com/docs/components">UI Components</a></p>
-    </div>
+            <ion-tab-button tab="speakers">
+                <ion-icon name="chatbox-ellipses"></ion-icon>
+                <ion-label>Chat</ion-label>
+            </ion-tab-button>
+
+            <ion-tab-button tab="map">
+                <ion-icon name="gift"></ion-icon>
+                <ion-label>Reward</ion-label>
+            </ion-tab-button>
+
+            <ion-tab-button tab="about">
+                <ion-icon name="chatbubbles"></ion-icon>
+                <ion-label>FAQ</ion-label>
+            </ion-tab-button>
+        </ion-tab-bar>
+    </ion-tabs>
 </ion-content>
