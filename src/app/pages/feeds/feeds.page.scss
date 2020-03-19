@@ -1,0 +1,25 @@
+ion-card-content {
+  img {
+    height: 176px;
+    width: 100%;
+    object-fit: contain;
+  }
+  .feed-title {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+    color: #000;
+  }
+  .feed-data {
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    color: #000;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .card-footer {
+    background-color: transparent;
+  }
+}

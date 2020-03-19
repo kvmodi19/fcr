@@ -15,7 +15,21 @@ import { HomePage } from './home.page';
 			{
 				path: '',
 				component: HomePage,
-			},
+				children: [
+					{
+						path: 'feeds',
+						loadChildren: () => import('../feeds/feeds.module').then(m => m.FeedsPageModule)
+					},
+					{
+						path: 'chat',
+						loadChildren: () => import('../chat/chat.module').then(m => m.ChatPageModule)
+					},
+					{
+						path: 'reward',
+						loadChildren: () => import('../reward/reward.module').then(m => m.RewardPageModule)
+					}
+				]
+			}
 		]),
 	],
 	declarations: [ HomePage ],

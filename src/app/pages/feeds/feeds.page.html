@@ -1,9 +1,47 @@
-<ion-header>
+<ion-header [translucent]="true">
     <ion-toolbar>
-        <ion-title>feeds</ion-title>
+        <ion-buttons slot="start">
+            <ion-menu-button auto-hide="false"></ion-menu-button>
+        </ion-buttons>
+        <ion-buttons slot="primary">
+            <ion-button>
+                <ion-icon slot="icon-only" name="search"></ion-icon>
+            </ion-button>
+            <ion-button>
+                <ion-icon slot="icon-only" name="bookmarks"></ion-icon>
+            </ion-button>
+            <ion-button>
+                <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>
+            News
+        </ion-title>
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content fullscreen>
+    <ion-card *ngFor="let feed of feeds">
+        <ion-card-header>
+            <ion-card-subtitle>
+                <ion-avatar>
+                    <img src="{{feed.user.avatar}}">
+                </ion-avatar>
+                {{feed.user.name}}
+            </ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+            <img src="{{feed.image}}" alt="">
+            <div class="feed-title">
+                {{feed.title}}
+            </div>
+            <div class="feed-data">
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            </div>
+            <div class="card-footer text-right">
+                <ion-icon name="heart"></ion-icon>
+                <ion-icon name="share-social"></ion-icon>
+            </div>
+        </ion-card-content>
+    </ion-card>
 </ion-content>

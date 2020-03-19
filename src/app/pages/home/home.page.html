@@ -1,47 +1,23 @@
-<ion-header [translucent]="true">
-    <ion-toolbar>
-        <ion-buttons slot="start">
-            <ion-menu-button auto-hide="false"></ion-menu-button>
-        </ion-buttons>
-        <ion-buttons slot="primary">
-            <ion-button>
-                <ion-icon slot="icon-only" name="search"></ion-icon>
-            </ion-button>
-            <ion-button>
-                <ion-icon slot="icon-only" name="bookmarks"></ion-icon>
-            </ion-button>
-            <ion-button>
-                <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
-            </ion-button>
-        </ion-buttons>
-        <ion-title>
-            News
-        </ion-title>
-    </ion-toolbar>
-</ion-header>
+<ion-tabs>
+    <ion-tab-bar slot="bottom">
+        <ion-tab-button tab="feeds">
+            <ion-icon name="search"></ion-icon>
+            <ion-label>Find</ion-label>
+        </ion-tab-button>
 
-<ion-content [fullscreen]="true">
-    <ion-tabs>
-        <ion-tab-bar slot="bottom">
-            <ion-tab-button tab="schedule">
-                <ion-icon name="search"></ion-icon>
-                <ion-label>Find</ion-label>
-            </ion-tab-button>
+        <ion-tab-button tab="chat">
+            <ion-icon name="chatbox-ellipses"></ion-icon>
+            <ion-label>Chat</ion-label>
+        </ion-tab-button>
 
-            <ion-tab-button tab="speakers">
-                <ion-icon name="chatbox-ellipses"></ion-icon>
-                <ion-label>Chat</ion-label>
-            </ion-tab-button>
+        <ion-tab-button tab="reward">
+            <ion-icon name="gift"></ion-icon>
+            <ion-label>Reward</ion-label>
+        </ion-tab-button>
 
-            <ion-tab-button tab="map">
-                <ion-icon name="gift"></ion-icon>
-                <ion-label>Reward</ion-label>
-            </ion-tab-button>
-
-            <ion-tab-button tab="about">
-                <ion-icon name="chatbubbles"></ion-icon>
-                <ion-label>FAQ</ion-label>
-            </ion-tab-button>
-        </ion-tab-bar>
-    </ion-tabs>
-</ion-content>
+        <ion-tab-button tab="about">
+            <ion-icon name="chatbubbles"></ion-icon>
+            <ion-label>FAQ</ion-label>
+        </ion-tab-button>
+    </ion-tab-bar>
+</ion-tabs>

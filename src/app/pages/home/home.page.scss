@@ -4,6 +4,8 @@ ion-tab-bar {
   ion-tab-button {
     background-color: #EB5757;
     color: rgba(242, 242, 242, 0.5);;
-
+    &.tab-selected {
+      color: white;
+    }
   }
 }
