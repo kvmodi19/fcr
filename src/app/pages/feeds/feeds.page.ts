@@ -1,6 +1,7 @@
 import {
 	Component, OnInit
 } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-feeds',
@@ -12,6 +13,7 @@ export class FeedsPage implements OnInit {
 	feeds = [
 		{
 			user: {
+				id: 1,
 				name: 'Alex Cranz',
 				avatar: 'assets/images/avatar.svg'
 			},
@@ -20,6 +22,7 @@ export class FeedsPage implements OnInit {
 		},
 		{
 			user: {
+				id: 2,
 				name: 'Alex Cranz',
 				avatar: 'assets/images/avatar.svg'
 			},
@@ -28,6 +31,7 @@ export class FeedsPage implements OnInit {
 		},
 		{
 			user: {
+				id: 3,
 				name: 'Alex Cranz',
 				avatar: 'assets/images/avatar.svg'
 			},
@@ -36,9 +40,14 @@ export class FeedsPage implements OnInit {
 		}
 	];
 
-	constructor() { }
+	constructor(
+		public router: Router
+	) { }
 
 	ngOnInit() {
 	}
 
+	showVisitingCard(user) {
+		this.router.navigateByUrl(`/home/visiting-card/${user.id}`);
+	}
 }

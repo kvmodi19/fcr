@@ -27,7 +27,11 @@ import { HomePage } from './home.page';
 					{
 						path: 'reward',
 						loadChildren: () => import('../reward/reward.module').then(m => m.RewardPageModule)
-					}
+					},
+					{
+						path: 'visiting-card',
+						loadChildren: () => import('../visiting-card/visiting-card.module').then(m => m.VisitingCardPageModule)
+					},
 				]
 			}
 		]),
