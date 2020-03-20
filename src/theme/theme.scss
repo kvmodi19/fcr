@@ -1,0 +1,31 @@
+$fcr-primary-color: #EB5757;
+$fcr-light-color: #F2F2F2;
+$fcr-dark-color: #333333;
+
+@mixin responsive {
+  @media only screen and (max-width: 374px) {
+    @content;
+  }
+}
+
+@mixin full-overlay {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+@mixin flex($direction: row, $align: start, $justify: start) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+@mixin font-primary($weight:400) {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: $weight;
+}

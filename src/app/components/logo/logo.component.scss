@@ -1,14 +1,23 @@
+@import "../../../theme/theme";
+
 .app-name {
-  position: absolute;
-  z-index: 1;
-  color: #F2F2F2;
-  font-weight: bold;
+  @include font-primary(bold);
+  color: $fcr-light-color;
   font-size: 48px;
   line-height: 59px;
-  vertical-align: top;
+  text-align: center;
   .middle-name {
     display: inline-block;
-    border-bottom: 5px solid white;
     padding-bottom: .5px;
+    position: relative;
+    &:after {
+      content: '';
+      width: 30px;
+      height: 2px;
+      background: white;
+      position: absolute;
+      bottom: 0;
+      left: calc(50% - 13px);
+    }
   }
 }
