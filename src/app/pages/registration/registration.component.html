@@ -1,130 +1,43 @@
-<!--<div class="full-width-container">
-    <div class="registration-wrapper"></div>
-    <div class="full-width overlay"></div>
-    <div class="registration-content ion-justify-content-center">
-        <app-logo class="app-logo ion-justify-content-center"></app-logo>
+<div class="bg-wrapper">
+    <div class="registration-wrapper">
+        <app-logo class="app-logo mb-4"></app-logo>
         <div class="registration-items">
-            <div class="registration-text">
-                <div class="create-account ion-justify-content-center">
-                    Create Account
-                </div>
-            </div>
+            <h3 class="text-center text-white mb-3">Create Account</h3>
             <div class="registration-input">
-                <div>
-                    <input type="text" placeholder="Name" class="full-width">
-                    <ion-input placeholder="Name" class="full-width"></ion-input>
-                    <div class="input-wrapper full-width">
-                        <input class="full-width" type="number" placeholder="Age" min="1" max="99">
-                        <select value="Gender" class="full-width">
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
+                <input type="text" placeholder="Name" />
+                <div class="row">
+                    <div class="col-6 pr-2">
+                        <input type="text" placeholder="Age" />
+                    </div>
+                    <div class="col-6 pl-2">
+                        <select>
+                            <option selected>Gender</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
                         </select>
                     </div>
-                    <textarea rows="4" cols="50" placeholder="Address" class="full-width"></textarea>
-                    <input class="full-width" type="number" placeholder="Mobile No.">
-
-                    <div class="profession-radio-wrapper full-width">
-                        <label id="profession">Profession:</label>
-                        &lt;!&ndash;<mat-radio-group aria-labelledby="profession" class="profession-radio">
-                            <mat-radio-button class="example-radio-button" value="employee">
-                                Employee
-                            </mat-radio-button>
-                            <mat-radio-button class="example-radio-button" value="self">
-                                Self-employee
-                            </mat-radio-button>
-                        </mat-radio-group>&ndash;&gt;
+                </div>
+                <input type="text" placeholder="Address" />
+                <input type="text" placeholder="Mobile No." />
+                <div class="d-flex align-items-center justify-content-between mt-3">
+                    <p class="text-white mb-0 mr-3">Profession:</p>
+                    <div class="radio-btn-container">
+                        <div class="radio-btn">
+                            <input type="radio" id="employee" name="radio-group" checked>
+                            <label for="employee">Employee</label>
+                        </div>
+                        <div class="radio-btn">
+                            <input type="radio" id="self-employee" name="radio-group">
+                            <label for="self-employee">Self Employee</label>
+                        </div>
                     </div>
-                    <input type="number" class="full-width" placeholder="E-Card Name">
-                    <input type="number" class="full-width" placeholder="E-Card Address">
                 </div>
-                <ion-button color="danger" expand="full" class="full-width">Danger</ion-button>
-                <div class="no-account">
-                    Already have an account?
-                </div>
+                <input type="text" placeholder="E-Card Name" />
+                <input type="text" placeholder="E-card Address" />
+                <button class="btn btn-primary btn-block mt-3">Sign Up</button>
+                <a href="/login" class="text-small text-white d-block mt-2">Already have an account?</a>
             </div>
         </div>
     </div>
-</div>-->
-
-<ion-content fullscreen>
-    <ion-grid>
-        <ion-row>
-            <ion-col>
-                <form class="ion-justify-content-center">
-                    <ion-list>
-                        <ion-item>
-                            <ion-label position="stacked">Name
-                                <ion-text color="danger">*</ion-text>
-                            </ion-label>
-                            <ion-input required type="text"></ion-input>
-                        </ion-item>
-
-                        <ion-item-group>
-                            <ion-item>
-                                <ion-label position="stacked">Age
-                                    <ion-text color="danger">*</ion-text>
-                                </ion-label>
-                                <ion-input required type="number" min="1" max="99" minlength="2"></ion-input>
-                            </ion-item>
-
-                            <ion-item>
-                                <ion-label>
-                                    Gender
-                                </ion-label>
-                                <ion-select value="dog">
-                                    <ion-select-option value="male">Male</ion-select-option>
-                                    <ion-select-option value="female">Female</ion-select-option>
-                                </ion-select>
-                            </ion-item>
-                        </ion-item-group>
-                        <ion-item>
-                            <ion-label position="stacked">Address</ion-label>
-                            <ion-textarea></ion-textarea>
-                        </ion-item>
-                        <ion-item>
-                            <ion-label position="stacked">Mobile No.
-                                <ion-text color="danger">*</ion-text>
-                            </ion-label>
-                            <ion-input required type="text"></ion-input>
-                        </ion-item>
-                        <ion-item-group>
-                            <ion-radio-group>
-                                <ion-list-header>
-                                    <ion-label>Proffesion</ion-label>
-                                </ion-list-header>
-
-                                <ion-item>
-                                    <ion-label>Self-employee</ion-label>
-                                    <ion-radio slot="start"></ion-radio>
-                                </ion-item>
-
-                                <ion-item>
-                                    <ion-label>Employee</ion-label>
-                                    <ion-radio slot="start"></ion-radio>
-                                </ion-item>
-                            </ion-radio-group>
-                        </ion-item-group>
-                        <ion-item>
-                            <ion-label position="stacked">E-Card Name
-                                <ion-text color="danger">*</ion-text>
-                            </ion-label>
-                            <ion-input required type="text"></ion-input>
-                        </ion-item>
-                        <ion-item>
-                            <ion-label position="stacked">E-Card Address</ion-label>
-                            <ion-textarea></ion-textarea>
-                        </ion-item>
-                        <div>
-                            <ion-button expand="full" type="submit" color="danger">
-                                Sign Up
-                            </ion-button>
-                            <div class="small-text">
-                                Already have an account?
-                            </div>
-                        </div>
-                    </ion-list>
-                </form>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
-</ion-content>
+</div>

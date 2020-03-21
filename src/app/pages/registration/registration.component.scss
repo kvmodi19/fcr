@@ -1,99 +1,23 @@
-.full-width-container {
-  height: 100%;
-  width: 100%;
-  display: flex;
+@import "../../../theme/theme";
 
-  .registration-content {
-    z-index: 1;
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    .app-logo {
-      display: flex;
-      height: 20%;
-      align-items: center;
-    }
-    .registration-items {
-      padding: 0 55px;
-      font-weight: 100;
-      color: #F2F2F2;
-      .registration-text {
-        .create-account {
-          color: #F2F2F2;
-          display: flex;
-        }
-      }
-      .registration-input {
-        margin-top: 16px;
-        .profession-radio-wrapper {
-          display: flex;
-          .profession-radio {
-            display: flex;
-            justify-content: space-between;
-            .mat-radio-checked {
+.registration-wrapper {
+  padding: 60px 55px;
+  @include flex(column, center, space-between);
+  @include font-primary();
+  @include responsive {
+    padding: 40px 32px;
+  }
 
-            }
-          }
-        }
-      }
-      .no-account {
-        font-size: 10px;
-        line-height: 12px;
-        margin: 8px 0;
-      }
-      button {
-        width: 100%;
-        background-color: #EB5757;
-      }
-      input, select, textarea {
-        height: 40px;
-        padding: 19px;
-        margin: 8px 0;
-        color: #000;
-      }
-    }
-  }
-}
-
-ion-content {
-  scroll-content {
-    display: flex;
-    flex-direction: column;
-  }
-  ion-grid {
-    height: 100%;
-    padding: 0;
-  }
-  ion-row {
-    flex: 1;
-    background-image: url('/assets/images/background.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    height: 100%;
-  }
-  ion-col {
-    height: 100%;
-    z-index: 0;
-    position: absolute;
-    background: rgba(51, 51, 51, 0.8);
-    form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      ion-list {
-        background: transparent;
-        ion-item {
-          margin: 16px 0;
-        }
-        .small-text {
-          font-size: 10px;
-          line-height: 12px;
-          margin: 8px 0;
-          color: #F2F2F2;
-        }
-      }
+  .registration-items {
+    h3 {
+      font-size: 18px;
+      line-height: 22px;
     }
   }
 
+  .registration-input {
+    p {
+      font-size: 12px;
+    }
+  }
 }
