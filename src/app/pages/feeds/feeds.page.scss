@@ -1,25 +1,61 @@
-ion-card-content {
-  img {
-    height: 176px;
-    width: 100%;
-    object-fit: contain;
+@import "../../../theme/theme";
+
+ion-header {
+
+  ion-button, ion-menu-button {
+    color: $fcr-dark-color;
   }
-  .feed-title {
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 20px;
-    color: #000;
+
+  ion-title {
+    @include font-primary(600);
+    color: $fcr-dark-color;
   }
-  .feed-data {
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 20px;
-    color: #000;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+}
+
+ion-card {
+  box-shadow: 0 2px 4px rgba(51, 51, 51, 0.25);
+  border-radius: 8px;
+
+  &-header {
+
+    ion-avatar {
+      width: 40px;
+      height: 40px;
+    }
+
+    p {
+      font-size: 14px;
+      line-height: 20px;
+      color: $fcr-dark-color;
+      @include font-primary(500);
+    }
   }
-  .card-footer {
-    background-color: transparent;
+
+  &-content {
+
+    color: $fcr-dark-color;
+
+    img {
+      height: 176px;
+      width: 100%;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    .feed-title {
+      font-size: 18px;
+      line-height: 20px;
+      @include font-primary(600);
+    }
+
+    .feed-data {
+      font-size: 14px;
+      line-height: 20px;
+      @include font-primary();
+    }
+
+    .card-footer {
+      background-color: transparent;
+    }
   }
 }
