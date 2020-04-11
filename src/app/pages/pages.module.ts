@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { AuthGuard } from '../guards/auth.guard';
 
 @NgModule({
 	declarations: [],
@@ -8,12 +9,8 @@ import { RouterModule } from '@angular/router';
 		CommonModule,
 		RouterModule.forChild([
 			{
-				path: '',
-				redirectTo: 'home',
-				pathMatch: 'full',
-			},
-			{
 				path: 'home',
+				canActivate: [AuthGuard],
 				loadChildren: () => import('./home/home.module').then(m => m.HomePageModule),
 			},
 			{
@@ -27,7 +24,12 @@ import { RouterModule } from '@angular/router';
 			{
 				path: 'register',
 				loadChildren: () => import('./registration/registration.module').then(m => m.RegistrationModule),
-			}
+			},
+			{
+				path: '',
+				redirectTo: 'home',
+				pathMatch: 'full',
+			},
 		]),
 	],
 })
