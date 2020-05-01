@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
+import { SearchModalComponent } from '../../components/search-modal/search-modal.component';
 import { FeedsPageRoutingModule } from './feeds-routing.module';
-
 import { FeedsPage } from './feeds.page';
 
 @NgModule({
@@ -15,7 +15,11 @@ import { FeedsPage } from './feeds.page';
 		IonicModule,
 		FeedsPageRoutingModule
 	],
-	declarations: [ FeedsPage ]
+	declarations: [
+		FeedsPage,
+		SearchModalComponent
+	],
+	entryComponents: [ SearchModalComponent ]
 })
 export class FeedsPageModule {
 }

@@ -61,7 +61,7 @@ export class AuthenticationService {
 
 	login(credentials: { email: string, pw: string }) {
 		// Normally make a POST request to your APi with your login credentials
-		if (credentials.email != 'saimon@devdactic.com' || credentials.pw != '123') {
+		if (credentials.email !== 'saimon@devdactic.com' || credentials.pw !== '123') {
 			return of(null);
 		}
 
@@ -71,14 +71,18 @@ export class AuthenticationService {
 					   map(
 						   res => {
 							   // Extract the JWT, here we just fake it
-							   return `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1Njc2NjU3MDYsImV4cCI6MTU5OTIwMTcwNiwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoiMTIzNDUiLCJmaXJzdF9uYW1lIjoiU2ltb24iLCJsYXN0X25hbWUiOiJHcmltbSIsImVtYWlsIjoic2FpbW9uQGRldmRhY3RpYy5jb20ifQ.4LZTaUxsX2oXpWN6nrSScFXeBNZVEyuPxcOkbbDVZ5U`;
+							   return 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXI' +
+								   'iLCJpYXQiOjE1Njc2NjU3MDYsImV4cCI6MTU5OTIwMTcwNiwiYXVkIjoid3d3LmV4YW1wbGUuY29' +
+								   'tIiwic3ViIjoiMTIzNDUiLCJmaXJzdF9uYW1lIjoiU2ltb24iLCJsYXN0X25hbWUiOiJHcmltbSIs' +
+								   'ImVtYWlsIjoic2FpbW9uQGRldmRhY3RpYy5jb20ifQ.4LZTaUxsX2oXpWN6nrSScFXeBNZVEyuPxcO' +
+								   'kbbDVZ5U';
 						   }),
 					   switchMap(
 						   token => {
-							   let decoded = helper.decodeToken(token);
+							   const decoded = helper.decodeToken(token);
 							   this.userData.next(decoded);
 
-							   let storageObs = from(this.storage.set(
+							   const storageObs = from(this.storage.set(
 								   TOKEN_KEY,
 								   token
 							   ));

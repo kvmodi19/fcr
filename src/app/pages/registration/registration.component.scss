@@ -16,6 +16,12 @@
   }
 
   .registration-input {
+    .is-invalid {
+      border: 1px solid $fcr-primary-color;
+    }
+    .invalid-feedback {
+      color: white;
+    }
     p {
       font-size: 12px;
     }
