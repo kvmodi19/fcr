@@ -8,71 +8,52 @@
     <ion-card>
         <ion-card-header>
             <ion-avatar class="d-inline-block mr-3">
-                <img src="assets/images/avatar.svg">
+                <img src="{{shop?.user?.profile ? env.baseUrl + shop?.user?.profile : defaultAvatar}}">
             </ion-avatar>
             <p class="d-inline-block">
                 <ion-card-title>
-                    User name / Company name
+                    {{shop?.user?.profession === 1 ? shop?.name : shop?.user?.name}}
                 </ion-card-title>
-                <ion-card-subtitle>
-                    Profession
+                <ion-card-subtitle class="text-capitalize">
+                    {{professions[shop?.user?.profession]}}
                 </ion-card-subtitle>
             </p>
         </ion-card-header>
         <ion-card-content class="text-right">
             <div>Address:
-                <pre>fghdkjfghkdjfgh,dsfsdf,sdfsdf</pre>
+                <pre>{{shop?.address}}</pre>
             </div>
             <div>
-                Mo no: +919875642130
+                Mo no: {{shop?.user?.mobile}}
             </div>
             <div>
-                email: mail@example.com
+                email: {{shop?.user?.email}}
             </div>
         </ion-card-content>
     </ion-card>
-    <ion-list>
+    <ion-segment (ionChange)="segmentChanged($event)" [value]="selectedSegment">
+        <ion-segment-button [value]="'about'">
+            <ion-label>About Us</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="contact">
+            <ion-label>Contact</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="menu">
+            <ion-label>Menu</ion-label>
+        </ion-segment-button>
+    </ion-segment>
+    <ion-list *ngIf="selectedSegment === 'about'">
         <ion-list-header>
-            Rewards
+            About Us
         </ion-list-header>
 
         <ion-item>
             <ion-label>
-                <h2>Reward 1</h2>
-                <p>item description</p>
-            </ion-label>
-        </ion-item>
-        <ion-item>
-            <ion-label>
-                <h2>Reward 2</h2>
-                <p>item description</p>
-            </ion-label>
-        </ion-item>
-        <ion-item>
-            <ion-label>
-                <h2>Reward 3</h2>
-                <p>item description</p>
-            </ion-label>
-        </ion-item>
-        <ion-label>
-            Load more (will redirect to new page)
-        </ion-label>
-    </ion-list>
-    <ion-list>
-        <ion-list-header>
-            Address
-        </ion-list-header>
-
-        <ion-item>
-            <ion-label>
-                <p>Address line 1</p>
-                <p>Address line 2</p>
-                <p>Address line 3</p>
-                <p>Address line 4</p>
+                About us
             </ion-label>
         </ion-item>
     </ion-list>
-    <ion-list>
+    <ion-list *ngIf="selectedSegment === 'menu'">
         <ion-list-header>
             Menu
         </ion-list-header>
@@ -81,16 +62,16 @@
             image for menu
         </ion-item>
     </ion-list>
-    <ion-list>
+    <ion-list *ngIf="selectedSegment === 'contact'">
         <ion-list-header>
             Contact detail
         </ion-list-header>
 
         <ion-item>
             <ion-label>
-                call icon + number
+                call icon + {{shop?.user.mobile}}
             </ion-label>
-            <ion-label>
+            <ion-label (click)="redirect('chat')">
                 chat icon
             </ion-label>
         </ion-item>

@@ -6,7 +6,9 @@ import { Router } from '@angular/router';
 
 import { ModalController } from '@ionic/angular';
 
+import { environment } from '../../../environments/environment';
 import { SearchModalComponent } from '../../components/search-modal/search-modal.component';
+import { FeedsApiService } from '../../services/api/feeds.api.service';
 
 @Component({
 	selector: 'app-feeds',
@@ -15,53 +17,69 @@ import { SearchModalComponent } from '../../components/search-modal/search-modal
 })
 export class FeedsPage implements OnInit {
 
+	env = environment;
 	feeds;
+	defaultAvatar = 'assets/images/avatar.svg';
 
 	constructor(
 		public router: Router,
-		public modalController: ModalController
+		public modalController: ModalController,
+		private feedsService: FeedsApiService,
 	) { }
 
 	ngOnInit() {
-		setTimeout(() => {
-			this.feeds = [
-				{
-					user: {
-						id: 1,
-						name: 'User name',
-						avatar: 'assets/images/avatar.svg',
-						country: 'india',
-						city: 'surat',
-						state: 'gujarat',
-						pinCode: 395009
-					},
-					shopName: `Company Name`,
-					image: `assets/images/background.jpg`
-				},
-				{
-					user: {
-						id: 2,
-						name: 'Alex Cranz',
-						avatar: 'assets/images/avatar.svg'
-					},
-					title: `Bland Content Isn't Apple TV+'s Biggest Problem`,
-					image: `assets/images/background.jpg`
-				},
-				{
-					user: {
-						id: 3,
-						name: 'Alex Cranz',
-						avatar: 'assets/images/avatar.svg'
-					},
-					title: `Bland Content Isn't Apple TV+'s Biggest Problem`,
-					image: `assets/images/background.jpg`
-				}
-			];
-		}, 5 * 1000);
+		this.feedsService.get()
+			.then((data) => {
+				this.feeds = data;
+			})
+			.catch((error) => {
+				console.log(
+					'feeds -> get -> error',
+					error
+				);
+			});
+		/*setTimeout(
+		 () => {
+		 this.feeds = [
+		 {
+		 user: {
+		 id: 1,
+		 name: 'User name',
+		 avatar: 'assets/images/avatar.svg',
+		 country: 'india',
+		 city: 'surat',
+		 state: 'gujarat',
+		 pinCode: 395009
+		 },
+		 shopName: `Company Name`,
+		 image: `assets/images/background.jpg`
+		 },
+		 {
+		 user: {
+		 id: 2,
+		 name: 'Alex Cranz',
+		 avatar: 'assets/images/avatar.svg'
+		 },
+		 title: `Bland Content Isn't Apple TV+'s Biggest Problem`,
+		 image: `assets/images/background.jpg`
+		 },
+		 {
+		 user: {
+		 id: 3,
+		 name: 'Alex Cranz',
+		 avatar: 'assets/images/avatar.svg'
+		 },
+		 title: `Bland Content Isn't Apple TV+'s Biggest Problem`,
+		 image: `assets/images/background.jpg`
+		 }
+		 ];
+		 },
+		 5 * 1000
+		 );*/
 	}
 
 	showVisitingCard(user) {
-		this.router.navigateByUrl(`/home/visiting-card/${user.id}`);
+		this.router.navigateByUrl(`/home/visiting-card/${user._id}`);
 	}
 
 	async createModal() {
@@ -70,10 +88,23 @@ export class FeedsPage implements OnInit {
 			swipeToClose: true,
 		} as any);
 
-		modal.onDidDismiss().then((data) => {
-			// Call the method to do whatever in your home.ts
-			console.log('Modal closed', data);
-		});
+		modal.onDidDismiss()
+			 .then((data: any) => {
+				 // Call the method to do whatever in your home.ts
+				 console.log(
+					 'Modal closed',
+					 data
+				 );
+				 if (data && data.data.search && data.data.search.text) {
+					 this.feedsService.search(data.data.search)
+						 .then((response) => {
+							 this.feeds = response.data;
+						 })
+						 .catch((error) => {
+							 console.log(error);
+						 });
+				 }
+			 });
 		await modal.present();
 	}
 }

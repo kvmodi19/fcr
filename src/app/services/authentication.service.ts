@@ -1,4 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import {
+	HttpClient,
+	HttpRequest
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -17,6 +20,7 @@ import {
 
 import { Platform } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
+import { environment } from '../../environments/environment';
 
 // local variable
 const helper = new JwtHelperService();
@@ -59,34 +63,27 @@ export class AuthenticationService {
 		);
 	}
 
-	login(credentials: { email: string, pw: string }) {
-		// Normally make a POST request to your APi with your login credentials
-		if (credentials.email !== 'saimon@devdactic.com' || credentials.pw !== '123') {
-			return of(null);
-		}
-
-		return this.http.get('https://randomuser.me/api/')
+	login(credentials: { email: string, password: string }) {
+		return this.http.post(
+			`${environment.baseUrl}/login`,
+			{ ...credentials },
+		)
 				   .pipe(
 					   take(1),
 					   map(
-						   res => {
-							   // Extract the JWT, here we just fake it
-							   return 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXI' +
-								   'iLCJpYXQiOjE1Njc2NjU3MDYsImV4cCI6MTU5OTIwMTcwNiwiYXVkIjoid3d3LmV4YW1wbGUuY29' +
-								   'tIiwic3ViIjoiMTIzNDUiLCJmaXJzdF9uYW1lIjoiU2ltb24iLCJsYXN0X25hbWUiOiJHcmltbSIs' +
-								   'ImVtYWlsIjoic2FpbW9uQGRldmRhY3RpYy5jb20ifQ.4LZTaUxsX2oXpWN6nrSScFXeBNZVEyuPxcO' +
-								   'kbbDVZ5U';
-						   }),
+						   (res: any) => {
+							   return res.token;
+						   }
+					   ),
 					   switchMap(
 						   token => {
 							   const decoded = helper.decodeToken(token);
 							   this.userData.next(decoded);
 
-							   const storageObs = from(this.storage.set(
+							   return from(this.storage.set(
 								   TOKEN_KEY,
 								   token
 							   ));
-							   return storageObs;
 						   })
 				   );
 	}

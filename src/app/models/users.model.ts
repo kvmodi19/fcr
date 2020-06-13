@@ -8,6 +8,7 @@ export interface User {
 	mobile?: string;
 	name?: string;
 	password?: string;
+	profile?: string;
 	profession?: Professions;
 	cardName?: string;
 	cardAddress?: string;

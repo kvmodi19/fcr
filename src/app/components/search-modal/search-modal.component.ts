@@ -12,6 +12,27 @@ import { ModalController } from '@ionic/angular';
 })
 export class SearchModalComponent implements OnInit {
 
+	search: string;
+	searchBy = 'any';
+	searchByOptions = [
+		{
+			display: 'Any',
+			value: 'any'
+		},
+		{
+			display: 'Country',
+			value: 'country'
+		},
+		{
+			display: 'City',
+			value: 'city'
+		},
+		{
+			display: 'Pincode',
+			value: 'pincode'
+		},
+	];
+
 	constructor(public modalController: ModalController) { }
 
 	ngOnInit() {}
@@ -21,7 +42,10 @@ export class SearchModalComponent implements OnInit {
 		// can "dismiss" itself and optionally pass back data
 		this.modalController.dismiss({
 			dismissed: true,
-			search
+			search: {
+				searchBy: this.searchBy,
+				text: search
+			}
 		});
 	}
 

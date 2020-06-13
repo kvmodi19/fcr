@@ -1,16 +1,16 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
-import { User } from '../../models/users.model';
 import { environment } from '../../../environments/environment';
+import { User } from '../../models/users.model';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class UsersApiService {
 
-	env = environment;
 	users = 'users';
+	url = `${environment.baseUrl}/${environment.api}/${this.users}`;
 
 	constructor(private http: HttpClient) {
 	}
@@ -24,8 +24,7 @@ export class UsersApiService {
 	}
 
 	post(user: User): Promise<any> {
-		debugger
-		return this.http.post(`${this.env.baseUrl}/${this.env.api}/${this.users}`, user).toPromise();
+		return this.http.post(`${this.users}`, user).toPromise();
 	}
 
 	update(user: User): boolean {

@@ -10,6 +10,7 @@ import { AuthGuard } from '../guards/auth.guard';
 		RouterModule.forChild([
 			{
 				path: 'home',
+				canActivate: [AuthGuard],
 				loadChildren: () => import('./home/home.module').then(m => m.HomePageModule),
 			},
 			{
