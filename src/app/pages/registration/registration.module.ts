@@ -9,7 +9,7 @@ import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
 	declarations: [
-		RegistrationComponent,
+		RegistrationComponent
 	],
 	imports: [
 		CommonModule,

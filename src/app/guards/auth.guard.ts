@@ -9,10 +9,12 @@ import {
 } from '@angular/router';
 
 import { Observable } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import {
+	map,
+	take
+} from 'rxjs/operators';
 
 import { AuthenticationService } from '../services/authentication.service';
-
 
 @Injectable({
 	providedIn: 'root'

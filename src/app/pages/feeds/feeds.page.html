@@ -1,161 +1,161 @@
 <ion-header [translucent]="true">
-    <ion-toolbar>
-        <ion-buttons slot="start">
-            <ion-menu-button auto-hide="false"></ion-menu-button>
-        </ion-buttons>
-        <ion-buttons slot="primary">
-            <ion-button (click)="createModal()">
-                <ion-icon slot="icon-only" name="search"></ion-icon>
-            </ion-button>
-            <ion-button>
-                <ion-icon slot="icon-only" name="bookmarks"></ion-icon>
-            </ion-button>
-            <ion-button>
-                <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
-            </ion-button>
-        </ion-buttons>
-        <ion-title>
-            News
-        </ion-title>
-    </ion-toolbar>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-menu-button auto-hide="false"></ion-menu-button>
+		</ion-buttons>
+		<ion-buttons slot="primary">
+			<ion-button (click)="createModal()">
+				<ion-icon slot="icon-only" name="search"></ion-icon>
+			</ion-button>
+			<ion-button>
+				<ion-icon slot="icon-only" name="bookmarks"></ion-icon>
+			</ion-button>
+			<ion-button>
+				<ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+		<ion-title>
+			News
+		</ion-title>
+	</ion-toolbar>
 </ion-header>
 
 <ion-content fullscreen>
-    <!-- Data to display after skeleton screen -->
-    <ng-container *ngIf="feeds">
-        <ion-card *ngFor="let feed of feeds" class="m-3">
-            <ion-card-header>
-                <ion-card-subtitle (click)="showVisitingCard(feed)">
-                    <ion-avatar class="d-inline-block mr-3">
-                        <img src="{{feed.user?.profile ? env.baseUrl + feed.user?.profile : defaultAvatar}}">
-                    </ion-avatar>
-                    <p class="d-inline-block">{{feed.user.name}}</p>
-                    <!--<ion-button fill="clear" class="m-0 text-dark float-right">-->
-                        <!--<ion-icon slot="icon-only" name="chevron-down-outline"></ion-icon>-->
-                    <!--</ion-button>-->
-                </ion-card-subtitle>
-            </ion-card-header>
-            <ion-card-content class="pb-0">
-                <!--<img src="{{feed.image}}" alt="" class="mb-3">-->
-                <h3 class="feed-title mb-2">
-                    {{feed.name}}
-                </h3>
-                <p class="feed-data text-truncate mb-3">
-                    {{feed.description}}
-                </p>
-                <!--<div class="card-footer text-right px-0">-->
-                    <!--<ion-button fill="clear" class="m-0 text-dark">-->
-                        <!--<ion-icon slot="icon-only" name="heart"></ion-icon>-->
-                    <!--</ion-button>-->
-                    <!--<ion-button fill="clear" class="m-0 text-dark">-->
-                        <!--<ion-icon slot="icon-only" name="share-social"></ion-icon>-->
-                    <!--</ion-button>-->
-                <!--</div>-->
-            </ion-card-content>
-        </ion-card>
-    </ng-container>
+	<!-- Data to display after skeleton screen -->
+	<ng-container *ngIf="feeds">
+		<ion-card *ngFor="let feed of feeds" class="m-3">
+			<ion-card-header>
+				<ion-card-subtitle (click)="showVisitingCard(feed)">
+					<ion-avatar class="d-inline-block mr-3">
+						<img src="{{feed.user?.profile ? env.baseUrl + feed.user?.profile : defaultAvatar}}">
+					</ion-avatar>
+					<p class="d-inline-block">{{feed.user.name}}</p>
+					<!--<ion-button fill="clear" class="m-0 text-dark float-right">-->
+					<!--<ion-icon slot="icon-only" name="chevron-down-outline"></ion-icon>-->
+					<!--</ion-button>-->
+				</ion-card-subtitle>
+			</ion-card-header>
+			<ion-card-content class="pb-0">
+				<!--<img src="{{feed.image}}" alt="" class="mb-3">-->
+				<h3 class="feed-title mb-2">
+					{{feed.name}}
+				</h3>
+				<p class="feed-data text-truncate mb-3">
+					{{feed.description}}
+				</p>
+				<!--<div class="card-footer text-right px-0">-->
+				<!--<ion-button fill="clear" class="m-0 text-dark">-->
+				<!--<ion-icon slot="icon-only" name="heart"></ion-icon>-->
+				<!--</ion-button>-->
+				<!--<ion-button fill="clear" class="m-0 text-dark">-->
+				<!--<ion-icon slot="icon-only" name="share-social"></ion-icon>-->
+				<!--</ion-button>-->
+				<!--</div>-->
+			</ion-card-content>
+		</ion-card>
+	</ng-container>
 
-    <!-- Skeleton screen -->
-    <ng-container *ngIf="!feeds">
-        <ion-card class="m-3">
-            <ion-card-header>
-                <ion-card-subtitle>
-                    <ion-avatar class="d-inline-block mr-3">
-                        <ion-skeleton-text animated></ion-skeleton-text>
-                    </ion-avatar>
-                    <p class="d-inline-block" style="width: 50%">
-                        <ion-skeleton-text animated></ion-skeleton-text>
-                    </p>
-                </ion-card-subtitle>
-            </ion-card-header>
-            <ion-card-content class="pb-0">
-                <h3 class="feed-title mb-2" style="width: 50%">
-                    <ion-skeleton-text animated></ion-skeleton-text>
-                </h3>
-                <p class="feed-data text-truncate mb-3" style="width: 60%">
-                    <ion-skeleton-text animated></ion-skeleton-text>
-                </p>
-            </ion-card-content>
-        </ion-card>
-        <ion-card class="m-3">
-            <ion-card-header>
-                <ion-card-subtitle>
-                    <ion-avatar class="d-inline-block mr-3">
-                        <ion-skeleton-text animated></ion-skeleton-text>
-                    </ion-avatar>
-                    <p class="d-inline-block" style="width: 50%">
-                        <ion-skeleton-text animated></ion-skeleton-text>
-                    </p>
-                </ion-card-subtitle>
-            </ion-card-header>
-            <ion-card-content class="pb-0">
-                <h3 class="feed-title mb-2" style="width: 50%">
-                    <ion-skeleton-text animated></ion-skeleton-text>
-                </h3>
-                <p class="feed-data text-truncate mb-3" style="width: 60%">
-                    <ion-skeleton-text animated></ion-skeleton-text>
-                </p>
-            </ion-card-content>
-        </ion-card>
-        <ion-card class="m-3">
-            <ion-card-header>
-                <ion-card-subtitle>
-                    <ion-avatar class="d-inline-block mr-3">
-                        <ion-skeleton-text animated></ion-skeleton-text>
-                    </ion-avatar>
-                    <p class="d-inline-block" style="width: 50%">
-                        <ion-skeleton-text animated></ion-skeleton-text>
-                    </p>
-                </ion-card-subtitle>
-            </ion-card-header>
-            <ion-card-content class="pb-0">
-                <h3 class="feed-title mb-2" style="width: 50%">
-                    <ion-skeleton-text animated></ion-skeleton-text>
-                </h3>
-                <p class="feed-data text-truncate mb-3" style="width: 60%">
-                    <ion-skeleton-text animated></ion-skeleton-text>
-                </p>
-            </ion-card-content>
-        </ion-card>
-        <ion-card class="m-3">
-            <ion-card-header>
-                <ion-card-subtitle>
-                    <ion-avatar class="d-inline-block mr-3">
-                        <ion-skeleton-text animated></ion-skeleton-text>
-                    </ion-avatar>
-                    <p class="d-inline-block" style="width: 50%">
-                        <ion-skeleton-text animated></ion-skeleton-text>
-                    </p>
-                </ion-card-subtitle>
-            </ion-card-header>
-            <ion-card-content class="pb-0">
-                <h3 class="feed-title mb-2" style="width: 50%">
-                    <ion-skeleton-text animated></ion-skeleton-text>
-                </h3>
-                <p class="feed-data text-truncate mb-3" style="width: 60%">
-                    <ion-skeleton-text animated></ion-skeleton-text>
-                </p>
-            </ion-card-content>
-        </ion-card>
-        <ion-card class="m-3">
-            <ion-card-header>
-                <ion-card-subtitle>
-                    <ion-avatar class="d-inline-block mr-3">
-                        <ion-skeleton-text animated></ion-skeleton-text>
-                    </ion-avatar>
-                    <p class="d-inline-block" style="width: 50%">
-                        <ion-skeleton-text animated></ion-skeleton-text>
-                    </p>
-                </ion-card-subtitle>
-            </ion-card-header>
-            <ion-card-content class="pb-0">
-                <h3 class="feed-title mb-2" style="width: 50%">
-                    <ion-skeleton-text animated></ion-skeleton-text>
-                </h3>
-                <p class="feed-data text-truncate mb-3" style="width: 60%">
-                    <ion-skeleton-text animated></ion-skeleton-text>
-                </p>
-            </ion-card-content>
-        </ion-card>
-    </ng-container>
+	<!-- Skeleton screen -->
+	<ng-container *ngIf="!feeds">
+		<ion-card class="m-3">
+			<ion-card-header>
+				<ion-card-subtitle>
+					<ion-avatar class="d-inline-block mr-3">
+						<ion-skeleton-text animated></ion-skeleton-text>
+					</ion-avatar>
+					<p class="d-inline-block" style="width: 50%">
+						<ion-skeleton-text animated></ion-skeleton-text>
+					</p>
+				</ion-card-subtitle>
+			</ion-card-header>
+			<ion-card-content class="pb-0">
+				<h3 class="feed-title mb-2" style="width: 50%">
+					<ion-skeleton-text animated></ion-skeleton-text>
+				</h3>
+				<p class="feed-data text-truncate mb-3" style="width: 60%">
+					<ion-skeleton-text animated></ion-skeleton-text>
+				</p>
+			</ion-card-content>
+		</ion-card>
+		<ion-card class="m-3">
+			<ion-card-header>
+				<ion-card-subtitle>
+					<ion-avatar class="d-inline-block mr-3">
+						<ion-skeleton-text animated></ion-skeleton-text>
+					</ion-avatar>
+					<p class="d-inline-block" style="width: 50%">
+						<ion-skeleton-text animated></ion-skeleton-text>
+					</p>
+				</ion-card-subtitle>
+			</ion-card-header>
+			<ion-card-content class="pb-0">
+				<h3 class="feed-title mb-2" style="width: 50%">
+					<ion-skeleton-text animated></ion-skeleton-text>
+				</h3>
+				<p class="feed-data text-truncate mb-3" style="width: 60%">
+					<ion-skeleton-text animated></ion-skeleton-text>
+				</p>
+			</ion-card-content>
+		</ion-card>
+		<ion-card class="m-3">
+			<ion-card-header>
+				<ion-card-subtitle>
+					<ion-avatar class="d-inline-block mr-3">
+						<ion-skeleton-text animated></ion-skeleton-text>
+					</ion-avatar>
+					<p class="d-inline-block" style="width: 50%">
+						<ion-skeleton-text animated></ion-skeleton-text>
+					</p>
+				</ion-card-subtitle>
+			</ion-card-header>
+			<ion-card-content class="pb-0">
+				<h3 class="feed-title mb-2" style="width: 50%">
+					<ion-skeleton-text animated></ion-skeleton-text>
+				</h3>
+				<p class="feed-data text-truncate mb-3" style="width: 60%">
+					<ion-skeleton-text animated></ion-skeleton-text>
+				</p>
+			</ion-card-content>
+		</ion-card>
+		<ion-card class="m-3">
+			<ion-card-header>
+				<ion-card-subtitle>
+					<ion-avatar class="d-inline-block mr-3">
+						<ion-skeleton-text animated></ion-skeleton-text>
+					</ion-avatar>
+					<p class="d-inline-block" style="width: 50%">
+						<ion-skeleton-text animated></ion-skeleton-text>
+					</p>
+				</ion-card-subtitle>
+			</ion-card-header>
+			<ion-card-content class="pb-0">
+				<h3 class="feed-title mb-2" style="width: 50%">
+					<ion-skeleton-text animated></ion-skeleton-text>
+				</h3>
+				<p class="feed-data text-truncate mb-3" style="width: 60%">
+					<ion-skeleton-text animated></ion-skeleton-text>
+				</p>
+			</ion-card-content>
+		</ion-card>
+		<ion-card class="m-3">
+			<ion-card-header>
+				<ion-card-subtitle>
+					<ion-avatar class="d-inline-block mr-3">
+						<ion-skeleton-text animated></ion-skeleton-text>
+					</ion-avatar>
+					<p class="d-inline-block" style="width: 50%">
+						<ion-skeleton-text animated></ion-skeleton-text>
+					</p>
+				</ion-card-subtitle>
+			</ion-card-header>
+			<ion-card-content class="pb-0">
+				<h3 class="feed-title mb-2" style="width: 50%">
+					<ion-skeleton-text animated></ion-skeleton-text>
+				</h3>
+				<p class="feed-data text-truncate mb-3" style="width: 60%">
+					<ion-skeleton-text animated></ion-skeleton-text>
+				</p>
+			</ion-card-content>
+		</ion-card>
+	</ng-container>
 </ion-content>

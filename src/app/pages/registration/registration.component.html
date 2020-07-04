@@ -1,160 +1,160 @@
 <div class="bg-wrapper">
-    <div class="registration-wrapper">
-        <app-logo class="app-logo mb-4"></app-logo>
-        <div class="registration-items">
-            <h3 class="text-center text-white mb-3">Create Account</h3>
-            <form #registration="ngForm" (submit)="submitForm(registration)">
-                <div class="registration-input">
-                    <div>
-                        <input
-                                type="text"
-                                placeholder="Name"
-                                name="name"
-                                #name="ngModel"
-                                [(ngModel)]="userData.name"
-                                [ngClass]="{ 'is-invalid': registration.submitted && name.invalid }"
-                                required
-                        />
-                        <div *ngIf="registration.submitted && name.invalid" class="invalid-feedback">
-                            <div *ngIf="name.errors.required">Name is required</div>
-                        </div>
-                    </div>
-                    <div>
-                        <input
-                                type="text"
-                                placeholder="Email"
-                                name="email"
-                                #email="ngModel"
-                                [(ngModel)]="userData.email"
-                                [pattern]="emailPattern"
-                                [ngClass]="{ 'is-invalid': registration.submitted && email.invalid }"
-                                required
-                        />
-                        <div *ngIf="registration.submitted && email.invalid" class="invalid-feedback">
-                            <div *ngIf="email.errors.required">Email is required</div>
-                            <div *ngIf="email.errors.pattern">In valid Email</div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6 pr-2">
-                            <input
-                                    type="text"
-                                    placeholder="Age"
-                                    name="age"
-                                    #age="ngModel"
-                                    [(ngModel)]="userData.age"
-                                    required
-                                    pattern="^\d{1,2}$"
-                                    maxlength="2"
-                                    [ngClass]="{ 'is-invalid': registration.submitted && age.invalid }"
-                            />
-                            <div *ngIf="registration.submitted && age.invalid" class="invalid-feedback">
-                                <div *ngIf="age.errors.required">Age is required</div>
-                                <div *ngIf="age.errors.pattern">Invalid Age.</div>
-                            </div>
-                        </div>
-                        <div class="col-6 pl-2">
-                            <select
-                                    name="gender"
-                                    #gender="ngModel"
-                                    [(ngModel)]="userData.gender"
-                                    required
-                                    [ngClass]="{ 'is-invalid': registration.submitted && gender.invalid }"
-                            >
-                                <option value="">Gender</option>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                            </select>
-                            <div *ngIf="registration.submitted && gender.invalid" class="invalid-feedback">
-                                <div *ngIf="gender.errors.required">Gender is required</div>
-                            </div>
-                        </div>
-                    </div>
-                    <input
-                            type="text"
-                            placeholder="Address"
-                            name="address"
-                            #address="ngModel"
-                            [(ngModel)]="userData.address"
-                    />
-                    <div>
-                        <input
-                                type="text"
-                                placeholder="Mobile No."
-                                name="mobile"
-                                #mobile="ngModel"
-                                [(ngModel)]="userData.mobile"
-                                minlength="10"
-                                required
-                                [ngClass]="{ 'is-invalid': registration.submitted && mobile.invalid }"
-                        />
-                        <div *ngIf="registration.submitted && mobile.invalid" class="invalid-feedback">
-                            <div *ngIf="mobile.errors.required">Mobile No is required</div>
-                            <div *ngIf="mobile.errors.minLength">Invalid Mobile Number</div>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between mt-3">
-                        <p class="text-white mb-0 mr-3">Profession:</p>
-                        <div class="radio-btn-container">
-                            <div class="radio-btn">
-                                <input
-                                        type="radio"
-                                        id="employee"
-                                        name="profession"
-                                        #profession="ngModel"
-                                        [value]="professions['employee']"
-                                        [(ngModel)]="userData.profession"
-                                        checked
-                                />
-                                <label for="employee">Employee</label>
-                            </div>
-                            <div class="radio-btn">
-                                <input
-                                        type="radio"
-                                        id="self-employee"
-                                        name="profession"
-                                        #profession="ngModel"
-                                        [value]="professions['self-employee']"
-                                        [(ngModel)]="userData.profession"
-                                />
-                                <label for="self-employee">Self Employee</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <input
-                                type="text"
-                                placeholder="E-Card Name"
-                                name="cardName"
-                                #cardName="ngModel"
-                                [(ngModel)]="userData.cardName"
-                                required
-                                [ngClass]="{ 'is-invalid': registration.submitted && cardName.invalid }"
-                        />
-                        <div *ngIf="registration.submitted && cardName.invalid" class="invalid-feedback">
-                            <div *ngIf="cardName.errors.required">E-Card Name is required</div>
-                            <div *ngIf="cardName.errors.minLength">Invalid E-Card Name</div>
-                        </div>
-                    </div>
-                    <div>
-                        <input
-                                type="text"
-                                placeholder="E-card Address"
-                                name="cardAddress"
-                                #cardAddress="ngModel"
-                                [(ngModel)]="userData.cardAddress"
-                                required
-                                [ngClass]="{ 'is-invalid': registration.submitted && cardAddress.invalid }"
-                        />
-                        <div *ngIf="registration.submitted && cardAddress.invalid" class="invalid-feedback">
-                            <div *ngIf="cardAddress.errors.required">E-Card Address is required</div>
-                            <div *ngIf="cardAddress.errors.minLength">Invalid E-Card Address</div>
-                        </div>
-                    </div>
-                    <button class="btn btn-primary btn-block mt-3" type="submit">Sign Up</button>
-                    <a routerLink="/login" class="text-small text-white d-block mt-2">Already have an account?</a>
-                </div>
-            </form>
-        </div>
-    </div>
+	<div class="registration-wrapper">
+		<app-logo class="app-logo mb-4"></app-logo>
+		<div class="registration-items">
+			<h3 class="text-center text-white mb-3">Create Account</h3>
+			<form #registration="ngForm" (submit)="submitForm(registration)">
+				<div class="registration-input">
+					<div>
+						<input
+								type="text"
+								placeholder="Name"
+								name="name"
+								#name="ngModel"
+								[(ngModel)]="userData.name"
+								[ngClass]="{ 'is-invalid': registration.submitted && name.invalid }"
+								required
+						/>
+						<div *ngIf="registration.submitted && name.invalid" class="invalid-feedback">
+							<div *ngIf="name.errors.required">Name is required</div>
+						</div>
+					</div>
+					<div>
+						<input
+								type="text"
+								placeholder="Email"
+								name="email"
+								#email="ngModel"
+								[(ngModel)]="userData.email"
+								[pattern]="emailPattern"
+								[ngClass]="{ 'is-invalid': registration.submitted && email.invalid }"
+								required
+						/>
+						<div *ngIf="registration.submitted && email.invalid" class="invalid-feedback">
+							<div *ngIf="email.errors.required">Email is required</div>
+							<div *ngIf="email.errors.pattern">In valid Email</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-6 pr-2">
+							<input
+									type="text"
+									placeholder="Age"
+									name="age"
+									#age="ngModel"
+									[(ngModel)]="userData.age"
+									required
+									pattern="^\d{1,2}$"
+									maxlength="2"
+									[ngClass]="{ 'is-invalid': registration.submitted && age.invalid }"
+							/>
+							<div *ngIf="registration.submitted && age.invalid" class="invalid-feedback">
+								<div *ngIf="age.errors.required">Age is required</div>
+								<div *ngIf="age.errors.pattern">Invalid Age.</div>
+							</div>
+						</div>
+						<div class="col-6 pl-2">
+							<select
+									name="gender"
+									#gender="ngModel"
+									[(ngModel)]="userData.gender"
+									required
+									[ngClass]="{ 'is-invalid': registration.submitted && gender.invalid }"
+							>
+								<option value="">Gender</option>
+								<option value="male">Male</option>
+								<option value="female">Female</option>
+							</select>
+							<div *ngIf="registration.submitted && gender.invalid" class="invalid-feedback">
+								<div *ngIf="gender.errors.required">Gender is required</div>
+							</div>
+						</div>
+					</div>
+					<input
+							type="text"
+							placeholder="Address"
+							name="address"
+							#address="ngModel"
+							[(ngModel)]="userData.address"
+					/>
+					<div>
+						<input
+								type="text"
+								placeholder="Mobile No."
+								name="mobile"
+								#mobile="ngModel"
+								[(ngModel)]="userData.mobile"
+								minlength="10"
+								required
+								[ngClass]="{ 'is-invalid': registration.submitted && mobile.invalid }"
+						/>
+						<div *ngIf="registration.submitted && mobile.invalid" class="invalid-feedback">
+							<div *ngIf="mobile.errors.required">Mobile No is required</div>
+							<div *ngIf="mobile.errors.minLength">Invalid Mobile Number</div>
+						</div>
+					</div>
+					<div class="d-flex align-items-center justify-content-between mt-3">
+						<p class="text-white mb-0 mr-3">Profession:</p>
+						<div class="radio-btn-container">
+							<div class="radio-btn">
+								<input
+										type="radio"
+										id="employee"
+										name="profession"
+										#profession="ngModel"
+										[value]="professions['employee']"
+										[(ngModel)]="userData.profession"
+										checked
+								/>
+								<label for="employee">Employee</label>
+							</div>
+							<div class="radio-btn">
+								<input
+										type="radio"
+										id="self-employee"
+										name="profession"
+										#profession="ngModel"
+										[value]="professions['self-employee']"
+										[(ngModel)]="userData.profession"
+								/>
+								<label for="self-employee">Self Employee</label>
+							</div>
+						</div>
+					</div>
+					<div>
+						<input
+								type="text"
+								placeholder="E-Card Name"
+								name="cardName"
+								#cardName="ngModel"
+								[(ngModel)]="userData.cardName"
+								required
+								[ngClass]="{ 'is-invalid': registration.submitted && cardName.invalid }"
+						/>
+						<div *ngIf="registration.submitted && cardName.invalid" class="invalid-feedback">
+							<div *ngIf="cardName.errors.required">E-Card Name is required</div>
+							<div *ngIf="cardName.errors.minLength">Invalid E-Card Name</div>
+						</div>
+					</div>
+					<div>
+						<input
+								type="text"
+								placeholder="E-card Address"
+								name="cardAddress"
+								#cardAddress="ngModel"
+								[(ngModel)]="userData.cardAddress"
+								required
+								[ngClass]="{ 'is-invalid': registration.submitted && cardAddress.invalid }"
+						/>
+						<div *ngIf="registration.submitted && cardAddress.invalid" class="invalid-feedback">
+							<div *ngIf="cardAddress.errors.required">E-Card Address is required</div>
+							<div *ngIf="cardAddress.errors.minLength">Invalid E-Card Address</div>
+						</div>
+					</div>
+					<button class="btn btn-primary btn-block mt-3" type="submit">Sign Up</button>
+					<a routerLink="/login" class="text-small text-white d-block mt-2">Already have an account?</a>
+				</div>
+			</form>
+		</div>
+	</div>
 </div>

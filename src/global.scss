@@ -8,16 +8,13 @@
  * For more information on global stylesheets, visit the documentation:
  * https://ionicframework.com/docs/layout/global-stylesheets
  */
-
 /* Core CSS required for Ionic components to work properly */
 @import "~@ionic/angular/css/core.css";
-
 /* Basic CSS for apps built with Ionic */
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
 @import '~@ionic/angular/css/display.css';
-
 /* Optional CSS utils that can be commented out */
 @import "~@ionic/angular/css/padding.css";
 @import "~@ionic/angular/css/float-elements.css";
@@ -38,29 +35,28 @@
 
 */
 
-
 /*****************************
 *     1.  Base Styling     *
 *****************************/
 
 body {
-  font-family: 'Montserrat', sans-serif;
+	font-family: 'Montserrat', sans-serif;
 }
 
 .text-primary {
-  color: $fcr-primary-color !important;
+	color: $fcr-primary-color !important;
 }
 
 .text-dark {
-  color: $fcr-dark-color !important;
+	color: $fcr-dark-color !important;
 }
 
 .text-light {
-  color: $fcr-light-color !important;
+	color: $fcr-light-color !important;
 }
 
 .text-small {
-  font-size: 10px;
+	font-size: 10px;
 }
 
 /*************************************
@@ -70,21 +66,21 @@ body {
 /*****    2.1. Component: Button    *****/
 
 .btn {
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
-  font-size: 12px;
-  height: 40px;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	font-size: 12px;
+	height: 40px;
 
-  &-primary,
-  &-primary:hover,
-  &-primary:focus,
-  &-primary:not(:disabled):not(.disabled):active,
-  &-primary:not(:disabled):not(.disabled):active:focus {
-    background-color: $fcr-primary-color;
-    border-color: $fcr-primary-color;
-    box-shadow: none;
-  }
+	&-primary,
+	&-primary:hover,
+	&-primary:focus,
+	&-primary:not(:disabled):not(.disabled):active,
+	&-primary:not(:disabled):not(.disabled):active:focus {
+		background-color: $fcr-primary-color;
+		border-color: $fcr-primary-color;
+		box-shadow: none;
+	}
 }
 
 /*****    2.2. Component: Input    *****/
@@ -92,87 +88,86 @@ body {
 input[type="text"],
 input[type="password"],
 select {
-  width: 100%;
-  height: 40px;
-  border: 0;
-  padding: 0 19px;
-  margin-top: 16px;
-  font-size: 12px;
-  color: $fcr-dark-color;
-  outline: 0;
+	width: 100%;
+	height: 40px;
+	border: 0;
+	padding: 0 19px;
+	margin-top: 16px;
+	font-size: 12px;
+	color: $fcr-dark-color;
+	outline: 0;
 }
 
 /*****    2.4. Component: radio button    *****/
 
 .radio-btn {
-  display: inline-block;
-  margin-right: 8px;
+	display: inline-block;
+	margin-right: 8px;
 
-  [type="radio"] {
+	[type="radio"] {
 
-    &:checked,
-    &:not(:checked) {
-      position: absolute;
-      left: -9999px;
+		&:checked,
+		&:not(:checked) {
+			position: absolute;
+			left: -9999px;
 
-      & + label {
-        position: relative;
-        padding-left: 28px;
-        cursor: pointer;
-        font-size: 12px;
-        line-height: 20px;
-        display: inline-block;
-        color: white;
-        margin-bottom: 0;
+			& + label {
+				position: relative;
+				padding-left: 28px;
+				cursor: pointer;
+				font-size: 12px;
+				line-height: 20px;
+				display: inline-block;
+				color: white;
+				margin-bottom: 0;
 
-        &:before {
-          content: '';
-          position: absolute;
-          left: 0;
-          top: 0;
-          width: 20px;
-          height: 20px;
-          border: 2px solid white;
-          border-radius: 100%;
-          background: transparent;
-        }
+				&:before {
+					content: '';
+					position: absolute;
+					left: 0;
+					top: 0;
+					width: 20px;
+					height: 20px;
+					border: 2px solid white;
+					border-radius: 100%;
+					background: transparent;
+				}
 
-        &:after {
-          content: '';
-          width: 10px;
-          height: 10px;
-          background: $fcr-primary-color;
-          position: absolute;
-          top: 5px;
-          left: 5px;
-          border-radius: 100%;
-          -webkit-transition: all 0.2s ease;
-          transition: all 0.2s ease;
-        }
-      }
-    }
+				&:after {
+					content: '';
+					width: 10px;
+					height: 10px;
+					background: $fcr-primary-color;
+					position: absolute;
+					top: 5px;
+					left: 5px;
+					border-radius: 100%;
+					-webkit-transition: all 0.2s ease;
+					transition: all 0.2s ease;
+				}
+			}
+		}
 
-    &:not(:checked) + label:after {
-      opacity: 0;
-      -webkit-transform: scale(0);
-      transform: scale(0);
-    }
+		&:not(:checked) + label:after {
+			opacity: 0;
+			-webkit-transform: scale(0);
+			transform: scale(0);
+		}
 
-    &:checked + label{
+		&:checked + label {
 
-      &:after {
-        opacity: 1;
-        -webkit-transform: scale(1);
-        transform: scale(1);
-      }
+			&:after {
+				opacity: 1;
+				-webkit-transform: scale(1);
+				transform: scale(1);
+			}
 
-      &:before {
-        border-color: $fcr-primary-color;
-      }
-    }
-  }
+			&:before {
+				border-color: $fcr-primary-color;
+			}
+		}
+	}
 }
-
 
 /*************************************
 *     3.  Background Styling     *
@@ -180,22 +175,22 @@ select {
 
 .bg-wrapper {
 
-  &:before {
-    @include full-overlay;
-    background: url(/assets/images/background.jpg) no-repeat center center;
-    background-size: cover;
-    filter: blur(2px);
-  }
+	&:before {
+		@include full-overlay;
+		background: url(/assets/images/background.jpg) no-repeat center center;
+		background-size: cover;
+		filter: blur(2px);
+	}
 
-  &:after {
-    @include full-overlay;
-    background: rgba(51, 51, 51, 0.8);
-  }
+	&:after {
+		@include full-overlay;
+		background: rgba(51, 51, 51, 0.8);
+	}
 
-  & > div {
-    z-index: 2;
-    position: relative;
-    height: 100vh;
-    overflow: auto;
-  }
+	& > div {
+		z-index: 2;
+		position: relative;
+		height: 100vh;
+		overflow: auto;
+	}
 }

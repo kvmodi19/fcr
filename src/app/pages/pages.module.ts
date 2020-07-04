@@ -10,20 +10,24 @@ import { AuthGuard } from '../guards/auth.guard';
 		RouterModule.forChild([
 			{
 				path: 'home',
-				canActivate: [AuthGuard],
-				loadChildren: () => import('./home/home.module').then(m => m.HomePageModule),
+				canActivate: [ AuthGuard ],
+				loadChildren: () => import('./home/home.module').then(
+					m => m.HomePageModule),
 			},
 			{
 				path: 'login',
-				loadChildren: () => import('./login/login.module').then(m => m.LoginModule),
+				loadChildren: () => import('./login/login.module').then(
+					m => m.LoginModule),
 			},
 			{
 				path: 'loading',
-				loadChildren: () => import('./loading/loading.module').then(m => m.LoadingModule),
+				loadChildren: () => import('./loading/loading.module').then(
+					m => m.LoadingModule),
 			},
 			{
 				path: 'register',
-				loadChildren: () => import('./registration/registration.module').then(m => m.RegistrationModule),
+				loadChildren: () => import('./registration/registration.module').then(
+					m => m.RegistrationModule),
 			},
 			{
 				path: '',

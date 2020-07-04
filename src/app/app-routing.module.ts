@@ -1,10 +1,15 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import {
+	PreloadAllModules,
+	RouterModule,
+	Routes
+} from '@angular/router';
 
 const routes: Routes = [
 	{
 		path: '',
-		loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule),
+		loadChildren: () => import('./pages/pages.module').then(
+			m => m.PagesModule),
 	},
 	{
 		path: '**',
@@ -15,7 +20,10 @@ const routes: Routes = [
 
 @NgModule({
 	imports: [
-		RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
+		RouterModule.forRoot(
+			routes,
+			{ preloadingStrategy: PreloadAllModules }
+		),
 	],
 	exports: [ RouterModule ],
 })

@@ -1,6 +1,6 @@
 import {
 	Component,
-	OnInit,
+	OnInit
 } from '@angular/core';
 import {
 	Professions,
@@ -32,10 +32,16 @@ export class RegistrationComponent implements OnInit {
 		if (registration.valid) {
 			this.userService.post(this.userData)
 				.then((response: User) => {
-					console.log('response', response);
+					console.log(
+						'response',
+						response
+					);
 				})
 				.catch((error) => {
-					console.log('error', error);
+					console.log(
+						'error',
+						error
+					);
 				});
 		}
 	}

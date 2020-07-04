@@ -16,19 +16,29 @@ export class FeedsApiService {
 	}
 
 	get(): Promise<any> {
-		return this.http.get(this.url).toPromise();
+		return this.http.get(this.url)
+				   .toPromise();
 	}
 
 	getById(id: string): Promise<any> {
-		return this.http.get(`${this.url}/${id}`).toPromise();
+		return this.http.get(`${this.url}/${id}`)
+				   .toPromise();
 	}
 
-	search(search: {text: string, searchBy: string}): Promise<any> {
-		return this.http.post(`${this.url}/search`, search).toPromise();
+	search(search: { text: string, searchBy: string }): Promise<any> {
+		return this.http.post(
+			`${this.url}/search`,
+			search
+		)
+				   .toPromise();
 	}
 
 	post(shop: User): Promise<any> {
-		return this.http.post(`${this.url}`, shop).toPromise();
+		return this.http.post(
+			`${this.url}`,
+			shop
+		)
+				   .toPromise();
 	}
 
 	update(user: User): boolean {

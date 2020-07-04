@@ -1,46 +1,46 @@
 <div class="bg-wrapper">
-    <div class="login-wrapper">
-        <app-logo class="app-logo mb-4"></app-logo>
-        <div class="login-items">
-            <div class="login-text">
-                <div class="fcr-text">
-                    <p class="mb-0">Find</p>
-                    <p class="mb-0">Chat</p>
-                    <p class="mb-0">Reward</p>
-                </div>
-                <div class="powered-by">
-                    Powered By Veti
-                </div>
-            </div>
-            <form class="login-input" #login="ngForm" name="login" (submit)="doLogin(login)">
-                <input name="email" #email="ngModel" [(ngModel)]="user.email" type="text" placeholder="Enter Email"
-                       [pattern]="emailPattern"
-                       required/>
-                <div class="email-error" *ngIf="login.submitted && email.errors">
+	<div class="login-wrapper">
+		<app-logo class="app-logo mb-4"></app-logo>
+		<div class="login-items">
+			<div class="login-text">
+				<div class="fcr-text">
+					<p class="mb-0">Find</p>
+					<p class="mb-0">Chat</p>
+					<p class="mb-0">Reward</p>
+				</div>
+				<div class="powered-by">
+					Powered By Veti
+				</div>
+			</div>
+			<form class="login-input" #login="ngForm" name="login" (submit)="doLogin(login)">
+				<input name="email" #email="ngModel" [(ngModel)]="user.email" type="text" placeholder="Enter Email"
+				       [pattern]="emailPattern"
+				       required />
+				<div class="email-error" *ngIf="login.submitted && email.errors">
                     <span *ngIf="email.errors?.required" class="text-small text-primary">
                         Please enter email
                     </span>
-                    <span *ngIf="email.errors?.pattern" class="text-small text-primary">
+					<span *ngIf="email.errors?.pattern" class="text-small text-primary">
                         Please enter valid email address
                     </span>
-                </div>
-                <input name="password" #password="ngModel" [(ngModel)]="user.password" type="password"
-                       minlength="6"
-                       placeholder="Enter Password" required/>
-                <div class="password-error" *ngIf="login.submitted && password.errors">
+				</div>
+				<input name="password" #password="ngModel" [(ngModel)]="user.password" type="password"
+				       minlength="6"
+				       placeholder="Enter Password" required />
+				<div class="password-error" *ngIf="login.submitted && password.errors">
                     <span *ngIf="password.errors?.required" class="text-small text-primary">
                         Please enter password
                     </span>
-                    <span *ngIf="password.errors?.minlength" class="text-small text-primary">
+					<span *ngIf="password.errors?.minlength" class="text-small text-primary">
                         Password must be 6 character long
                     </span>
-                </div>
-                <div class="forgot-password">
-                    <a href="" class="text-small text-white d-block mt-2 mb-3 text-right">Forgot your password?</a>
-                </div>
-                <button class="btn btn-primary btn-block" type="submit">Log In</button>
-                <a routerLink="/register" class="text-small text-white d-block mt-2">Don’t have an account?</a>
-            </form>
-        </div>
-    </div>
+				</div>
+				<div class="forgot-password">
+					<a href="" class="text-small text-white d-block mt-2 mb-3 text-right">Forgot your password?</a>
+				</div>
+				<button class="btn btn-primary btn-block" type="submit">Log In</button>
+				<a routerLink="/register" class="text-small text-white d-block mt-2">Don’t have an account?</a>
+			</form>
+		</div>
+	</div>
 </div>

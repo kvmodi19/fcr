@@ -1,25 +1,21 @@
-import {
-	HttpClient,
-	HttpRequest
-} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
+import { Platform } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
+
 import {
 	BehaviorSubject,
 	from,
-	Observable,
-	of,
+	Observable
 } from 'rxjs/index';
 import {
 	map,
 	switchMap,
-	take,
+	take
 } from 'rxjs/operators';
-
-import { Platform } from '@ionic/angular';
-import { Storage } from '@ionic/storage';
 import { environment } from '../../environments/environment';
 
 // local variable
@@ -70,11 +66,9 @@ export class AuthenticationService {
 		)
 				   .pipe(
 					   take(1),
-					   map(
-						   (res: any) => {
-							   return res.token;
-						   }
-					   ),
+					   map((res: any) => {
+						   return res.token;
+					   }),
 					   switchMap(
 						   token => {
 							   const decoded = helper.decodeToken(token);

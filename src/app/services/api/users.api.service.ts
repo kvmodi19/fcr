@@ -24,7 +24,11 @@ export class UsersApiService {
 	}
 
 	post(user: User): Promise<any> {
-		return this.http.post(`${this.users}`, user).toPromise();
+		return this.http.post(
+			`${this.users}`,
+			user
+		)
+				   .toPromise();
 	}
 
 	update(user: User): boolean {

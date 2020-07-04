@@ -15,6 +15,5 @@ export interface User {
 }
 
 export enum Professions {
-	'employee' = 1,
-	'self-employee' = 2
+	'employee' = 1, 'self-employee' = 2
 }

@@ -31,7 +31,7 @@ export class VisitingCardPage implements OnInit {
 	) { }
 
 	ngOnInit() {
-		this.route.params.subscribe((params: {id: string}) => {
+		this.route.params.subscribe((params: { id: string }) => {
 			this.feedService.getById(params.id)
 				.then((response) => {
 					this.shop = response.shop;
