@@ -79,7 +79,7 @@ export class AuthenticationService {
 								   token
 							   ));
 						   })
-				   );
+				   ).toPromise();
 	}
 
 	getUser() {

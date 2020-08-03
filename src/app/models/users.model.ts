@@ -1,7 +1,5 @@
 export interface User {
-	email: string;
-
-	// optional fields
+	email?: string;
 	address?: string;
 	age?: string;
 	gender?: string;
@@ -15,5 +13,5 @@ export interface User {
 }
 
 export enum Professions {
-	'employee' = 1, 'self-employee' = 2
+	'user' = 1, 'shop-owner' = 2
 }

@@ -4,12 +4,12 @@ import {
 	Routes
 } from '@angular/router';
 
-import { VisitingCardPage } from './visiting-card.page';
+import { ChatRoomPage } from './chat-room.page';
 
 const routes: Routes = [
 	{
 		path: ':id',
-		component: VisitingCardPage
+		component: ChatRoomPage
 	}
 ];
 
@@ -17,5 +17,5 @@ const routes: Routes = [
 	imports: [ RouterModule.forChild(routes) ],
 	exports: [ RouterModule ],
 })
-export class VisitingCardPageRoutingModule {
+export class ChatRoomPageRoutingModule {
 }

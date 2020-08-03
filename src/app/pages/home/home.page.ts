@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
 	selector: 'app-home',
@@ -7,6 +9,11 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-	constructor() {}
+	hideVerticalTab = false;
+
+	constructor(public activatedRoute: Router, authService: AuthenticationService) {
+		this.hideVerticalTab = activatedRoute.url !== '/home';
+		console.log(authService.getUser());
+	}
 
 }

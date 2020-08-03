@@ -62,3 +62,4 @@ import './zone-flags';
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+(window as any).global = window;

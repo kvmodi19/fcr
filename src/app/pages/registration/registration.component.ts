@@ -1,7 +1,9 @@
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import {
-	Component,
-	OnInit
-} from '@angular/core';
+	AlertController,
+	LoadingController
+} from '@ionic/angular';
 import {
 	Professions,
 	User
@@ -13,37 +15,57 @@ import { UsersApiService } from '../../services/api/users.api.service';
 	templateUrl: './registration.component.html',
 	styleUrls: [ './registration.component.scss' ],
 })
-export class RegistrationComponent implements OnInit {
+export class RegistrationComponent {
 
 	professions = Professions;
 	userData: User;
 	emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$';
+	passwordPattern = `^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$`;
 
-	constructor(private userService: UsersApiService) { }
+	constructor(
+		private userService: UsersApiService,
+		private alertController: AlertController,
+		private router: Router,
+		private loadingController: LoadingController
+	) { }
 
-	ngOnInit() {
+	ionViewDidEnter() {
 		this.userData = {
-			profession: Professions.employee,
+			profession: Professions.user,
 			gender: ''
 		} as User;
 	}
 
-	submitForm(registration) {
+	async submitForm(registration) {
 		if (registration.valid) {
-			this.userService.post(this.userData)
-				.then((response: User) => {
-					console.log(
-						'response',
-						response
-					);
-				})
-				.catch((error) => {
-					console.log(
-						'error',
-						error
-					);
-				});
+			const loading = await this.loadingController.create({
+				cssClass: 'custom-class custom-loading my-custom-class',
+				spinner: 'bubbles',
+				keyboardClose: false,
+				message: 'Submitting...',
+				translucent: true,
+			});
+			await loading.present();
+			setTimeout(() => {
+				this.userService.post(this.userData)
+					.then(() => {
+						loading.dismiss();
+						this.router.navigate([ '/login' ]);
+					})
+					.catch(async (error) => {
+						loading.dismiss();
+						if (error.error && !error.error.isSuccess) {
+							const alert = await this.alertController.create({
+								cssClass: 'my-custom-class',
+								header: 'Error',
+								message: error.error.message || 'Server not working.............\nUnder Process',
+								buttons: [ 'OK' ]
+							});
+
+							await alert.present();
+						}
+					});
+			}, 5000);
 		}
 	}
-
 }

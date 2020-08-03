@@ -13,8 +13,12 @@ import {
 } from '@ionic/angular';
 import { IonicStorageModule } from '@ionic/storage';
 
+import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
+
+import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+const config: SocketIoConfig = { url: environment.baseUrl, options: {} };
 
 @NgModule({
 	declarations: [ AppComponent ],
@@ -27,6 +31,7 @@ import { AppComponent } from './app.component';
 		FormsModule,
 		HttpClientModule,
 		IonicStorageModule.forRoot(),
+		SocketIoModule.forRoot(config)
 	],
 	providers: [
 		StatusBar,

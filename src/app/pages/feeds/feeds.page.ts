@@ -18,6 +18,7 @@ import { FeedsApiService } from '../../services/api/feeds.api.service';
 export class FeedsPage implements OnInit {
 
 	env = environment;
+	componentLoaded = false;
 	feeds;
 	defaultAvatar = 'assets/images/avatar.svg';
 
@@ -28,6 +29,10 @@ export class FeedsPage implements OnInit {
 	) { }
 
 	ngOnInit() {
+		this.createModal();
+	}
+
+	getFeedData() {
 		this.feedsService.get()
 			.then((data) => {
 				this.feeds = data;
@@ -38,44 +43,6 @@ export class FeedsPage implements OnInit {
 					error
 				);
 			});
-		/*setTimeout(
-		 () => {
-		 this.feeds = [
-		 {
-		 user: {
-		 id: 1,
-		 name: 'User name',
-		 avatar: 'assets/images/avatar.svg',
-		 country: 'india',
-		 city: 'surat',
-		 state: 'gujarat',
-		 pinCode: 395009
-		 },
-		 shopName: `Company Name`,
-		 image: `assets/images/background.jpg`
-		 },
-		 {
-		 user: {
-		 id: 2,
-		 name: 'Alex Cranz',
-		 avatar: 'assets/images/avatar.svg'
-		 },
-		 title: `Bland Content Isn't Apple TV+'s Biggest Problem`,
-		 image: `assets/images/background.jpg`
-		 },
-		 {
-		 user: {
-		 id: 3,
-		 name: 'Alex Cranz',
-		 avatar: 'assets/images/avatar.svg'
-		 },
-		 title: `Bland Content Isn't Apple TV+'s Biggest Problem`,
-		 image: `assets/images/background.jpg`
-		 }
-		 ];
-		 },
-		 5 * 1000
-		 );*/
 	}
 
 	showVisitingCard(user) {
@@ -90,11 +57,7 @@ export class FeedsPage implements OnInit {
 
 		modal.onDidDismiss()
 			 .then((data: any) => {
-				 // Call the method to do whatever in your home.ts
-				 console.log(
-					 'Modal closed',
-					 data
-				 );
+				 this.componentLoaded = true;
 				 if (data && data.data.search && data.data.search.text) {
 					 this.feedsService.search(data.data.search)
 						 .then((response) => {
@@ -103,6 +66,8 @@ export class FeedsPage implements OnInit {
 						 .catch((error) => {
 							 console.log(error);
 						 });
+				 } else {
+					 this.getFeedData();
 				 }
 			 });
 		await modal.present();

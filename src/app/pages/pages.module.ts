@@ -30,6 +30,15 @@ import { AuthGuard } from '../guards/auth.guard';
 					m => m.RegistrationModule),
 			},
 			{
+				path: 'chat-room',
+				loadChildren: () => import('./chat-room/chat-room.module').then(
+					m => m.ChatRoomPageModule)
+			},
+			{
+				path: 'shop-detail',
+				loadChildren: () => import('./shop-detail/shop-detail.module').then( m => m.ShopDetailPageModule)
+			},
+			{
 				path: '',
 				redirectTo: 'home',
 				pathMatch: 'full',

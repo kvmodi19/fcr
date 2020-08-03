@@ -7,6 +7,8 @@ import {
 	Router
 } from '@angular/router';
 
+import { Socket } from 'ng-socket-io';
+
 import { environment } from '../../../environments/environment';
 import { Professions } from '../../models/users.model';
 import { FeedsApiService } from '../../services/api/feeds.api.service';
@@ -28,6 +30,7 @@ export class VisitingCardPage implements OnInit {
 		private router: Router,
 		private route: ActivatedRoute,
 		private feedService: FeedsApiService,
+		private socket: Socket
 	) { }
 
 	ngOnInit() {
@@ -52,6 +55,17 @@ export class VisitingCardPage implements OnInit {
 				this.router.navigate([ '/home/chat' ]);
 			}
 		}
+	}
+
+	openChatRoom() {
+		this.router.navigate([
+			'chat-room',
+			this.shop.user._id
+		]);
+	}
+
+	sharePageLink() {
+		// create share link
 	}
 
 }
