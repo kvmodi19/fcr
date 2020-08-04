@@ -20,107 +20,95 @@
             </div>
           </div>
           <div>
-            <input
-                    type="text"
-                    placeholder="Email"
-                    name="email"
-                    #email="ngModel"
-                    [(ngModel)]="shopData.email"
-                    [pattern]="emailPattern"
-                    [ngClass]="{ 'is-invalid': registration.submitted && email.invalid }"
+            <textarea
+                    rows="3"
+                    placeholder="Description"
+                    name="description"
+                    #description="ngModel"
+                    [(ngModel)]="shopData.description"
+                    class="w-100 border-0"
+                    [ngClass]="{ 'is-invalid': registration.submitted && description.invalid }"
                     required
-            />
-            <div *ngIf="registration.submitted && email.invalid" class="invalid-feedback">
-              <div *ngIf="email.errors.required">Email is required</div>
-              <div *ngIf="email.errors.pattern">In valid Email</div>
+            >
+            </textarea>
+            <div *ngIf="registration.submitted && description.invalid" class="invalid-feedback">
+              <div *ngIf="description.errors.required">Description is required</div>
             </div>
           </div>
           <div>
             <input
                     type="text"
-                    placeholder="Password"
-                    name="password"
-                    #password="ngModel"
-                    [(ngModel)]="shopData.password"
-                    [pattern]="passwordPattern"
-                    [ngClass]="{ 'is-invalid': registration.submitted && password.invalid }"
+                    placeholder="Address Line 1"
+                    name="addressLine1"
+                    #addressLine1="ngModel"
+                    [(ngModel)]="shopData.address.addressLine1"
+                    [ngClass]="{ 'is-invalid': registration.submitted && addressLine1.invalid }"
                     required
             />
-            <div *ngIf="password.invalid" class="invalid-feedback">
-              <div *ngIf="registration.submitted && password.errors.required">Password is required</div>
-              <div *ngIf="password.errors.pattern">Password must contain at least one letter, at least one number, and be longer than six charaters.</div>
+            <div *ngIf="addressLine1.invalid" class="invalid-feedback">
+              <div *ngIf="registration.submitted && addressLine1.errors.required">Address Line 1 is required</div>
             </div>
           </div>
           <div>
             <input
                     type="text"
-                    placeholder="Confirm Password"
-                    name="confirmPassword"
-                    #confirmPassword="ngModel"
-                    [(ngModel)]="shopData.confirmPassword"
-                    [pattern]="passwordPattern"
-                    [ngClass]="{ 'is-invalid': registration.submitted && confirmPassword.invalid }"
+                    placeholder="Address Line 2"
+                    name="addressLine2"
+                    #addressLine2="ngModel"
+                    [(ngModel)]="shopData.address.addressLine2"
+                    [ngClass]="{ 'is-invalid': registration.submitted && addressLine2.invalid }"
                     required
             />
-            <div *ngIf="confirmPassword.invalid" class="invalid-feedback">
-              <div *ngIf="registration.submitted && confirmPassword.errors.required">Confirm password is required</div>
-              <div *ngIf="confirmPassword.errors.pattern">Password must contain at least one letter, at least one number, and be longer than six charaters.</div>
-            </div>
-            <div *ngIf="password.valid && confirmPassword.valid && shopData.password !== shopData.confirmPassword" class="text-white">
-              Password does not matched.
+            <div *ngIf="addressLine2.invalid" class="invalid-feedback">
+              <div *ngIf="registration.submitted && addressLine2.errors.required">Address Line 2 is required</div>
             </div>
           </div>
           <div class="row">
             <div class="col-6 pr-2">
               <input
-                      type="number"
-                      placeholder="Age"
-                      name="age"
-                      #age="ngModel"
-                      [(ngModel)]="shopData.age"
+                      type="text"
+                      placeholder="City"
+                      name="city"
+                      #city="ngModel"
+                      [(ngModel)]="shopData.address.city"
+                      [ngClass]="{ 'is-invalid': registration.submitted && city.invalid }"
                       required
-                      min="1"
-                      max="99"
-                      [ngClass]="{ 'is-invalid': registration.submitted && age.invalid }"
               />
-              <div *ngIf="registration.submitted && age.invalid" class="invalid-feedback">
-                <div *ngIf="age.errors.required">Age is required</div>
-                <div *ngIf="age.errors.pattern">Invalid Age.</div>
+              <div *ngIf="registration.submitted && city.invalid" class="invalid-feedback">
+                <div *ngIf="city.errors.required">City is required</div>
               </div>
             </div>
             <div class="col-6 pl-2">
-              <select
-                      name="gender"
-                      #gender="ngModel"
-                      [(ngModel)]="shopData.gender"
+              <input
+                      type="text"
+                      placeholder="State"
+                      name="state"
+                      #state="ngModel"
+                      [(ngModel)]="shopData.address.state"
+                      [ngClass]="{ 'is-invalid': registration.submitted && state.invalid }"
                       required
-                      [ngClass]="{ 'is-invalid': registration.submitted && gender.invalid }"
-              >
-                <option value="" disabled>Gender</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-              </select>
-              <div *ngIf="registration.submitted && gender.invalid" class="invalid-feedback">
-                <div *ngIf="gender.errors.required">Gender is required</div>
+              />
+              <div *ngIf="registration.submitted && state.invalid" class="invalid-feedback">
+                <div *ngIf="state.errors.required">State is required</div>
               </div>
             </div>
           </div>
           <div>
             <input
                     type="text"
-                    placeholder="Mobile No."
-                    name="mobile"
-                    #mobile="ngModel"
-                    [(ngModel)]="shopData.mobile"
-                    minlength="10"
-                    maxlength="10"
+                    placeholder="Pin Code"
+                    name="pincode"
+                    #pincode="ngModel"
+                    [(ngModel)]="shopData.address.pinCode"
+                    minlength="0"
+                    maxlength="6"
                     required
-                    [ngClass]="{ 'is-invalid': registration.submitted && mobile.invalid }"
+                    [ngClass]="{ 'is-invalid': registration.submitted && pincode.invalid }"
             />
-            <div *ngIf="mobile.invalid" class="invalid-feedback">
-              <div *ngIf="mobile.errors.required">Mobile No is required</div>
-              <div *ngIf="mobile.errors.minlength">Min length Invalid Mobile Number</div>
-              <div *ngIf="mobile.errors.maxlength">Max length Invalid Mobile Number</div>
+            <div *ngIf="pincode.invalid" class="invalid-feedback">
+              <div *ngIf="pincode.errors.required">Pin Code is required</div>
+              <div *ngIf="pincode.errors.minlength">Min length Invalid Pin Code</div>
+              <div *ngIf="pincode.errors.maxlength">Max length Invalid Pin Code</div>
             </div>
           </div>
           <!--<div>
@@ -154,7 +142,7 @@
 			  </div>
 		  </div>-->
           <button class="btn btn-primary btn-block mt-3" type="submit">Sign Up</button>
-          <a routerLink="/login" class="text-small text-white d-block mt-2">Already have an account?</a>
+          <a routerLink="/login" class="text-small text-white d-block mt-2">Already have a shop?</a>
         </div>
       </form>
     </div>

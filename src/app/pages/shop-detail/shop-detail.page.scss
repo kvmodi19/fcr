@@ -1,0 +1,17 @@
+@import "../../../theme/theme";
+
+.registration-wrapper {
+  .registration-input {
+    .is-invalid {
+      border: 1px solid $fcr-primary-color;
+    }
+    .invalid-feedback {
+      color: white;
+    }
+    textarea {
+      padding: 0 19px;
+      margin-top: 16px;
+      font-size: 12px;
+    }
+  }
+}

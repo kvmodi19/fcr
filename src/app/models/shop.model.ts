@@ -1,5 +1,6 @@
 export interface Shop {
 	name: string;
+	user: string;
 	description: string;
 	address: Address;
 }

@@ -7,8 +7,10 @@ import {
 	AlertController,
 	LoadingController
 } from '@ionic/angular';
+
 import { Shop } from 'src/app/models/shop.model';
 import { ShopsApiService } from 'src/app/services/api/shop.api.service';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
 	selector: 'app-shop-detail',
@@ -20,6 +22,7 @@ export class ShopDetailPage implements OnInit {
 	shopData: Shop;
 
 	constructor(
+		private authService: AuthenticationService,
 		private shopService: ShopsApiService,
 		private alertController: AlertController,
 		private router: Router,
@@ -27,7 +30,13 @@ export class ShopDetailPage implements OnInit {
 	) { }
 
 	ngOnInit() {
-		this.shopData = {} as Shop;
+		this.shopData = {
+			address: {}
+		} as Shop;
+		const user = this.authService.getUser();
+		if (user) {
+			this.shopData.user = user._id;
+		}
 	}
 
 	async submitForm(shop) {
