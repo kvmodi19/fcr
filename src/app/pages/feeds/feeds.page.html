@@ -8,15 +8,15 @@
 				<ion-button (click)="createModal()">
 					<ion-icon slot="icon-only" name="search"></ion-icon>
 				</ion-button>
-				<ion-button>
-					<ion-icon slot="icon-only" name="bookmarks"></ion-icon>
-				</ion-button>
+				<!--<ion-button>-->
+					<!--<ion-icon slot="icon-only" name="bookmarks"></ion-icon>-->
+				<!--</ion-button>-->
 				<ion-button>
 					<ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
 				</ion-button>
 			</ion-buttons>
 			<ion-title>
-				News
+				Shops
 			</ion-title>
 		</ion-toolbar>
 	</ion-header>
@@ -30,7 +30,7 @@
 						<ion-avatar class="d-inline-block mr-3">
 							<img src="{{feed.user?.profile ? env.baseUrl + '/' + feed.user?.profile : defaultAvatar}}">
 						</ion-avatar>
-						<p class="d-inline-block">{{feed.user.name}}</p>
+						<p class="d-inline-block">{{feed.user?.name}}</p>
 						<!--<ion-button fill="clear" class="m-0 text-dark float-right">-->
 						<!--<ion-icon slot="icon-only" name="chevron-down-outline"></ion-icon>-->
 						<!--</ion-button>-->

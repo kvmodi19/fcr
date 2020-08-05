@@ -33,10 +33,6 @@ export class ShopDetailPage implements OnInit {
 		this.shopData = {
 			address: {}
 		} as Shop;
-		const user = this.authService.getUser();
-		if (user) {
-			this.shopData.user = user._id;
-		}
 	}
 
 	async submitForm(shop) {
@@ -51,10 +47,14 @@ export class ShopDetailPage implements OnInit {
 			await loading.present();
 			setTimeout(
 				() => {
+					const user = this.authService.getUser();
+					if (user) {
+						this.shopData.user = user._id;
+					}
 					this.shopService.post(this.shopData)
 						.then(() => {
 							loading.dismiss();
-							this.router.navigate([ '/login' ]);
+							this.router.navigate([ '/home' ]);
 						})
 						.catch(async (error) => {
 							loading.dismiss();

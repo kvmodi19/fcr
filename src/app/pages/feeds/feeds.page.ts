@@ -35,6 +35,7 @@ export class FeedsPage implements OnInit {
 	getFeedData() {
 		this.feedsService.get()
 			.then((data) => {
+			debugger
 				this.feeds = data;
 			})
 			.catch((error) => {

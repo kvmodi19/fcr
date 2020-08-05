@@ -111,38 +111,7 @@
               <div *ngIf="pincode.errors.maxlength">Max length Invalid Pin Code</div>
             </div>
           </div>
-          <!--<div>
-			  <input
-					  type="text"
-					  placeholder="E-Card Name"
-					  name="cardName"
-					  #cardName="ngModel"
-					  [(ngModel)]="shopData.cardName"
-					  required
-					  [ngClass]="{ 'is-invalid': registration.submitted && cardName.invalid }"
-			  />
-			  <div *ngIf="registration.submitted && cardName.invalid" class="invalid-feedback">
-				  <div *ngIf="cardName.errors.required">E-Card Name is required</div>
-				  <div *ngIf="cardName.errors.minLength">Invalid E-Card Name</div>
-			  </div>
-		  </div>
-		  <div>
-			  <input
-					  type="text"
-					  placeholder="E-card Address"
-					  name="cardAddress"
-					  #cardAddress="ngModel"
-					  [(ngModel)]="shopData.cardAddress"
-					  required
-					  [ngClass]="{ 'is-invalid': registration.submitted && cardAddress.invalid }"
-			  />
-			  <div *ngIf="registration.submitted && cardAddress.invalid" class="invalid-feedback">
-				  <div *ngIf="cardAddress.errors.required">E-Card Address is required</div>
-				  <div *ngIf="cardAddress.errors.minLength">Invalid E-Card Address</div>
-			  </div>
-		  </div>-->
-          <button class="btn btn-primary btn-block mt-3" type="submit">Sign Up</button>
-          <a routerLink="/login" class="text-small text-white d-block mt-2">Already have a shop?</a>
+          <button class="btn btn-primary btn-block mt-3" type="submit">Add Shop Detail</button>
         </div>
       </form>
     </div>
