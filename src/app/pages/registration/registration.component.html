@@ -5,25 +5,6 @@
 			<h3 class="text-center text-white mb-3">Create Account</h3>
 			<form #registration="ngForm" (submit)="submitForm(registration)">
 				<div class="registration-input">
-					<!--<div>-->
-						<!--<button type="button" (click)="openProfile(pic)">-->
-							<!--Upload Profile-->
-						<!--</button>-->
-						<!--<input-->
-								<!--type="file"-->
-								<!--placeholder=""-->
-								<!--name="profile"-->
-								<!--#profile="ngModel"-->
-								<!--[(ngModel)]="userData.profile"-->
-								<!--[ngClass]="{ 'is-invalid': registration.submitted && name.invalid }"-->
-								<!--required-->
-						        <!--hidden-->
-						        <!--#pic-->
-						<!--/>-->
-						<!--<div *ngIf="registration.submitted && name.invalid" class="invalid-feedback">-->
-							<!--<div *ngIf="name.errors.required">Profile pic is required</div>-->
-						<!--</div>-->
-					<!--</div>-->
 					<div>
 						<input
 								type="text"
@@ -67,7 +48,10 @@
 						/>
 						<div *ngIf="password.invalid" class="invalid-feedback">
 							<div *ngIf="registration.submitted && password.errors.required">Password is required</div>
-							<div *ngIf="password.errors.pattern">Password must contain at least one letter, at least one number, and be longer than six charaters.</div>
+							<div *ngIf="password.errors.pattern">
+								Password must contain at least one letter, at least one
+								number, and be longer than six characters.
+							</div>
 						</div>
 					</div>
 					<div>
@@ -82,10 +66,17 @@
 								required
 						/>
 						<div *ngIf="confirmPassword.invalid" class="invalid-feedback">
-							<div *ngIf="registration.submitted && confirmPassword.errors.required">Confirm password is required</div>
-							<div *ngIf="confirmPassword.errors.pattern">Password must contain at least one letter, at least one number, and be longer than six charaters.</div>
+							<div *ngIf="registration.submitted && confirmPassword.errors.required">
+								Confirm password is required.
+							</div>
+							<div *ngIf="confirmPassword.errors.pattern">
+								Password must contain at least one letter, at
+								least one number, and be longer than six
+								characters.
+							</div>
 						</div>
-						<div *ngIf="password.valid && confirmPassword.valid && userData.password !== userData.confirmPassword" class="text-white">
+						<div *ngIf="password.valid && confirmPassword.valid && userData.password !== userData.confirmPassword"
+						     class="text-white">
 							Password does not matched.
 						</div>
 					</div>
@@ -124,13 +115,6 @@
 							</div>
 						</div>
 					</div>
-					<!--<input-->
-					<!--type="text"-->
-					<!--placeholder="Address"-->
-					<!--name="address"-->
-					<!--#address="ngModel"-->
-					<!--[(ngModel)]="userData.address"-->
-					<!--/>-->
 					<div>
 						<input
 								type="text"
@@ -177,36 +161,6 @@
 							</div>
 						</div>
 					</div>
-					<!--<div>
-						<input
-								type="text"
-								placeholder="E-Card Name"
-								name="cardName"
-								#cardName="ngModel"
-								[(ngModel)]="userData.cardName"
-								required
-								[ngClass]="{ 'is-invalid': registration.submitted && cardName.invalid }"
-						/>
-						<div *ngIf="registration.submitted && cardName.invalid" class="invalid-feedback">
-							<div *ngIf="cardName.errors.required">E-Card Name is required</div>
-							<div *ngIf="cardName.errors.minLength">Invalid E-Card Name</div>
-						</div>
-					</div>
-					<div>
-						<input
-								type="text"
-								placeholder="E-card Address"
-								name="cardAddress"
-								#cardAddress="ngModel"
-								[(ngModel)]="userData.cardAddress"
-								required
-								[ngClass]="{ 'is-invalid': registration.submitted && cardAddress.invalid }"
-						/>
-						<div *ngIf="registration.submitted && cardAddress.invalid" class="invalid-feedback">
-							<div *ngIf="cardAddress.errors.required">E-Card Address is required</div>
-							<div *ngIf="cardAddress.errors.minLength">Invalid E-Card Address</div>
-						</div>
-					</div>-->
 					<button class="btn btn-primary btn-block mt-3" type="submit">Sign Up</button>
 					<a routerLink="/login" class="text-small text-white d-block mt-2">Already have an account?</a>
 				</div>
