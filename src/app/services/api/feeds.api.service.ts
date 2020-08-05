@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { environment } from '../../../environments/environment';
+import { environment } from 'src/environments/environment';
 import { User } from '../../models/users.model';
 
 @Injectable({
@@ -25,9 +25,9 @@ export class FeedsApiService {
 				   .toPromise();
 	}
 
-	search(search: { text: string, searchBy: string }): Promise<any> {
+	search(search: { text: string, searchBy: string }, offset: number): Promise<any> {
 		return this.http.post(
-			`${this.url}/search`,
+			`${this.url}/search?offset=${offset}`,
 			search
 		)
 				   .toPromise();

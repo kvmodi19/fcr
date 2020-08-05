@@ -44,7 +44,7 @@ export class SearchModalComponent implements OnInit {
 			dismissed: true,
 			search: {
 				searchBy: this.searchBy,
-				text: search
+				text: search || ''
 			}
 		});
 	}

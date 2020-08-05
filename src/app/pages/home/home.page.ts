@@ -13,7 +13,6 @@ export class HomePage {
 
 	constructor(public activatedRoute: Router, authService: AuthenticationService) {
 		this.hideVerticalTab = activatedRoute.url !== '/home';
-		console.log(authService.getUser());
 	}
 
 }

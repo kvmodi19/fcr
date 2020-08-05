@@ -1,12 +1,17 @@
 import {
 	Component,
-	OnInit
+	OnInit,
+	ViewChild
 } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ModalController } from '@ionic/angular';
+import {
+	IonInfiniteScroll,
+	ModalController
+} from '@ionic/angular';
 
-import { environment } from '../../../environments/environment';
+
+import { environment } from 'src/environments/environment';
 import { SearchModalComponent } from '../../components/search-modal/search-modal.component';
 import { FeedsApiService } from '../../services/api/feeds.api.service';
 
@@ -17,9 +22,13 @@ import { FeedsApiService } from '../../services/api/feeds.api.service';
 })
 export class FeedsPage implements OnInit {
 
+	@ViewChild(IonInfiniteScroll, {static: false}) infiniteScroll: IonInfiniteScroll;
+
 	env = environment;
 	componentLoaded = false;
-	feeds;
+	feeds = [];
+	offset = 0;
+	search;
 	defaultAvatar = 'assets/images/avatar.svg';
 
 	constructor(
@@ -32,17 +41,18 @@ export class FeedsPage implements OnInit {
 		this.createModal();
 	}
 
-	getFeedData() {
-		this.feedsService.get()
-			.then((data) => {
-			debugger
-				this.feeds = data;
+	getFeedData(event) {
+		this.feedsService.search(this.search, this.offset)
+			.then((response) => {
+				this.feeds = this.feeds.concat(response.data);
+				this.offset++;
+				this.infiniteScroll.complete();
+				if (event && this.feeds.length === response.total) {
+					event.target.disabled = true;
+				}
 			})
 			.catch((error) => {
-				console.log(
-					'feeds -> get -> error',
-					error
-				);
+				console.log(error);
 			});
 	}
 
@@ -59,17 +69,8 @@ export class FeedsPage implements OnInit {
 		modal.onDidDismiss()
 			 .then((data: any) => {
 				 this.componentLoaded = true;
-				 if (data && data.data.search && data.data.search.text) {
-					 this.feedsService.search(data.data.search)
-						 .then((response) => {
-							 this.feeds = response.data;
-						 })
-						 .catch((error) => {
-							 console.log(error);
-						 });
-				 } else {
-					 this.getFeedData();
-				 }
+				 this.search = data.data.search;
+				 this.getFeedData(null);
 			 });
 		await modal.present();
 	}
