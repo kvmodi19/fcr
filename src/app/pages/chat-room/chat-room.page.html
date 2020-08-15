@@ -10,17 +10,17 @@
 	<ion-grid class="page-chat-room">
 		<ion-row *ngFor="let message of messages">
 
-			<ion-col col-9 *ngIf="message.from !== nickname" class="message"
-			         [ngClass]="{'my_message': message.from === nickname, 'other_message': message.from !== nickname}">
-				<span class="user_name">{{ message.from }}:</span><br>
-				<span>{{ message.text }}</span>
+			<ion-col col-9 *ngIf="message.senderId !== nickname" class="message"
+			         [ngClass]="{'my_message': message.senderId === nickname, 'other_message': message.senderId !== nickname}">
+				<span class="user_name">{{ shopKeeperDetail.name }}:</span><br>
+				<span>{{ message.message }}</span>
 				<div class="time">{{message.created | date:'dd.MM hh:MM'}}</div>
 			</ion-col>
 
-			<ion-col offset-3 col-9 *ngIf="message.from === nickname" class="message"
-			         [ngClass]="{'my_message': message.from === nickname, 'other_message': message.from !== nickname}">
-				<span class="user_name">{{ message.from }}:</span><br>
-				<span>{{ message.text }}</span>
+			<ion-col offset-3 col-9 *ngIf="message.senderId === nickname" class="message"
+			         [ngClass]="{'my_message': message.senderId === nickname, 'other_message': message.senderId !== nickname}">
+				<span class="user_name">{{ user.name }}:</span><br>
+				<span>{{ message.message }}</span>
 				<div class="time">{{message.created | date:'dd.MM hh:MM'}}</div>
 			</ion-col>
 

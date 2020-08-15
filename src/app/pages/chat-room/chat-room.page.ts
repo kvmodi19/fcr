@@ -9,6 +9,7 @@ import { Socket } from 'ng-socket-io';
 import { Observable } from 'rxjs/Rx';
 import { User } from 'src/app/models/users.model';
 import { UsersApiService } from 'src/app/services/api/users.api.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
 	selector: 'app-chat-room',
@@ -20,13 +21,16 @@ export class ChatRoomPage {
 	messages = [];
 	nickname = '';
 	message = '';
+	user: User;
+	shopKeeperDetail: User;
 
 	constructor(
 		private router: Router,
 		private route: ActivatedRoute,
 		private socket: Socket,
 		private toastCtrl: ToastController,
-		private userService: UsersApiService
+		private userService: UsersApiService,
+		private authenticationServie: AuthenticationService,
 	) {
 
 		this.route.params.subscribe((params: { id: string }) => {
@@ -39,7 +43,8 @@ export class ChatRoomPage {
 						'set-user',
 						(response as any)._id
 					);
-					// this.shop = response.shop;
+					this.shopKeeperDetail = response;
+					this.user = this.authenticationServie.getUser();
 				})
 				.catch((error) => {
 					console.log(error);
@@ -66,7 +71,7 @@ export class ChatRoomPage {
 	sendMessage() {
 		this.socket.emit(
 			'add-message',
-			{ text: this.message }
+			{ message: this.message, from: this.user['_id'], to: this.shopKeeperDetail['_id'] }
 		);
 		this.message = '';
 	}
