@@ -30,15 +30,9 @@ import { AuthGuard } from '../guards/auth.guard';
 					m => m.RegistrationModule),
 			},
 			{
-				path: 'chat-room',
+				path: 'service-provider-detail',
 				canActivate: [ AuthGuard ],
-				loadChildren: () => import('./chat-room/chat-room.module').then(
-					m => m.ChatRoomPageModule)
-			},
-			{
-				path: 'shop-detail',
-				canActivate: [ AuthGuard ],
-				loadChildren: () => import('./shop-detail/shop-detail.module').then( m => m.ShopDetailPageModule)
+				loadChildren: () => import('./service-provider-detail/service-provider-detail.module').then( m => m.ServiceProviderDetailPageModule)
 			},
 			{
 				path: '',

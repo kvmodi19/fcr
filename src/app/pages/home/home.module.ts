@@ -36,6 +36,11 @@ import { HomePage } from './home.page';
 						loadChildren: () => import('../visiting-card/visiting-card.module').then(
 							m => m.VisitingCardPageModule)
 					},
+					{
+						path: 'chat-room',
+						loadChildren: () => import('../chat-room/chat-room.module').then(
+							m => m.ChatRoomPageModule)
+					},
 				]
 			}
 		]),

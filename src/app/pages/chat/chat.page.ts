@@ -1,18 +1,32 @@
-import {
-	Component,
-	OnInit
-} from '@angular/core';
+import { Component } from '@angular/core';
+import { User } from 'src/app/models/users.model';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { ChatApiService } from 'src/app/services/api/chat.api.service';
 
 @Component({
 	selector: 'app-chat',
 	templateUrl: './chat.page.html',
-	styleUrls: [ './chat.page.scss' ],
+	styleUrls: ['./chat.page.scss'],
 })
-export class ChatPage implements OnInit {
+export class ChatPage {
 
-	constructor() { }
+	user: User;
+	list: any;
 
-	ngOnInit() {
+	constructor(
+		private authenticationServie: AuthenticationService,
+		private chatService: ChatApiService,
+	) { }
+
+	ionViewWillEnter() {
+		this.user = this.authenticationServie.getUser();
+		this.chatService.getUserChatList(this.user['_id'])
+			.then((data) => {
+				this.list = data;
+				debugger
+			}).catch((error) => {
+				console.log(error);
+			});
 	}
 
 }

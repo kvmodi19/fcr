@@ -59,6 +59,7 @@ export class VisitingCardPage implements OnInit {
 
 	openChatRoom() {
 		this.router.navigate([
+			'home',
 			'chat-room',
 			this.shop.user._id
 		]);

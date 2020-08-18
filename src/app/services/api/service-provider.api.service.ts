@@ -2,12 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { environment } from '../../../environments/environment';
-import { Shop } from 'src/app/models/shop.model';
+import { ServiceProvider } from 'src/app/models/service-provider.model';
 
 @Injectable({
 	providedIn: 'root'
 })
-export class ShopsApiService {
+export class ServiceProvidersApiService {
 
 	shops = 'shops';
 	url = `${environment.baseUrl}/${this.shops}`;
@@ -19,15 +19,15 @@ export class ShopsApiService {
 
 	}
 
-	getById(id: string): Promise<Shop> {
+	getById(id: string): Promise<ServiceProvider> {
 		return this.http.get(`${this.url}/${id}`)
-				   .map((response: {user: Shop}) => {
+				   .map((response: {user: ServiceProvider}) => {
 					   return response.user;
 				   })
 				   .toPromise();
 	}
 
-	post(user: Shop): Promise<any> {
+	post(user: ServiceProvider): Promise<any> {
 		return this.http.post(
 			`${this.url}`,
 			user
@@ -35,7 +35,7 @@ export class ShopsApiService {
 				   .toPromise();
 	}
 
-	update(user: Shop): boolean {
+	update(user: ServiceProvider): boolean {
 		return false;
 	}
 

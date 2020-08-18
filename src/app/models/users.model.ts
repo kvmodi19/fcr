@@ -13,5 +13,5 @@ export interface User {
 }
 
 export enum Professions {
-	'user' = 1, 'shop-owner' = 2
+	'user' = 1, 'service-provider' = 2
 }

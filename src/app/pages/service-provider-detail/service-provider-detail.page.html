@@ -2,16 +2,30 @@
   <div class="registration-wrapper">
     <app-logo class="app-logo mb-4"></app-logo>
     <div class="registration-items">
-      <h3 class="text-center text-white mb-3">Add Shop Detail</h3>
+      <h3 class="text-center text-white mb-3">Add Details</h3>
       <form #registration="ngForm" (submit)="submitForm(registration)">
         <div class="registration-input">
           <div>
             <input
                     type="text"
-                    placeholder="Name"
+                    placeholder="Name On e-card"
                     name="name"
                     #name="ngModel"
                     [(ngModel)]="shopData.name"
+                    [ngClass]="{ 'is-invalid': registration.submitted && name.invalid }"
+                    required
+            />
+            <div *ngIf="registration.submitted && name.invalid" class="invalid-feedback">
+              <div *ngIf="name.errors.required">Name is required</div>
+            </div>
+          </div>
+          <div>
+            <input
+                    type="text"
+                    placeholder="Service provided"
+                    name="name"
+                    #name="ngModel"
+                    [(ngModel)]="shopData.service"
                     [ngClass]="{ 'is-invalid': registration.submitted && name.invalid }"
                     required
             />
@@ -111,7 +125,7 @@
               <div *ngIf="pincode.errors.maxlength">Max length Invalid Pin Code</div>
             </div>
           </div>
-          <button class="btn btn-primary btn-block mt-3" type="submit">Add Shop Detail</button>
+          <button class="btn btn-primary btn-block mt-3" type="submit">Submit</button>
         </div>
       </form>
     </div>

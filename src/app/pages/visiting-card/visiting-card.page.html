@@ -19,11 +19,8 @@
             </ion-avatar>
             <p class="d-inline-block">
                 <ion-card-title>
-                    {{shop?.user?.profession === 1 ? shop?.name : shop?.user?.name}}
+                    {{shop?.name}}
                 </ion-card-title>
-                <ion-card-subtitle class="text-capitalize">
-                    {{professions[shop?.user?.profession]}}
-                </ion-card-subtitle>
             </p>
         </ion-card-header>
         <ion-card-content class="text-right">
@@ -64,7 +61,7 @@
 
 		<ion-item>
 			<ion-label>
-				About us
+				{{shop?.description}}
 			</ion-label>
 		</ion-item>
 	</ion-list>

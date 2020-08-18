@@ -1,6 +1,6 @@
 <ion-header translucent>
 	<ion-toolbar>
-		<ion-title>Search Shop</ion-title>
+		<ion-title>Search</ion-title>
 		<ion-buttons slot="end">
 			<ion-button (click)="dismissModal()">Close</ion-button>
 		</ion-buttons>
@@ -9,15 +9,20 @@
 <ion-content fullscreen>
 	<ion-list class="ion-padding">
 		<ion-item>
-			<ion-label>Search By:</ion-label>
-			<ion-select [value]="searchBy" okText="Okay" cancelText="Dismiss">
-				<ion-select-option *ngFor="let option of searchByOptions" [value]="option.value">{{option.display}}
-				</ion-select-option>
-			</ion-select>
+			<ion-label position="floating">Find</ion-label>
+			<ion-input type="text" name="search" [(ngModel)]="search.text"></ion-input>
 		</ion-item>
 		<ion-item>
-			<ion-label position="floating">Search Text</ion-label>
-			<ion-input type="text" name="search" [(ngModel)]="search"></ion-input>
+			<ion-label position="floating">Country</ion-label>
+			<ion-input type="text" name="search" [(ngModel)]="search.country"></ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label position="floating">City</ion-label>
+			<ion-input type="text" name="search" [(ngModel)]="search.city"></ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label position="floating">Pincode</ion-label>
+			<ion-input type="text" name="search" [(ngModel)]="search.pincode"></ion-input>
 		</ion-item>
 	</ion-list>
 	<div class="ion-padding">

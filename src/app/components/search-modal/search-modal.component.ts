@@ -1,16 +1,13 @@
-import {
-	Component,
-	OnInit
-} from '@angular/core';
+import { Component } from '@angular/core';
 
 import { ModalController } from '@ionic/angular';
 
 @Component({
 	selector: 'app-search-modal',
 	templateUrl: './search-modal.component.html',
-	styleUrls: [ './search-modal.component.scss' ],
+	styleUrls: ['./search-modal.component.scss'],
 })
-export class SearchModalComponent implements OnInit {
+export class SearchModalComponent {
 
 	search: string;
 	searchBy = 'any';
@@ -34,8 +31,6 @@ export class SearchModalComponent implements OnInit {
 	];
 
 	constructor(public modalController: ModalController) { }
-
-	ngOnInit() {}
 
 	dismissModal(search) {
 		// using the injected ModalController this page

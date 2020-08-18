@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ShopDetailPageRoutingModule } from './shop-detail-routing.module';
+import { ServiceProviderDetailPageRoutingModule } from './service-provider-detail-routing.module';
 
-import { ShopDetailPage } from './shop-detail.page';
+import { ServiceProviderDetailPage } from './service-provider-detail.page';
 import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
@@ -15,9 +15,9 @@ import { ComponentsModule } from 'src/app/components/components.module';
 		FormsModule,
 		IonicModule,
 		ComponentsModule,
-		ShopDetailPageRoutingModule
+		ServiceProviderDetailPageRoutingModule
 	],
-	declarations: [ ShopDetailPage ]
+	declarations: [ ServiceProviderDetailPage ]
 })
-export class ShopDetailPageModule {
+export class ServiceProviderDetailPageModule {
 }

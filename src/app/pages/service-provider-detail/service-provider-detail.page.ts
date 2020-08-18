@@ -8,22 +8,22 @@ import {
 	LoadingController
 } from '@ionic/angular';
 
-import { Shop } from 'src/app/models/shop.model';
-import { ShopsApiService } from 'src/app/services/api/shop.api.service';
+import { ServiceProvider } from 'src/app/models/service-provider.model';
+import { ServiceProvidersApiService } from 'src/app/services/api/service-provider.api.service';
 import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
-	selector: 'app-shop-detail',
-	templateUrl: './shop-detail.page.html',
-	styleUrls: [ './shop-detail.page.scss' ],
+	selector: 'app-service-provider',
+	templateUrl: './service-provider-detail.page.html',
+	styleUrls: [ './service-provider-detail.page.scss' ],
 })
-export class ShopDetailPage implements OnInit {
+export class ServiceProviderDetailPage implements OnInit {
 
-	shopData: Shop;
+	shopData: ServiceProvider;
 
 	constructor(
 		private authService: AuthenticationService,
-		private shopService: ShopsApiService,
+		private shopService: ServiceProvidersApiService,
 		private alertController: AlertController,
 		private router: Router,
 		private loadingController: LoadingController
@@ -32,7 +32,7 @@ export class ShopDetailPage implements OnInit {
 	ngOnInit() {
 		this.shopData = {
 			address: {}
-		} as Shop;
+		} as ServiceProvider;
 	}
 
 	async submitForm(shop) {

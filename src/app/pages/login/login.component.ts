@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
 					if (res) {
 						const user = this.authService.getUser() as { shopOwner: boolean, hasShop: boolean };
 						if (user.shopOwner && !user.hasShop) {
-							(this.navCtrl as any).navigateForward('/shop-detail');
+							(this.navCtrl as any).navigateForward('/service-provider');
 						} else {
 							(this.navCtrl as any).navigateForward('/home');
 						}

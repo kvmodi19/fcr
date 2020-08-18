@@ -1,4 +1,4 @@
-export interface Shop {
+export interface ServiceProvider {
 	name: string;
 	user: string;
 	description: string;

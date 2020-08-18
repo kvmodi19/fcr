@@ -5,22 +5,22 @@ import {
 } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { ShopDetailPage } from './shop-detail.page';
+import { ServiceProviderDetailPage } from './service-provider-detail.page';
 
 describe(
-	'ShopDetailPage',
+	'ServiceProviderDetailPage',
 	() => {
-		let component: ShopDetailPage;
-		let fixture: ComponentFixture<ShopDetailPage>;
+		let component: ServiceProviderDetailPage;
+		let fixture: ComponentFixture<ServiceProviderDetailPage>;
 
 		beforeEach(async(() => {
 			TestBed.configureTestingModule({
-				declarations: [ ShopDetailPage ],
+				declarations: [ ServiceProviderDetailPage ],
 				imports: [ IonicModule.forRoot() ]
 			})
 				   .compileComponents();
 
-			fixture = TestBed.createComponent(ShopDetailPage);
+			fixture = TestBed.createComponent(ServiceProviderDetailPage);
 			component = fixture.componentInstance;
 			fixture.detectChanges();
 		}));

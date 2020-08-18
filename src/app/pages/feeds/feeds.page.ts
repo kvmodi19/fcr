@@ -1,8 +1,4 @@
-import {
-	Component,
-	OnInit,
-	ViewChild
-} from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import {
@@ -14,15 +10,16 @@ import {
 import { environment } from 'src/environments/environment';
 import { SearchModalComponent } from '../../components/search-modal/search-modal.component';
 import { FeedsApiService } from '../../services/api/feeds.api.service';
+import { ActionService } from 'src/app/services/component/action.service';
 
 @Component({
 	selector: 'app-feeds',
 	templateUrl: './feeds.page.html',
-	styleUrls: [ './feeds.page.scss' ],
+	styleUrls: ['./feeds.page.scss'],
 })
-export class FeedsPage implements OnInit {
+export class FeedsPage {
 
-	@ViewChild(IonInfiniteScroll, {static: false}) infiniteScroll: IonInfiniteScroll;
+	@ViewChild(IonInfiniteScroll, { static: false }) infiniteScroll: IonInfiniteScroll;
 
 	env = environment;
 	componentLoaded = false;
@@ -35,10 +32,15 @@ export class FeedsPage implements OnInit {
 		public router: Router,
 		public modalController: ModalController,
 		private feedsService: FeedsApiService,
+		private actionservice: ActionService,
 	) { }
 
-	ngOnInit() {
+	ionViewWillEnter() {
 		this.createModal();
+	}
+
+	async presentActionSheet() {
+		await this.actionservice.presentActionSheet();
 	}
 
 	getFeedData(event) {
@@ -67,11 +69,11 @@ export class FeedsPage implements OnInit {
 		} as any);
 
 		modal.onDidDismiss()
-			 .then((data: any) => {
-				 this.componentLoaded = true;
-				 this.search = data.data.search;
-				 this.getFeedData(null);
-			 });
+			.then((data: any) => {
+				this.componentLoaded = true;
+				this.search = data.data.search;
+				this.getFeedData(null);
+			});
 		await modal.present();
 	}
 }
