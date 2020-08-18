@@ -1,7 +1,4 @@
-import {
-	Component,
-	OnInit
-} from '@angular/core';
+import { Component } from '@angular/core';
 import {
 	ActivatedRoute,
 	Router
@@ -16,9 +13,9 @@ import { FeedsApiService } from '../../services/api/feeds.api.service';
 @Component({
 	selector: 'app-visiting-card',
 	templateUrl: './visiting-card.page.html',
-	styleUrls: [ './visiting-card.page.scss' ],
+	styleUrls: ['./visiting-card.page.scss'],
 })
-export class VisitingCardPage implements OnInit {
+export class VisitingCardPage {
 
 	env = environment;
 	selectedSegment = 'about';
@@ -33,7 +30,7 @@ export class VisitingCardPage implements OnInit {
 		private socket: Socket
 	) { }
 
-	ngOnInit() {
+	ionViewWillEnter() {
 		this.route.params.subscribe((params: { id: string }) => {
 			this.feedService.getById(params.id)
 				.then((response) => {
@@ -52,7 +49,7 @@ export class VisitingCardPage implements OnInit {
 	redirect(page) {
 		switch (page) {
 			case 'chat': {
-				this.router.navigate([ '/home/chat' ]);
+				this.router.navigate(['/home/chat']);
 			}
 		}
 	}

@@ -1,7 +1,4 @@
-import {
-	Component,
-	OnInit
-} from '@angular/core';
+import { Component } from '@angular/core';
 import {
 	AlertController,
 	NavController
@@ -13,9 +10,9 @@ import { AuthenticationService } from '../../services/authentication.service';
 @Component({
 	selector: 'app-login',
 	templateUrl: './login.component.html',
-	styleUrls: [ './login.component.scss' ],
+	styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
 	user: User = {} as User;
 	emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$';
@@ -25,8 +22,10 @@ export class LoginComponent implements OnInit {
 		public alertController: AlertController,
 		public navCtrl: NavController,
 	) { }
-
-	ngOnInit() {}
+	
+	ionViewWillEnter() {
+		this.user = {} as User;	
+	}
 
 	doLogin(form) {
 		if (form.valid) {
@@ -47,7 +46,7 @@ export class LoginComponent implements OnInit {
 							cssClass: 'my-custom-class',
 							header: 'Error',
 							message: error.error.message || 'Server not working.............\nUnder Process',
-							buttons: [ 'OK' ]
+							buttons: ['OK']
 						});
 
 						await alert.present();

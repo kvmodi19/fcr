@@ -1,7 +1,4 @@
-import {
-	Component,
-	OnInit
-} from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import {
 	AlertController,
@@ -15,9 +12,9 @@ import { AuthenticationService } from '../../services/authentication.service';
 @Component({
 	selector: 'app-service-provider',
 	templateUrl: './service-provider-detail.page.html',
-	styleUrls: [ './service-provider-detail.page.scss' ],
+	styleUrls: ['./service-provider-detail.page.scss'],
 })
-export class ServiceProviderDetailPage implements OnInit {
+export class ServiceProviderDetailPage {
 
 	shopData: ServiceProvider;
 
@@ -29,7 +26,7 @@ export class ServiceProviderDetailPage implements OnInit {
 		private loadingController: LoadingController
 	) { }
 
-	ngOnInit() {
+	ionViewWillEnter() {
 		this.shopData = {
 			address: {}
 		} as ServiceProvider;
@@ -54,7 +51,7 @@ export class ServiceProviderDetailPage implements OnInit {
 					this.shopService.post(this.shopData)
 						.then(() => {
 							loading.dismiss();
-							this.router.navigate([ '/home' ]);
+							this.router.navigate(['/home']);
 						})
 						.catch(async (error) => {
 							loading.dismiss();
@@ -63,7 +60,7 @@ export class ServiceProviderDetailPage implements OnInit {
 									cssClass: 'my-custom-class',
 									header: 'Error',
 									message: error.error.message || 'Server not working.............\nUnder Process',
-									buttons: [ 'OK' ]
+									buttons: ['OK']
 								});
 
 								await alert.present();
