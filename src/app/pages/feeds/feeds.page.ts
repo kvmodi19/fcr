@@ -6,11 +6,14 @@ import {
 	ModalController
 } from '@ionic/angular';
 
-
 import { environment } from 'src/environments/environment';
-import { SearchModalComponent } from '../../components/search-modal/search-modal.component';
-import { FeedsApiService } from '../../services/api/feeds.api.service';
+
 import { ActionService } from 'src/app/services/component/action.service';
+import { SearchModalComponent } from '../../components/search-modal/search-modal.component';
+import { User } from '../../models/users.model';
+import { FeedsApiService } from '../../services/api/feeds.api.service';
+import { NotificationApiService } from '../../services/api/notification.api.service';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
 	selector: 'app-feeds',
@@ -27,12 +30,15 @@ export class FeedsPage {
 	offset = 0;
 	search;
 	defaultAvatar = 'assets/images/avatar.svg';
+	user: User;
 
 	constructor(
 		public router: Router,
 		public modalController: ModalController,
 		private feedsService: FeedsApiService,
-		private actionservice: ActionService,
+		private actionService: ActionService,
+		private authenticationService: AuthenticationService,
+		private notificationService: NotificationApiService,
 	) { }
 
 	ionViewWillEnter() {
@@ -40,7 +46,7 @@ export class FeedsPage {
 	}
 
 	async presentActionSheet() {
-		await this.actionservice.presentActionSheet();
+		await this.actionService.presentActionSheet();
 	}
 
 	getFeedData(event) {
@@ -52,6 +58,17 @@ export class FeedsPage {
 				if (event && this.feeds.length === response.total) {
 					event.target.disabled = true;
 				}
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	}
+
+	getNotifications() {
+		this.user = this.authenticationService.getUser();
+		this.notificationService.getAllNotificationsByUserID(this.user['_id'])
+			.then((response) => {
+				console.log(response);
 			})
 			.catch((error) => {
 				console.log(error);
@@ -73,6 +90,7 @@ export class FeedsPage {
 				this.componentLoaded = true;
 				this.search = data.data.search;
 				this.getFeedData(null);
+				this.getNotifications();
 			});
 		await modal.present();
 	}

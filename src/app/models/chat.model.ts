@@ -1,6 +1,6 @@
 export interface Chat {
-	createdAt: String;
-	message: String;
-	from: String;
-	to: String;
+	createdAt: string;
+	message: string;
+	from: string;
+	to: string;
 }
