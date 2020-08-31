@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 
 import {
 	IonInfiniteScroll,
-	ModalController
+	ModalController,
+	NavController
 } from '@ionic/angular';
 
 import { environment } from 'src/environments/environment';
@@ -33,7 +34,7 @@ export class FeedsPage {
 	user: User;
 
 	constructor(
-		public router: Router,
+		private navCtrl: NavController,
 		public modalController: ModalController,
 		private feedsService: FeedsApiService,
 		private actionService: ActionService,
@@ -76,7 +77,7 @@ export class FeedsPage {
 	}
 
 	showVisitingCard(user) {
-		this.router.navigateByUrl(`/home/visiting-card/${user._id}`);
+		(this.navCtrl as any).navigateForward(`/home/visiting-card/${user._id}`);
 	}
 
 	async createModal() {

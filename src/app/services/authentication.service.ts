@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
-import { Platform } from '@ionic/angular';
+import { Platform, NavController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 
 import {
@@ -34,7 +33,7 @@ export class AuthenticationService {
 		private storage: Storage,
 		private http: HttpClient,
 		private plt: Platform,
-		private router: Router
+		private navCtrl: NavController,
 	) {
 		this.loadStoredToken();
 	}
@@ -89,7 +88,7 @@ export class AuthenticationService {
 	logout() {
 		this.storage.remove(TOKEN_KEY)
 			.then(() => {
-				this.router.navigateByUrl('/login');
+				(this.navCtrl as any).navigateForward('/login');
 				this.userData.next(null);
 			});
 	}

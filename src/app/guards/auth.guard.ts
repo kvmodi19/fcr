@@ -4,9 +4,10 @@ import {
 	CanActivate,
 	CanLoad,
 	Route,
-	Router,
 	UrlSegment,
 } from '@angular/router';
+
+import { NavController } from '@ionic/angular';
 
 import { Observable } from 'rxjs';
 import {
@@ -22,7 +23,7 @@ import { AuthenticationService } from '../services/authentication.service';
 export class AuthGuard implements CanActivate, CanLoad {
 
 	constructor(
-		private router: Router,
+		private navCtrl: NavController,
 		private auth: AuthenticationService
 	) { }
 
@@ -32,7 +33,7 @@ export class AuthGuard implements CanActivate, CanLoad {
 			map(
 				user => {
 					if (!user) {
-						this.router.navigateByUrl('/login');
+						(this.navCtrl as any).navigateForward('/login');
 						return false;
 					} else {
 						return true;

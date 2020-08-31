@@ -6,43 +6,13 @@
 		    </ion-button>
 	    </ion-buttons>
         <ion-title>
-		        User Details
+		    User Details
         </ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content fullscreen>
-    <ion-card>
-        <ion-card-header>
-            <ion-avatar class="d-inline-block mr-3">
-                <img src="{{shop?.user?.profile ? env.baseUrl + '/' +shop?.user?.profile : defaultAvatar}}">
-            </ion-avatar>
-            <p class="d-inline-block">
-                <ion-card-title>
-                    {{shop?.name}}
-                </ion-card-title>
-            </p>
-        </ion-card-header>
-        <ion-card-content class="text-right">
-            <div>Address:
-                <p>
-	                {{shop?.address.addressLine1}}
-                </p>
-	            <p>
-		            {{shop?.address.addressLine2}}
-	            </p>
-	            <p>
-		            {{shop?.address.city}}
-	            </p>
-	            <p>
-		            {{shop?.address.state}}
-	            </p>
-	            <p>
-		            {{shop?.address.pinCode}}
-	            </p>
-            </div>
-            </ion-card-content>
-    </ion-card>
+    <app-e-card [serviceDetails]="serviceDetails"></app-e-card>
     <ion-segment (ionChange)="segmentChanged($event)" [value]="selectedSegment">
         <ion-segment-button [value]="'about'">
             <ion-label>About Us</ion-label>
@@ -55,13 +25,9 @@
         </ion-segment-button>
     </ion-segment>
     <ion-list *ngIf="selectedSegment === 'about'">
-        <ion-list-header>
-            About Us
-        </ion-list-header>
-
 		<ion-item>
 			<ion-label>
-				{{shop?.description}}
+				{{serviceDetails?.description}}
 			</ion-label>
 		</ion-item>
 	</ion-list>
@@ -82,10 +48,10 @@
         <ion-item>
             <ion-label>
                 <div>
-                    Mo no: {{shop?.user?.mobile}}
+                    Mo no: {{serviceDetails?.user?.mobile}}
                 </div>
                 <div>
-                    email: {{shop?.user?.email}}
+                    email: {{serviceDetails?.user?.email}}
                 </div>
             </ion-label>
         </ion-item>

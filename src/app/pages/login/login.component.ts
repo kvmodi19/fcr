@@ -34,7 +34,7 @@ export class LoginComponent {
 					if (res) {
 						const user = this.authService.getUser() as { shopOwner: boolean, hasShop: boolean };
 						if (user.shopOwner && !user.hasShop) {
-							(this.navCtrl as any).navigateForward('/service-provider');
+							(this.navCtrl as any).navigateForward('/service-provider-detail');
 						} else {
 							(this.navCtrl as any).navigateForward('/home');
 						}

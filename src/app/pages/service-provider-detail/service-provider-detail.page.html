@@ -9,28 +9,28 @@
             <input
                     type="text"
                     placeholder="Name On e-card"
-                    name="name"
-                    #name="ngModel"
-                    [(ngModel)]="shopData.name"
-                    [ngClass]="{ 'is-invalid': registration.submitted && name.invalid }"
+                    name="eCardName"
+                    #eCardName="ngModel"
+                    [(ngModel)]="shopData.eCardName"
+                    [ngClass]="{ 'is-invalid': registration.submitted && eCardName.invalid }"
                     required
             />
-            <div *ngIf="registration.submitted && name.invalid" class="invalid-feedback">
-              <div *ngIf="name.errors.required">Name is required</div>
+            <div *ngIf="registration.submitted && eCardName.invalid" class="invalid-feedback">
+              <div *ngIf="eCardName.errors.required">E-card Name is required</div>
             </div>
           </div>
           <div>
             <input
                     type="text"
                     placeholder="Service provided"
-                    name="name"
-                    #name="ngModel"
+                    name="service"
+                    #service="ngModel"
                     [(ngModel)]="shopData.service"
-                    [ngClass]="{ 'is-invalid': registration.submitted && name.invalid }"
+                    [ngClass]="{ 'is-invalid': registration.submitted && service.invalid }"
                     required
             />
-            <div *ngIf="registration.submitted && name.invalid" class="invalid-feedback">
-              <div *ngIf="name.errors.required">Name is required</div>
+            <div *ngIf="registration.submitted && service.invalid" class="invalid-feedback">
+              <div *ngIf="service.errors.required">Service provided is required</div>
             </div>
           </div>
           <div>
@@ -111,18 +111,18 @@
             <input
                     type="text"
                     placeholder="Pin Code"
-                    name="pincode"
-                    #pincode="ngModel"
+                    name="pinCode"
+                    #pinCode="ngModel"
                     [(ngModel)]="shopData.address.pinCode"
                     minlength="0"
                     maxlength="6"
                     required
-                    [ngClass]="{ 'is-invalid': registration.submitted && pincode.invalid }"
+                    [ngClass]="{ 'is-invalid': registration.submitted && pinCode.invalid }"
             />
-            <div *ngIf="pincode.invalid" class="invalid-feedback">
-              <div *ngIf="pincode.errors.required">Pin Code is required</div>
-              <div *ngIf="pincode.errors.minlength">Min length Invalid Pin Code</div>
-              <div *ngIf="pincode.errors.maxlength">Max length Invalid Pin Code</div>
+            <div *ngIf="pinCode.invalid" class="invalid-feedback">
+              <div *ngIf="pinCode.errors.required">Pin Code is required</div>
+              <div *ngIf="pinCode.errors.minlength">Min length Invalid Pin Code</div>
+              <div *ngIf="pinCode.errors.maxlength">Max length Invalid Pin Code</div>
             </div>
           </div>
           <button class="btn btn-primary btn-block mt-3" type="submit">Submit</button>

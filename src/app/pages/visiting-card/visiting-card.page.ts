@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import {
-	ActivatedRoute,
-	Router
-} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+
+import { NavController } from '@ionic/angular';
 
 import { Socket } from 'ng-socket-io';
 
 import { environment } from '../../../environments/environment';
 import { Professions } from '../../models/users.model';
 import { FeedsApiService } from '../../services/api/feeds.api.service';
+import { ServiceProvider } from 'src/app/models/service-provider.model';
 
 @Component({
 	selector: 'app-visiting-card',
@@ -19,22 +19,20 @@ export class VisitingCardPage {
 
 	env = environment;
 	selectedSegment = 'about';
-	shop: any;
-	defaultAvatar = 'assets/images/avatar.svg';
+	serviceDetails: ServiceProvider;
 	professions = Professions;
 
 	constructor(
-		private router: Router,
+		private navCtrl: NavController,
 		private route: ActivatedRoute,
-		private feedService: FeedsApiService,
-		private socket: Socket
+		private feedService: FeedsApiService
 	) { }
 
 	ionViewWillEnter() {
 		this.route.params.subscribe((params: { id: string }) => {
 			this.feedService.getById(params.id)
 				.then((response) => {
-					this.shop = response.shop;
+					this.serviceDetails = response.serviceProvider;
 				})
 				.catch((error) => {
 					console.log(error);
@@ -49,16 +47,16 @@ export class VisitingCardPage {
 	redirect(page) {
 		switch (page) {
 			case 'chat': {
-				this.router.navigate(['/home/chat']);
+				(this.navCtrl as any).navigateForward(['/home/chat']);
 			}
 		}
 	}
 
 	openChatRoom() {
-		this.router.navigate([
+		(this.navCtrl as any).navigateForward([
 			'home',
 			'chat-room',
-			this.shop.user._id
+			this.serviceDetails.user['_id']
 		]);
 	}
 

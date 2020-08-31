@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { environment } from '../../../environments/environment';
 import { User } from '../../models/users.model';
+import { ServiceProvider } from 'src/app/models/service-provider.model';
 
 @Injectable({
 	providedIn: 'root'
@@ -41,5 +42,9 @@ export class UsersApiService {
 
 	delete(id: number): boolean {
 		return false;
+	}
+
+	getUserServiceDetail(userID): Promise<{success: boolean, service: ServiceProvider}> {
+		return this.http.get(`${this.url}/${userID}/service`).toPromise() as Promise<{success: boolean, service: ServiceProvider}>;
 	}
 }

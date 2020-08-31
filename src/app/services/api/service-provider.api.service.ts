@@ -9,8 +9,8 @@ import { ServiceProvider } from 'src/app/models/service-provider.model';
 })
 export class ServiceProvidersApiService {
 
-	shops = 'shops';
-	url = `${environment.baseUrl}/${this.shops}`;
+	serviceProvider = 'serviceProvider';
+	url = `${environment.baseUrl}/${this.serviceProvider}`;
 
 	constructor(private http: HttpClient) {
 	}

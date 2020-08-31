@@ -9,7 +9,7 @@ import { User } from '../../models/users.model';
 })
 export class FeedsApiService {
 
-	shops = 'shops';
+	shops = 'serviceProvider';
 	url = `${environment.baseUrl}/${this.shops}`;
 
 	constructor(private http: HttpClient) {

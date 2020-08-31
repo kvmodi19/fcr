@@ -10,7 +10,7 @@ import { AuthGuard } from '../guards/auth.guard';
 		RouterModule.forChild([
 			{
 				path: 'home',
-				canActivate: [ AuthGuard ],
+				canActivate: [AuthGuard],
 				loadChildren: () => import('./home/home.module').then(
 					m => m.HomePageModule),
 			},
@@ -31,8 +31,13 @@ import { AuthGuard } from '../guards/auth.guard';
 			},
 			{
 				path: 'service-provider-detail',
-				canActivate: [ AuthGuard ],
-				loadChildren: () => import('./service-provider-detail/service-provider-detail.module').then( m => m.ServiceProviderDetailPageModule)
+				canActivate: [AuthGuard],
+				loadChildren: () => import('./service-provider-detail/service-provider-detail.module').then(m => m.ServiceProviderDetailPageModule)
+			},
+			{
+				path: 'show-e-card',
+				canActivate: [AuthGuard],
+				loadChildren: () => import('./show-e-card/show-e-card.module').then(m => m.ShowECardPageModule)
 			},
 			{
 				path: '',

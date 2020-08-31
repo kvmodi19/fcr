@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import {
 	AlertController,
-	LoadingController
+	LoadingController,
+	NavController
 } from '@ionic/angular';
 
 import { ServiceProvider } from 'src/app/models/service-provider.model';
@@ -22,7 +22,7 @@ export class ServiceProviderDetailPage {
 		private authService: AuthenticationService,
 		private shopService: ServiceProvidersApiService,
 		private alertController: AlertController,
-		private router: Router,
+		private navCtrl: NavController,
 		private loadingController: LoadingController
 	) { }
 
@@ -51,7 +51,7 @@ export class ServiceProviderDetailPage {
 					this.shopService.post(this.shopData)
 						.then(() => {
 							loading.dismiss();
-							this.router.navigate(['/home']);
+							(this.navCtrl as any).navigateForward(['/show-e-card']);
 						})
 						.catch(async (error) => {
 							loading.dismiss();
@@ -66,8 +66,7 @@ export class ServiceProviderDetailPage {
 								await alert.present();
 							}
 						});
-				},
-				5000
+				}
 			);
 		}
 	}

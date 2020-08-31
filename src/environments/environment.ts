@@ -5,6 +5,7 @@
 export const environment = {
 	production: false,
 	baseUrl: 'http://localhost:3000',
+	avatarBaseUrl: 'https://ui-avatars.com/api/?name=',
 	api: 'api',
 };
 

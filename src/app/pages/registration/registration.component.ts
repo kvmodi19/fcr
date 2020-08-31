@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import {
 	AlertController,
-	LoadingController
+	LoadingController,
+	NavController
 } from '@ionic/angular';
 import {
 	Professions,
@@ -25,7 +25,7 @@ export class RegistrationComponent {
 	constructor(
 		private userService: UsersApiService,
 		private alertController: AlertController,
-		private router: Router,
+		private navCtrl: NavController,
 		private loadingController: LoadingController
 	) { }
 
@@ -50,7 +50,7 @@ export class RegistrationComponent {
 				this.userService.post(this.userData)
 					.then(() => {
 						loading.dismiss();
-						this.router.navigate([ '/login' ]);
+						(this.navCtrl as any).navigateForward([ '/login' ]);
 					})
 					.catch(async (error) => {
 						loading.dismiss();

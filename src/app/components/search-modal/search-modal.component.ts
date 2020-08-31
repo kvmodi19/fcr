@@ -9,26 +9,12 @@ import { ModalController } from '@ionic/angular';
 })
 export class SearchModalComponent {
 
-	search: string;
-	searchBy = 'any';
-	searchByOptions = [
-		{
-			display: 'Any',
-			value: 'any'
-		},
-		{
-			display: 'Country',
-			value: 'country'
-		},
-		{
-			display: 'City',
-			value: 'city'
-		},
-		{
-			display: 'Pincode',
-			value: 'pincode'
-		},
-	];
+	search = {
+		text: '',
+		country: '',
+		city: '',
+		pinCode: ''
+	};
 
 	constructor(public modalController: ModalController) { }
 
@@ -38,8 +24,7 @@ export class SearchModalComponent {
 		this.modalController.dismiss({
 			dismissed: true,
 			search: {
-				searchBy: this.searchBy,
-				text: search || ''
+				...search
 			}
 		});
 	}
