@@ -1,12 +1,12 @@
 <ion-header>
     <ion-toolbar>
-	    <ion-buttons slot="primary">
-		    <ion-button>
-			    <ion-icon name="share-social"></ion-icon>
-		    </ion-button>
-	    </ion-buttons>
+        <ion-buttons slot="primary">
+            <ion-button>
+                <ion-icon name="share-social"></ion-icon>
+            </ion-button>
+        </ion-buttons>
         <ion-title>
-		    User Details
+            User Details
         </ion-title>
     </ion-toolbar>
 </ion-header>
@@ -25,40 +25,26 @@
         </ion-segment-button>
     </ion-segment>
     <ion-list *ngIf="selectedSegment === 'about'">
-		<ion-item>
-			<ion-label>
-				{{serviceDetails?.description}}
-			</ion-label>
-		</ion-item>
-	</ion-list>
-	<ion-list *ngIf="selectedSegment === 'menu'">
-		<ion-list-header>
-			Menu
-		</ion-list-header>
-
-		<ion-item>
-			image for menu
-		</ion-item>
-	</ion-list>
-	<ion-list *ngIf="selectedSegment === 'contact'">
-		<ion-list-header>
-			Contact detail
-		</ion-list-header>
-
+        <div class="p-3">
+            {{serviceDetails?.description}}
+        </div>
+    </ion-list>
+    <ion-list *ngIf="selectedSegment === 'menu'">
         <ion-item>
-            <ion-label>
-                <div>
-                    Mo no: {{serviceDetails?.user?.mobile}}
-                </div>
-                <div>
-                    email: {{serviceDetails?.user?.email}}
-                </div>
-            </ion-label>
-        </ion-item>
-        <ion-item>
-            <ion-label (click)="openChatRoom()">
-                <ion-icon name="chatbox-ellipses"></ion-icon>
-            </ion-label>
+            image for menu
         </ion-item>
     </ion-list>
+    <ion-list *ngIf="selectedSegment === 'contact'">
+        <ion-item>
+            <b class="mr-2">Phone:</b> {{serviceDetails?.user?.mobile}}
+        </ion-item>
+        <ion-item>
+            <b class="mr-2">Email:</b> {{serviceDetails?.user?.email}}
+        </ion-item>
+    </ion-list>
+    <ion-fab top right edge>
+        <button ion-fab mini color="primary" (click)="openChatRoom()">
+            <ion-icon name="chatbox-ellipses"></ion-icon>
+        </button>
+    </ion-fab>
 </ion-content>

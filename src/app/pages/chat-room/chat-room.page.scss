@@ -1,28 +1,56 @@
 @import "../../../theme/theme";
+
 .page-chat-room {
+	padding: 0 0 10px;
+	
 	.user_name {
 		color: #afafaf;
 	}
+
 	.message {
-		padding: 10px !important;
-		transition: all 250ms ease-in-out !important;
-		border-radius: 10px !important;
-		margin-bottom: 4px !important;
+		padding: 0;
+		margin-top: 10px;
+
+		ion-avatar {
+			width: 30px;
+			height: 30px;
+			margin: 0 10px 0 5px;
+		}
+
+		.message-data {
+			padding: 10px 16px;
+			transition: all 250ms ease-in-out;
+			max-width: calc(100% - 100px);
+			font-size: 14px;
+		}
 	}
-	.my_message {
+
+	.my_message .message-data {
 		background: $fcr-primary-color;
-		color: #000 !important;
+		color: #ffffff;
+		border-radius: 0 16px 16px 16px;
 	}
-	.other_message {
-		background: #dcdcdc !important;
-		color: #000 !important;
+
+	.other_message .message-data {
+		background: #dcdcdc;
+		color: #000;
+		border-radius: 16px 0 16px 16px;
 	}
+
 	.time {
 		color: #afafaf;
 		float: right;
 		font-size: small;
 	}
+
 	.message_row {
 		background-color: #fff;
+	}
+}
+
+.chat-footer {
+
+	ion-item {
+		width: 100%;
 	}
 }

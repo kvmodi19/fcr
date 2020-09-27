@@ -1,39 +1,31 @@
 <ion-card>
-  <ion-card-header>
-    <ion-avatar class="d-inline-block mr-3">
-      <img src="{{serviceDetails?.user?.profile ? env.baseUrl + '/' +serviceDetails?.user?.profile : defaultAvatar}}">
-    </ion-avatar>
-    <p class="d-inline-block">
-      <ion-card-title>
-        {{serviceDetails?.eCardName}}
-      </ion-card-title>
-      <ion-card-subtitle>{{serviceDetails?.service}}</ion-card-subtitle>
-    </p>
-  </ion-card-header>
-  <ion-card-content class="text-right">
-    <div>Address:
-      <p>
-        {{serviceDetails?.address.addressLine1}}
-      </p>
-      <p>
-        {{serviceDetails?.address.addressLine2}}
-      </p>
-      <p>
-        {{serviceDetails?.address.city}}
-      </p>
-      <p>
-        {{serviceDetails?.address.state}}
-      </p>
-      <p>
-        {{serviceDetails?.address.pinCode}}
-      </p>
-    </div>
-  </ion-card-content>
+	<ion-card-header class="text-center">
+		<ion-avatar class="mx-auto">
+			<img
+				src="{{serviceDetails?.user?.profile ? env.baseUrl + '/' +serviceDetails?.user?.profile : defaultAvatar}}">
+		</ion-avatar>
+		<ion-card-title class="mt-3">
+			{{serviceDetails?.eCardName}}
+		</ion-card-title>
+		<ion-card-subtitle>{{serviceDetails?.service}}</ion-card-subtitle>
+	</ion-card-header>
+	<ion-card-content>
+		<div class="d-flex">
+			<b class="mr-1">Address:</b>
+			<div>
+				<span>{{serviceDetails?.address.addressLine1}}, </span>
+				<span>{{serviceDetails?.address.addressLine2}}, </span>
+				<span>{{serviceDetails?.address.city}}, </span>
+				<span>{{serviceDetails?.address.state}}, </span>
+				<span>{{serviceDetails?.address.pinCode}}</span>
+			</div>
+		</div>
+	</ion-card-content>
 
 </ion-card>
 
 <ion-card *ngIf="showNextButton">
-  <ion-card-content class="text-right">
-    <ion-button fill="outline" slot="end" [routerLink]="['/home']">Next</ion-button>
-  </ion-card-content>
+	<ion-card-content class="text-right">
+		<ion-button fill="outline" slot="end" [routerLink]="['/home']">Next</ion-button>
+	</ion-card-content>
 </ion-card>
