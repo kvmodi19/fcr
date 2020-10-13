@@ -2,60 +2,60 @@
 
 ion-header {
 
-  ion-button, ion-menu-button {
-    color: $fcr-dark-color;
-  }
+	ion-button, ion-menu-button {
+		color: $fcr-dark-color;
+	}
 
-  ion-title {
-    @include font-primary(600);
-    color: $fcr-dark-color;
-  }
+	ion-title {
+		@include font-primary(600);
+		color: $fcr-dark-color;
+	}
 }
 
 ion-card {
-  box-shadow: 0 2px 4px rgba(51, 51, 51, 0.25);
-  border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(51, 51, 51, 0.25);
+	border-radius: 8px;
 
-  &-header {
+	&-header {
 
-    ion-avatar {
-      width: 40px;
-      height: 40px;
-    }
+		ion-avatar {
+			width: 40px;
+			height: 40px;
+		}
 
-    p {
-      font-size: 14px;
-      line-height: 20px;
-      color: $fcr-dark-color;
-      @include font-primary(500);
-    }
-  }
+		p {
+			font-size: 14px;
+			line-height: 20px;
+			color: $fcr-dark-color;
+			@include font-primary(500);
+		}
+	}
 
-  &-content {
+	&-content {
 
-    color: $fcr-dark-color;
+		color: $fcr-dark-color;
 
-    img {
-      height: 176px;
-      width: 100%;
-      object-fit: cover;
-      border-radius: 4px;
-    }
+		img {
+			height: 176px;
+			width: 100%;
+			object-fit: cover;
+			border-radius: 4px;
+		}
 
-    .feed-title {
-      font-size: 18px;
-      line-height: 20px;
-      @include font-primary(600);
-    }
+		.feed-title {
+			font-size: 18px;
+			line-height: 20px;
+			@include font-primary(600);
+		}
 
-    .feed-data {
-      font-size: 14px;
-      line-height: 20px;
-      @include font-primary();
-    }
+		.feed-data {
+			font-size: 14px;
+			line-height: 20px;
+			@include font-primary();
+		}
 
-    .card-footer {
-      background-color: transparent;
-    }
-  }
+		.card-footer {
+			background-color: transparent;
+		}
+	}
 }

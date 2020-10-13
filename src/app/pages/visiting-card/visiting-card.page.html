@@ -1,28 +1,50 @@
 <ion-header>
     <ion-toolbar>
-        <ion-title>User Details</ion-title>
+        <ion-buttons slot="primary">
+            <ion-button>
+                <ion-icon name="share-social"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>
+            User Details
+        </ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content fullscreen>
-    <ion-card>
-        <ion-card-header>
-            <div>
-                <ion-avatar>
-                    <img src="assets/images/avatar.svg">
-                </ion-avatar>
-            </div>
-            <div>
-                <ion-card-title>
-                    Jonathan Doe
-                </ion-card-title>
-                <ion-card-subtitle>
-                    Sales Manager
-                </ion-card-subtitle>
-            </div>
-        </ion-card-header>
-        <ion-card-content>
-
-        </ion-card-content>
-    </ion-card>
+    <app-e-card [serviceDetails]="serviceDetails"></app-e-card>
+    <ion-segment (ionChange)="segmentChanged($event)" [value]="selectedSegment">
+        <ion-segment-button [value]="'about'">
+            <ion-label>About Us</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="contact">
+            <ion-label>Contact</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="menu">
+            <ion-label>Menu</ion-label>
+        </ion-segment-button>
+    </ion-segment>
+    <ion-list *ngIf="selectedSegment === 'about'">
+        <div class="p-3">
+            {{serviceDetails?.description}}
+        </div>
+    </ion-list>
+    <ion-list *ngIf="selectedSegment === 'menu'">
+        <ion-item>
+            image for menu
+        </ion-item>
+    </ion-list>
+    <ion-list *ngIf="selectedSegment === 'contact'">
+        <ion-item>
+            <b class="mr-2">Phone:</b> {{serviceDetails?.user?.mobile}}
+        </ion-item>
+        <ion-item>
+            <b class="mr-2">Email:</b> {{serviceDetails?.user?.email}}
+        </ion-item>
+    </ion-list>
+    <ion-fab top right edge>
+        <button ion-fab mini color="primary" (click)="openChatRoom()">
+            <ion-icon name="chatbox-ellipses"></ion-icon>
+        </button>
+    </ion-fab>
 </ion-content>

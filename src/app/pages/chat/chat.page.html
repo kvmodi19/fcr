@@ -1,25 +1,33 @@
 <ion-header [translucent]="true">
-    <ion-toolbar>
-        <ion-buttons slot="start">
-            <ion-menu-button auto-hide="false"></ion-menu-button>
-        </ion-buttons>
-        <ion-buttons slot="primary">
-            <ion-button>
-                <ion-icon slot="icon-only" name="search"></ion-icon>
-            </ion-button>
-            <ion-button>
-                <ion-icon slot="icon-only" name="bookmarks"></ion-icon>
-            </ion-button>
-            <ion-button>
-                <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
-            </ion-button>
-        </ion-buttons>
-        <ion-title>
-            Chat
-        </ion-title>
-    </ion-toolbar>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-menu-button auto-hide="false"></ion-menu-button>
+		</ion-buttons>
+		<ion-title>
+			Chat
+		</ion-title>
+	</ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content class="chat-list">
+	<ion-list>
+		<ion-item *ngFor="let item of list" (click)="navigate(item)">
+			<ion-avatar slot="start">
+			  <img [src]="item.to?.avtar">
+			</ion-avatar>
+			<ion-label>
+			  <h2>{{item.to?.name}}</h2>
+			  <h3>{{item.message}}</h3>
+			  <p>{{item.date | date: 'h:mm a'}}</p>
+			</ion-label>
+		  </ion-item>
+		<ion-card *ngIf="!list?.length" class="no-chat text-center">
+			<ion-card-header>
+				<h3 class="text-primary mt-0">No Chat History</h3>
+			</ion-card-header>
+			<ion-card-content>
+				<p>No messages in your inbox, yet! Start chatting.</p>
+			</ion-card-content>
+		</ion-card>
+	  </ion-list>
 </ion-content>

@@ -5,17 +5,17 @@ import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { LoginComponent } from './login.component';
-import { LogoComponent } from '../../components/logo/logo.component';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
 	declarations: [
 		LoginComponent,
-		LogoComponent,
 	],
 	imports: [
 		CommonModule,
 		FormsModule,
 		IonicModule,
+		ComponentsModule,
 		RouterModule.forChild([
 			{
 				path: '',

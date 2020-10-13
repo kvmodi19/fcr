@@ -1,11 +1,18 @@
 ion-tab-bar {
-  background-color: #EB5757;
-  --ion-color-primary: red;
-  ion-tab-button {
-    background-color: #EB5757;
-    color: rgba(242, 242, 242, 0.5);;
-    &.tab-selected {
-      color: white;
-    }
-  }
+	&.vertical {
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+	}
+	&.horizontal {
+		background-color: #EB5757;
+		--ion-color-primary: red;
+		ion-tab-button {
+			background-color: #EB5757;
+			color: rgba(242, 242, 242, 0.5);;
+			&.tab-selected {
+				color: white;
+			}
+		}
+	}
 }

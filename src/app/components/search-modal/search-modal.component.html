@@ -1,0 +1,31 @@
+<ion-header translucent>
+	<ion-toolbar>
+		<ion-title>Search</ion-title>
+		<ion-buttons slot="end">
+			<ion-button (click)="dismissModal()">Close</ion-button>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+	<ion-list class="ion-padding">
+		<ion-item>
+			<ion-label position="floating">Find</ion-label>
+			<ion-input type="text" name="search" [(ngModel)]="search.text"></ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label position="floating">Country</ion-label>
+			<ion-input type="text" name="search" [(ngModel)]="search.country"></ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label position="floating">City</ion-label>
+			<ion-input type="text" name="search" [(ngModel)]="search.city"></ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label position="floating">Pincode</ion-label>
+			<ion-input type="text" name="search" [(ngModel)]="search.pinCode"></ion-input>
+		</ion-item>
+	</ion-list>
+	<div class="ion-padding">
+		<ion-button expand="block" class="ion-no-margin" (click)="dismissModal(search)">Search</ion-button>
+	</div>
+</ion-content>

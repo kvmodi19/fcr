@@ -1,7 +1,7 @@
 {
-  "name": "fcr",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "angular"
+	"name": "fcr",
+	"integrations": {
+		"cordova": { }
+	},
+	"type": "angular"
 }

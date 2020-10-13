@@ -1,0 +1,133 @@
+<div class="bg-wrapper" *ngIf="shopData">
+  <div class="registration-wrapper">
+    <app-logo class="app-logo mb-4"></app-logo>
+    <div class="registration-items">
+      <h3 class="text-center text-white mb-3">Add Details</h3>
+      <form #registration="ngForm" (submit)="submitForm(registration)">
+        <div class="registration-input">
+          <div>
+            <input
+                    type="text"
+                    placeholder="Name On e-card"
+                    name="eCardName"
+                    #eCardName="ngModel"
+                    [(ngModel)]="shopData.eCardName"
+                    [ngClass]="{ 'is-invalid': registration.submitted && eCardName.invalid }"
+                    required
+            />
+            <div *ngIf="registration.submitted && eCardName.invalid" class="invalid-feedback">
+              <div *ngIf="eCardName.errors.required">E-card Name is required</div>
+            </div>
+          </div>
+          <div>
+            <input
+                    type="text"
+                    placeholder="Service provided"
+                    name="service"
+                    #service="ngModel"
+                    [(ngModel)]="shopData.service"
+                    [ngClass]="{ 'is-invalid': registration.submitted && service.invalid }"
+                    required
+            />
+            <div *ngIf="registration.submitted && service.invalid" class="invalid-feedback">
+              <div *ngIf="service.errors.required">Service provided is required</div>
+            </div>
+          </div>
+          <div>
+            <textarea
+                    rows="3"
+                    placeholder="Description"
+                    name="description"
+                    #description="ngModel"
+                    [(ngModel)]="shopData.description"
+                    class="w-100 border-0"
+                    [ngClass]="{ 'is-invalid': registration.submitted && description.invalid }"
+                    required
+            >
+            </textarea>
+            <div *ngIf="registration.submitted && description.invalid" class="invalid-feedback">
+              <div *ngIf="description.errors.required">Description is required</div>
+            </div>
+          </div>
+          <div>
+            <input
+                    type="text"
+                    placeholder="Address Line 1"
+                    name="addressLine1"
+                    #addressLine1="ngModel"
+                    [(ngModel)]="shopData.address.addressLine1"
+                    [ngClass]="{ 'is-invalid': registration.submitted && addressLine1.invalid }"
+                    required
+            />
+            <div *ngIf="addressLine1.invalid" class="invalid-feedback">
+              <div *ngIf="registration.submitted && addressLine1.errors.required">Address Line 1 is required</div>
+            </div>
+          </div>
+          <div>
+            <input
+                    type="text"
+                    placeholder="Address Line 2"
+                    name="addressLine2"
+                    #addressLine2="ngModel"
+                    [(ngModel)]="shopData.address.addressLine2"
+                    [ngClass]="{ 'is-invalid': registration.submitted && addressLine2.invalid }"
+                    required
+            />
+            <div *ngIf="addressLine2.invalid" class="invalid-feedback">
+              <div *ngIf="registration.submitted && addressLine2.errors.required">Address Line 2 is required</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6 pr-2">
+              <input
+                      type="text"
+                      placeholder="City"
+                      name="city"
+                      #city="ngModel"
+                      [(ngModel)]="shopData.address.city"
+                      [ngClass]="{ 'is-invalid': registration.submitted && city.invalid }"
+                      required
+              />
+              <div *ngIf="registration.submitted && city.invalid" class="invalid-feedback">
+                <div *ngIf="city.errors.required">City is required</div>
+              </div>
+            </div>
+            <div class="col-6 pl-2">
+              <input
+                      type="text"
+                      placeholder="State"
+                      name="state"
+                      #state="ngModel"
+                      [(ngModel)]="shopData.address.state"
+                      [ngClass]="{ 'is-invalid': registration.submitted && state.invalid }"
+                      required
+              />
+              <div *ngIf="registration.submitted && state.invalid" class="invalid-feedback">
+                <div *ngIf="state.errors.required">State is required</div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <input
+                    type="text"
+                    placeholder="Pin Code"
+                    name="pinCode"
+                    #pinCode="ngModel"
+                    [(ngModel)]="shopData.address.pinCode"
+                    minlength="0"
+                    maxlength="6"
+                    required
+                    [ngClass]="{ 'is-invalid': registration.submitted && pinCode.invalid }"
+            />
+            <div *ngIf="pinCode.invalid" class="invalid-feedback">
+              <div *ngIf="pinCode.errors.required">Pin Code is required</div>
+              <div *ngIf="pinCode.errors.minlength">Min length Invalid Pin Code</div>
+              <div *ngIf="pinCode.errors.maxlength">Max length Invalid Pin Code</div>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-block mt-3" type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -9,11 +9,16 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import {
 	IonicModule,
-	IonicRouteStrategy,
+	IonicRouteStrategy
 } from '@ionic/angular';
+import { IonicStorageModule } from '@ionic/storage';
 
+import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
+
+import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+const config: SocketIoConfig = { url: environment.baseUrl, options: {} };
 
 @NgModule({
 	declarations: [ AppComponent ],
@@ -25,6 +30,8 @@ import { AppComponent } from './app.component';
 		BrowserAnimationsModule,
 		FormsModule,
 		HttpClientModule,
+		IonicStorageModule.forRoot(),
+		SocketIoModule.forRoot(config)
 	],
 	providers: [
 		StatusBar,

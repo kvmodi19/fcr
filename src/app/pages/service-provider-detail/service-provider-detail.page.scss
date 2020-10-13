@@ -1,0 +1,29 @@
+@import "../../../theme/theme";
+
+.registration-wrapper {
+  padding: 60px 55px;
+  @include flex(column, center, space-between);
+  @include font-primary();
+  @include responsive {
+    padding: 40px 32px;
+  }
+
+  .registration-items {
+    h3 {
+      font-size: 18px;
+      line-height: 22px;
+    }
+  }
+
+  .registration-input {
+    .is-invalid {
+      border: 1px solid $fcr-primary-color;
+    }
+    .invalid-feedback {
+      color: white;
+    }
+    p {
+      font-size: 12px;
+    }
+  }
+}
