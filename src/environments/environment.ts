@@ -7,6 +7,16 @@ export const environment = {
 	baseUrl: 'http://localhost:3000',
 	avatarBaseUrl: 'https://ui-avatars.com/api/?name=',
 	api: 'api',
+	firebase: {
+		apiKey: "AIzaSyCbz5w9Ch7zQpY9boDdl5WKUGAd9m_s--0",
+		authDomain: "find-chat-rewards.firebaseapp.com",
+		databaseURL: "https://find-chat-rewards.firebaseio.com",
+		projectId: "find-chat-rewards",
+		storageBucket: "find-chat-rewards.appspot.com",
+		messagingSenderId: "1028956328555",
+		appId: "1:1028956328555:web:11d52a4bfe552235ab972e",
+		measurementId: "G-G9091ESZDZ"
+	},
 };
 
 /*

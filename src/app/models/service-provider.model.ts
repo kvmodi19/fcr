@@ -1,7 +1,7 @@
 export interface ServiceProvider {
 	eCardName: string;
 	service: string;
-	user: string;
+	userID: string;
 	description: string;
 	address: Address;
 }

@@ -15,6 +15,9 @@ import { User } from '../../models/users.model';
 import { FeedsApiService } from '../../services/api/feeds.api.service';
 import { NotificationApiService } from '../../services/api/notification.api.service';
 import { AuthenticationService } from '../../services/authentication.service';
+import { ServiceProvidersApiService } from 'src/app/services/api/service-provider.api.service';
+import { ServiceProvider } from 'src/app/models/service-provider.model';
+import { AngularFirestoreDocument } from '@angular/fire/firestore';
 
 @Component({
 	selector: 'app-feeds',
@@ -28,21 +31,24 @@ export class FeedsPage {
 	env = environment;
 	componentLoaded = false;
 	feeds = [];
-	offset = 0;
+	offset: AngularFirestoreDocument<ServiceProvider>;
 	search;
 	defaultAvatar = 'assets/images/avatar.svg';
-	user: User;
+	user;
 
 	constructor(
 		private navCtrl: NavController,
 		public modalController: ModalController,
-		private feedsService: FeedsApiService,
+		private serviceProviderService: ServiceProvidersApiService,
 		private actionService: ActionService,
 		private authenticationService: AuthenticationService,
 		private notificationService: NotificationApiService,
 	) { }
 
-	ionViewWillEnter() {
+	async ionViewDidEnter() {
+		this.authenticationService.getUserData().subscribe((user) => {
+			this.user = user;
+		});
 		this.createModal();
 	}
 
@@ -51,23 +57,22 @@ export class FeedsPage {
 	}
 
 	getFeedData(event) {
-		this.feedsService.search(this.search, this.offset)
-			.then((response) => {
-				this.feeds = this.feeds.concat(response.data);
-				this.offset++;
-				this.infiniteScroll.complete();
-				if (event && this.feeds.length === response.total) {
-					event.target.disabled = true;
-				}
-			})
-			.catch((error) => {
+		this.serviceProviderService.search(this.search, this.offset, this.user.uid)
+			.subscribe((response) => {
+				debugger
+				// this.feeds = this.feeds.concat(response);
+				// this.offset = response[response.length - 1];
+				// this.infiniteScroll.complete();
+				// if (event && this.feeds.length === response.total) {
+				// 	event.target.disabled = true;
+				// }
+			}, (error) => {
 				console.log(error);
 			});
 	}
 
 	getNotifications() {
-		this.user = this.authenticationService.getUser();
-		this.notificationService.getAllNotificationsByUserID(this.user['_id'])
+		this.notificationService.getAllNotificationsByUserID(this.user.uid)
 			.then((response) => {
 				console.log(response);
 			})
@@ -91,7 +96,7 @@ export class FeedsPage {
 				this.componentLoaded = true;
 				this.search = data.data.search;
 				this.getFeedData(null);
-				this.getNotifications();
+				// this.getNotifications();
 			});
 		await modal.present();
 	}

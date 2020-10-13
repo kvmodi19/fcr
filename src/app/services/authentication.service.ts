@@ -1,95 +1,73 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { JwtHelperService } from '@auth0/angular-jwt';
+import { AngularFireAuth } from '@angular/fire/auth';
 
-import { Platform, NavController } from '@ionic/angular';
-import { Storage } from '@ionic/storage';
+import { NavController } from '@ionic/angular';
 
-import {
-	BehaviorSubject,
-	from,
-	Observable
-} from 'rxjs/index';
-import {
-	map,
-	switchMap,
-	take
-} from 'rxjs/operators';
-import { environment } from '../../environments/environment';
+import { BehaviorSubject, Observable } from 'rxjs/index';
 
-// local variable
-const helper = new JwtHelperService();
-const TOKEN_KEY = 'jwt-token';
+import { Professions, User } from '../models/users.model';
+import { UsersApiService } from './api/users.api.service';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class AuthenticationService {
 
-	public user: Observable<any>;
+	public user: Observable<User>;
 	private userData = new BehaviorSubject(null);
 
 	constructor(
-		private storage: Storage,
-		private http: HttpClient,
-		private plt: Platform,
+		private firebaseAuth: AngularFireAuth,
 		private navCtrl: NavController,
+		private userService: UsersApiService
 	) {
 		this.loadStoredToken();
 	}
 
 	loadStoredToken() {
-		const platformObs = from(this.plt.ready());
+		this.user = this.firebaseAuth.authState;
 
-		this.user = platformObs.pipe(
-			switchMap(() => {
-				return from(this.storage.get(TOKEN_KEY));
-			}),
-			map(
-				token => {
-					if (token) {
-						const decoded = helper.decodeToken(token);
-						this.userData.next(decoded);
-						return true;
-					} else {
-						return null;
-					}
-				})
-		);
+		this.user.subscribe((user) => {
+			debugger
+			if (user) {
+				this.userService
+					.getUserDetail(user.email)
+					.subscribe((data) => {
+						debugger
+						data.forEach((el) => {
+							this.userData.next(el.user);
+							if (el.user.profession === Professions["service-provider"] && !el.service) {
+								(this.navCtrl as any).navigateForward('/service-provider-detail');
+							}
+						});
+					});
+			} else {
+				this.userData.next(null);
+			}
+		});
 	}
 
 	login(credentials: { email: string, password: string }) {
-		return this.http.post(
-			`${environment.baseUrl}/login`,
-			{ ...credentials },
-		)
-				   .pipe(
-					   take(1),
-					   map((res: any) => {
-						   return res.token;
-					   }),
-					   switchMap(
-						   token => {
-							   const decoded = helper.decodeToken(token);
-							   this.userData.next(decoded);
+		return this.firebaseAuth.signInWithEmailAndPassword(credentials.email, credentials.password);
+	}
 
-							   return from(this.storage.set(
-								   TOKEN_KEY,
-								   token
-							   ));
-						   })
-				   ).toPromise();
+	registerUser(credentials: { email: string, password: string }) {
+		return this.firebaseAuth.createUserWithEmailAndPassword(credentials.email, credentials.password);
 	}
 
 	getUser() {
-		return this.userData.getValue();
+		return this.getUserData().getValue();
+	}
+
+	getUserData() {
+		return this.userData;
 	}
 
 	logout() {
-		this.storage.remove(TOKEN_KEY)
-			.then(() => {
-				(this.navCtrl as any).navigateForward('/login');
-				this.userData.next(null);
-			});
+		debugger
+		this.firebaseAuth.signOut().then((res) => {
+			this.userData.next(null);
+			(this.navCtrl as any).navigateForward('/login');
+		});
 	}
 }

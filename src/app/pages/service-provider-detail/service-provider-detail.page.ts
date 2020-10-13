@@ -42,32 +42,28 @@ export class ServiceProviderDetailPage {
 				translucent: true,
 			});
 			await loading.present();
-			setTimeout(
-				() => {
-					const user = this.authService.getUser();
-					if (user) {
-						this.shopData.user = user._id;
-					}
-					this.shopService.post(this.shopData)
-						.then(() => {
-							loading.dismiss();
-							(this.navCtrl as any).navigateForward(['/show-e-card']);
-						})
-						.catch(async (error) => {
-							loading.dismiss();
-							if (error.error && !error.error.isSuccess) {
-								const alert = await this.alertController.create({
-									cssClass: 'my-custom-class',
-									header: 'Error',
-									message: error.error.message || 'Server not working.............\nUnder Process',
-									buttons: ['OK']
-								});
-
-								await alert.present();
-							}
+			const user = this.authService.getUser();
+			if (user) {
+				this.shopData.userID = user.uid;
+			}
+			this.shopService.post(this.shopData)
+				.then(() => {
+					loading.dismiss();
+					(this.navCtrl as any).navigateForward(['/show-e-card']);
+				})
+				.catch(async (error) => {
+					loading.dismiss();
+					if (error.error && !error.error.isSuccess) {
+						const alert = await this.alertController.create({
+							cssClass: 'my-custom-class',
+							header: 'Error',
+							message: error.error.message || 'Server not working.............\nUnder Process',
+							buttons: ['OK']
 						});
-				}
-			);
+
+						await alert.present();
+					}
+				});
 		}
 	}
 }

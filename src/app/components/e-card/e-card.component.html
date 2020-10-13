@@ -11,13 +11,19 @@
 	</ion-card-header>
 	<ion-card-content>
 		<div class="d-flex">
+			<b class="mr-1">Email:</b>
+			<div>
+				<span>{{user?.email}} </span>
+			</div>
+		</div>
+		<div class="d-flex">
 			<b class="mr-1">Address:</b>
 			<div>
-				<span>{{serviceDetails?.address.addressLine1}}, </span>
-				<span>{{serviceDetails?.address.addressLine2}}, </span>
-				<span>{{serviceDetails?.address.city}}, </span>
-				<span>{{serviceDetails?.address.state}}, </span>
-				<span>{{serviceDetails?.address.pinCode}}</span>
+				<span>{{serviceDetails?.address?.addressLine1}}, </span>
+				<span>{{serviceDetails?.address?.addressLine2}}, </span>
+				<span>{{serviceDetails?.address?.city}}, </span>
+				<span>{{serviceDetails?.address?.state}}, </span>
+				<span>{{serviceDetails?.address?.pinCode}}</span>
 			</div>
 		</div>
 	</ion-card-content>

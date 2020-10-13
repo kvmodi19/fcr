@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 
-import { environment } from '../../../environments/environment';
 import { ServiceProvider } from 'src/app/models/service-provider.model';
 
 @Injectable({
@@ -9,30 +10,23 @@ import { ServiceProvider } from 'src/app/models/service-provider.model';
 })
 export class ServiceProvidersApiService {
 
-	serviceProvider = 'serviceProvider';
-	url = `${environment.baseUrl}/${this.serviceProvider}`;
+	collection = 'services';
+	limit = 10;
 
-	constructor(private http: HttpClient) {
+	constructor(public firestore: AngularFirestore) {
 	}
 
-	get(): void {
-
+	get(): AngularFirestoreCollection<ServiceProvider> {
+		return this.firestore.collection(this.collection);
 	}
 
-	getById(id: string): Promise<ServiceProvider> {
-		return this.http.get(`${this.url}/${id}`)
-				   .map((response: {user: ServiceProvider}) => {
-					   return response.user;
-				   })
-				   .toPromise();
+	getById(id: string): AngularFirestoreDocument<ServiceProvider> {
+		return this.firestore.collection(this.collection).doc(id);
 	}
 
-	post(user: ServiceProvider): Promise<any> {
-		return this.http.post(
-			`${this.url}`,
-			user
-		)
-				   .toPromise();
+	post(service: ServiceProvider): Promise<void> {
+		const serviceID = this.firestore.createId();
+		return this.firestore.doc(`${this.collection}/${serviceID}`).set(service);
 	}
 
 	update(user: ServiceProvider): boolean {
@@ -41,5 +35,34 @@ export class ServiceProvidersApiService {
 
 	delete(id: number): boolean {
 		return false;
+	}
+
+	getUserServiceDetail(userID: string): AngularFirestoreCollection<ServiceProvider> {
+		return this.firestore.collection<ServiceProvider>(this.collection, ref => ref.where('userID', '==', userID));
+	}
+
+	search(search: { text: string, searchBy: string }, startAfter: AngularFirestoreDocument<ServiceProvider>, userID: string): Observable<ServiceProvider> {
+		debugger
+		if (startAfter) {
+			return this.firestore.collection<ServiceProvider>(this.collection, ref =>
+				ref.where('userID', '!=', userID)
+			).valueChanges().pipe(switchMap((services) => this.populateUsers(services)));
+		} else {
+			return this.firestore.collection<ServiceProvider>(this.collection, ref =>
+				ref.where('userID', '!=', userID)
+			).valueChanges().pipe(switchMap((services) => this.populateUsers(services)))
+		}
+	}
+
+	populateUsers(services): Observable<ServiceProvider> {
+
+		const userIDs = services.map(service => service.userID);
+		const users = userIDs.map(userID =>
+			this.firestore.collection<ServiceProvider>('users', ref => ref.where('uid', '==', userID)).valueChanges().pipe(
+				map(user => user[0])
+			)
+		);
+		debugger
+		return;
 	}
 }

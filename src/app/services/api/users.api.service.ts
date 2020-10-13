@@ -1,7 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 
-import { environment } from '../../../environments/environment';
+import { combineLatest, Observable, of } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
+
 import { User } from '../../models/users.model';
 import { ServiceProvider } from 'src/app/models/service-provider.model';
 
@@ -10,30 +12,50 @@ import { ServiceProvider } from 'src/app/models/service-provider.model';
 })
 export class UsersApiService {
 
-	users = 'users';
-	url = `${environment.baseUrl}/${this.users}`;
+	collection = `users`;
 
-	constructor(private http: HttpClient) {
+	constructor(public firestore: AngularFirestore) {
 	}
 
-	get(): void {
-
+	get(): AngularFirestoreCollection<User> {
+		return this.firestore.collection(this.collection);
 	}
 
-	getById(id: string): Promise<User> {
-		return this.http.get(`${this.url}/${id}`)
-				   .map((response: {user: User}) => {
-					   return response.user;
-				   })
-				   .toPromise();
+	getById(id: string): AngularFirestoreDocument<User> {
+		return this.firestore.collection(this.collection).doc(id);
 	}
 
-	post(user: User): Promise<any> {
-		return this.http.post(
-			`${this.url}`,
-			user
-		)
-				   .toPromise();
+	getUserDetail(email): Observable<{ user: User, service: ServiceProvider }[]> {
+		return this.firestore.collection<User>(this.collection, ref => ref.where('email', '==', email)).valueChanges()
+			.pipe(
+				switchMap(users => {
+					const userIDs = users.map(user => user.uid);
+
+					return combineLatest(
+						of(users),
+						combineLatest(
+							userIDs.map(userID =>
+								this.firestore.collection<ServiceProvider>('services', ref => ref.where('userID', '==', userID)).valueChanges().pipe(
+									map(service => service[0])
+								)
+							)
+						)
+					)
+				}),
+				map(([users, services]) => {
+
+					return users.map(user => {
+						return {
+							user,
+							service: services.find(service => service && (service['userID'] === user.uid)) // TODO: nees to remove ['']
+						}
+					})
+				})
+			);
+	}
+
+	post(user: User): Promise<void> {
+		return this.firestore.doc(`${this.collection}/${user.uid}`).set(user);
 	}
 
 	update(user: User): boolean {
@@ -42,9 +64,5 @@ export class UsersApiService {
 
 	delete(id: number): boolean {
 		return false;
-	}
-
-	getUserServiceDetail(userID): Promise<{success: boolean, service: ServiceProvider}> {
-		return this.http.get(`${this.url}/${userID}/service`).toPromise() as Promise<{success: boolean, service: ServiceProvider}>;
 	}
 }

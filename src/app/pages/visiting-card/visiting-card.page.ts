@@ -3,8 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 
 import { NavController } from '@ionic/angular';
 
-import { Socket } from 'ng-socket-io';
-
 import { environment } from '../../../environments/environment';
 import { Professions } from '../../models/users.model';
 import { FeedsApiService } from '../../services/api/feeds.api.service';
@@ -56,7 +54,7 @@ export class VisitingCardPage {
 		(this.navCtrl as any).navigateForward([
 			'home',
 			'chat-room',
-			this.serviceDetails.user['_id']
+			this.serviceDetails.userID
 		]);
 	}
 

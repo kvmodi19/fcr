@@ -32,8 +32,8 @@ export class ChatRoomPage {
 		this.route.params.subscribe((params: { id: string }) => {
 			this.nickname = params.id;
 			this.userService.getById(params.id)
-				.then((response: User) => {
-					console.log(response);
+				.valueChanges()
+				.subscribe((response) => {
 					this.socket.connect();
 					this.socket.emit(
 						'set-user',
@@ -48,9 +48,9 @@ export class ChatRoomPage {
 							console.log(error);
 						});
 				})
-				.catch((error) => {
-					console.log(error);
-				});
+
+
+
 		});
 		this.getMessages()
 			.subscribe(

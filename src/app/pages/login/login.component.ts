@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {
 	AlertController,
+	LoadingController,
 	NavController
 } from '@ionic/angular';
 
@@ -21,31 +22,50 @@ export class LoginComponent {
 		private authService: AuthenticationService,
 		public alertController: AlertController,
 		public navCtrl: NavController,
+		private loadingController: LoadingController
 	) { }
-	
+
 	ionViewWillEnter() {
-		this.user = {} as User;	
+		this.user = {} as User;
 	}
 
-	doLogin(form) {
+	async doLogin(form) {
 		if (form.valid) {
+			const loading = await this.loadingController.create({
+				cssClass: 'custom-class custom-loading my-custom-class',
+				spinner: 'bubbles',
+				keyboardClose: false,
+				message: 'Submitting...',
+				translucent: true,
+			});
+			await loading.present();
 			this.authService.login(form.value)
 				.then((res) => {
-					if (res) {
-						const user = this.authService.getUser() as { shopOwner: boolean, hasShop: boolean };
-						if (user.shopOwner && !user.hasShop) {
-							(this.navCtrl as any).navigateForward('/service-provider-detail');
-						} else {
-							(this.navCtrl as any).navigateForward('/home');
-						}
-					}
+					loading.dismiss();
+					(this.navCtrl as any).navigateForward('/home');
 				})
 				.catch(async (error) => {
-					if (error.error && !error.error.isSuccess) {
+					loading.dismiss();
+					if (error) {
+						let message = '';
+						switch (error.code) {
+							case "auth/wrong-password": {
+								message = 'Entered wrong password';
+								break;
+							}
+							case "auth/user-not-found": {
+								message = 'User does not exisits';
+								break;
+							}
+							default: {
+								message = "Error while login";
+							}
+						}
+
 						const alert = await this.alertController.create({
 							cssClass: 'my-custom-class',
 							header: 'Error',
-							message: error.error.message || 'Server not working.............\nUnder Process',
+							message: message,
 							buttons: ['OK']
 						});
 
