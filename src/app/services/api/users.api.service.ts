@@ -47,4 +47,12 @@ export class UsersApiService {
 	getUserServiceDetail(userID): Promise<{success: boolean, service: ServiceProvider}> {
 		return this.http.get(`${this.url}/${userID}/service`).toPromise() as Promise<{success: boolean, service: ServiceProvider}>;
 	}
+
+	register(user: User): Promise<any> {
+		return this.http.post(
+			`${environment.baseUrl}/register`,
+			user
+		)
+				   .toPromise();
+	}
 }
