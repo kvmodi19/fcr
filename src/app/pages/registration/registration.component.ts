@@ -4,6 +4,8 @@ import {
 	LoadingController,
 	NavController
 } from '@ionic/angular';
+
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import {
 	Professions,
 	User
@@ -13,7 +15,7 @@ import { UsersApiService } from '../../services/api/users.api.service';
 @Component({
 	selector: 'app-registration',
 	templateUrl: './registration.component.html',
-	styleUrls: [ './registration.component.scss' ],
+	styleUrls: ['./registration.component.scss'],
 })
 export class RegistrationComponent {
 
@@ -21,12 +23,14 @@ export class RegistrationComponent {
 	userData: User;
 	emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$';
 	passwordPattern = `^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$`;
+	mobNumberPattern = '[0-9]{10}$';
 
 	constructor(
 		private userService: UsersApiService,
 		private alertController: AlertController,
 		private navCtrl: NavController,
-		private loadingController: LoadingController
+		private loadingController: LoadingController,
+		private authService: AuthenticationService
 	) { }
 
 	ionViewDidEnter() {
@@ -47,10 +51,11 @@ export class RegistrationComponent {
 			});
 			await loading.present();
 			setTimeout(() => {
-				this.userService.post(this.userData)
+				this.userService.register(this.userData)
 					.then(() => {
 						loading.dismiss();
-						(this.navCtrl as any).navigateForward([ '/login' ]);
+						const { email, password } = registration.value;
+						this.authService.login({ email, password });
 					})
 					.catch(async (error) => {
 						loading.dismiss();
@@ -59,7 +64,7 @@ export class RegistrationComponent {
 								cssClass: 'my-custom-class',
 								header: 'Error',
 								message: error.error.message || 'Server not working.............\nUnder Process',
-								buttons: [ 'OK' ]
+								buttons: ['OK']
 							});
 
 							await alert.present();

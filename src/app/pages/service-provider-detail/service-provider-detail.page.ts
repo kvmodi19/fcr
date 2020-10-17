@@ -44,14 +44,16 @@ export class ServiceProviderDetailPage {
 			await loading.present();
 			setTimeout(
 				() => {
-					const user = this.authService.getUser();
+					let user = this.authService.getUser();
 					if (user) {
 						this.shopData.user = user._id;
 					}
 					this.shopService.post(this.shopData)
-						.then(() => {
+						.then((res) => {
+							this.authService.setToken(res.token);
 							loading.dismiss();
-							(this.navCtrl as any).navigateForward(['/show-e-card']);
+							user = this.authService.getUser();
+							(this.navCtrl as any).navigateForward([`/home/visiting-card/${user.serviceId}`]);
 						})
 						.catch(async (error) => {
 							loading.dismiss();
