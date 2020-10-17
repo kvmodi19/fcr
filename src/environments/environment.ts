@@ -7,6 +7,7 @@ export const environment = {
 	baseUrl: 'http://localhost:3000',
 	avatarBaseUrl: 'https://ui-avatars.com/api/?name=',
 	api: 'api',
+	playStoreLink: 'https://play.google.com/store/apps/details?id=io.veti.fcr'
 };
 
 /*

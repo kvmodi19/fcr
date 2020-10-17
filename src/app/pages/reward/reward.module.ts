@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
+import { AddRewardModalComponent } from 'src/app/components/add-reward-modal/add-reward-modal.component';
 import { RewardPageRoutingModule } from './reward-routing.module';
-
 import { RewardPage } from './reward.page';
 
 @NgModule({
@@ -15,7 +15,13 @@ import { RewardPage } from './reward.page';
 		IonicModule,
 		RewardPageRoutingModule
 	],
-	declarations: [ RewardPage ]
+	declarations: [
+		RewardPage,
+		AddRewardModalComponent
+	],
+	entryComponents: [
+		AddRewardModalComponent
+	]
 })
 export class RewardPageModule {
 }

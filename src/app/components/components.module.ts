@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 import { IonicModule } from '@ionic/angular';
-import { RouterModule } from '@angular/router';
 
 import { LogoComponent } from 'src/app/components/logo/logo.component';
 import { ECardComponent } from './e-card/e-card.component';
-import { CommonModule } from '@angular/common';
 
 const components = [ 
 	LogoComponent,

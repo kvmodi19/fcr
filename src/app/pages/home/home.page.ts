@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
@@ -11,8 +11,12 @@ export class HomePage {
 
 	hideVerticalTab = false;
 
-	constructor(public activatedRoute: Router, authService: AuthenticationService) {
-		this.hideVerticalTab = activatedRoute.url !== '/home';
+	constructor(public activatedRoute: Router) {
+		activatedRoute.events.subscribe((events) => {
+			if (events instanceof NavigationEnd) {
+				this.hideVerticalTab = activatedRoute.url !== '/home';
+			}
+		})
 	}
 
 }

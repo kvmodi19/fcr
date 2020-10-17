@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+
 import { ServiceProvider } from 'src/app/models/service-provider.model';
 
 @Component({
@@ -14,5 +15,4 @@ export class ECardComponent {
   defaultAvatar = 'assets/images/avatar.svg';
 
   constructor() { }
-
 }

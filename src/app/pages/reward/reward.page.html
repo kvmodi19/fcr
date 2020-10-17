@@ -1,25 +1,38 @@
 <ion-header [translucent]="true">
 	<ion-toolbar>
 		<ion-buttons slot="start">
-			<ion-menu-button auto-hide="false"></ion-menu-button>
-		</ion-buttons>
-		<ion-buttons slot="primary">
-			<ion-button>
-				<ion-icon slot="icon-only" name="search"></ion-icon>
-			</ion-button>
-			<ion-button>
-				<ion-icon slot="icon-only" name="bookmarks"></ion-icon>
-			</ion-button>
-			<ion-button>
-				<ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
-			</ion-button>
+			<ion-menu-button auto-hide="false" (click)="presentActionSheet()"></ion-menu-button>
 		</ion-buttons>
 		<ion-title>
-			News
+			Rewards
 		</ion-title>
 	</ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content class="chat-list">
+	<ion-list>
+		<ion-item *ngFor="let item of promoCodes" (click)="navigate(item)">
+			<ion-card class="text-center w-100">
+				<ion-card-header>
+					<h3 class="text-primary mt-0">{{item.name}}</h3>
+				</ion-card-header>
+				<ion-card-content>
+					<p>{{item.description}}</p>
+				</ion-card-content>
+			</ion-card>
+		</ion-item>
+		<ion-card *ngIf="!promoCodes?.length" class="no-chat text-center">
+			<ion-card-header>
+				<h3 class="text-primary mt-0">No rewards found</h3>
+			</ion-card-header>
+			<ion-card-content>
+				<p>No no rewards for you.</p>
+				<ion-buttons *ngIf="user.shopOwner">
+					<ion-button (click)="addReward()">
+						Add New Reward
+					</ion-button>
+				</ion-buttons>
+			</ion-card-content>
+		</ion-card>
+	</ion-list>
 </ion-content>
