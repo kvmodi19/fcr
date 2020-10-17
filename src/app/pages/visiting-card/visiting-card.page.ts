@@ -2,18 +2,19 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NavController } from '@ionic/angular';
-
-import { Socket } from 'ng-socket-io';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 import { environment } from '../../../environments/environment';
 import { Professions } from '../../models/users.model';
 import { FeedsApiService } from '../../services/api/feeds.api.service';
 import { ServiceProvider } from 'src/app/models/service-provider.model';
+import { ActionService } from 'src/app/services/component/action.service';
 
 @Component({
 	selector: 'app-visiting-card',
 	templateUrl: './visiting-card.page.html',
 	styleUrls: ['./visiting-card.page.scss'],
+	providers: [SocialSharing]
 })
 export class VisitingCardPage {
 
@@ -25,7 +26,9 @@ export class VisitingCardPage {
 	constructor(
 		private navCtrl: NavController,
 		private route: ActivatedRoute,
-		private feedService: FeedsApiService
+		private feedService: FeedsApiService,
+		private actionService: ActionService,
+		private socialSharing: SocialSharing,
 	) { }
 
 	ionViewWillEnter() {
@@ -61,7 +64,11 @@ export class VisitingCardPage {
 	}
 
 	sharePageLink() {
-		// create share link
+		this.socialSharing.share('message', 'subject', null, environment.playStoreLink);
+	}
+
+	async presentActionSheet() {
+		await this.actionService.presentActionSheet();
 	}
 
 }

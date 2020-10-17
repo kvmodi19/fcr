@@ -6,6 +6,7 @@ import { User } from 'src/app/models/users.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ChatApiService } from 'src/app/services/api/chat.api.service';
 import { environment } from 'src/environments/environment';
+import { ActionService } from 'src/app/services/component/action.service';
 
 @Component({
 	selector: 'app-chat',
@@ -22,6 +23,7 @@ export class ChatPage {
 		private navCtrl: NavController,
 		private authenticationServie: AuthenticationService,
 		private chatService: ChatApiService,
+		private actionService: ActionService,
 	) { }
 
 	ionViewWillEnter() {
@@ -40,6 +42,10 @@ export class ChatPage {
 			'chat-room',
 			item.to['_id']
 		]);
+	}
+
+	async presentActionSheet() {
+		await this.actionService.presentActionSheet();
 	}
 
 }
