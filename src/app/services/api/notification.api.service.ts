@@ -18,6 +18,10 @@ export class NotificationApiService {
 		return this.http.get(`${this.url}?userID=${userID}`).toPromise();
 	}
 
+	getUserNotificationCount(): Promise<any> {
+		return this.http.get(`${this.url}/count`).toPromise();
+	}
+
 	addNotification(notification: Notification): Promise<any> {
 		return this.http.post(`${this.url}`, notification).toPromise();
 	}
@@ -28,5 +32,13 @@ export class NotificationApiService {
 
 	getNotificationByID(id): Promise<any> {
 		return this.http.get(`${this.url}/id`).toPromise();
+	}
+
+	readAll() {
+		return this.http.put(`${this.url}/read`, {}).toPromise();
+	}
+
+	markVisited(id: string) {
+		return this.http.put(`${this.url}/visited/${id}`, {}).toPromise();
 	}
 }

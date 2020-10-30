@@ -5,9 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { VisitingCardPageRoutingModule } from './visiting-card-routing.module';
-
 import { VisitingCardPage } from './visiting-card.page';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { NotificatonService } from 'src/app/services/notification/notificaton.service';
+import { NotificationsComponent } from 'src/app/components/notifications/notifications.component';
 
 @NgModule({
 	imports: [
@@ -17,7 +18,15 @@ import { ComponentsModule } from 'src/app/components/components.module';
 		VisitingCardPageRoutingModule,
 		ComponentsModule
 	],
-	declarations: [ VisitingCardPage ]
+	declarations: [
+		VisitingCardPage
+	],
+	entryComponents: [
+		NotificationsComponent
+	],
+	providers: [
+		NotificatonService
+	]
 })
 export class VisitingCardPageModule {
 }

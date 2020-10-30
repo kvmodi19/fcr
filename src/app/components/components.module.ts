@@ -6,10 +6,12 @@ import { IonicModule } from '@ionic/angular';
 
 import { LogoComponent } from 'src/app/components/logo/logo.component';
 import { ECardComponent } from './e-card/e-card.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 const components = [ 
 	LogoComponent,
-	ECardComponent
+	ECardComponent,
+	NotificationsComponent
 ];
 
 @NgModule({

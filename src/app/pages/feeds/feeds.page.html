@@ -8,8 +8,9 @@
 				<ion-button (click)="createModal()">
 					<ion-icon slot="icon-only" name="search"></ion-icon>
 				</ion-button>
-				<ion-button>
-					<ion-icon slot="icon-only" name="notifications"></ion-icon>
+				<ion-button (click)="showNotifications()">
+					<ion-icon name="notifications"></ion-icon>
+					<ion-badge slot="end" color="danger">{{notificationsCount}}</ion-badge>
 				</ion-button>
 				<!--<ion-button>-->
 					<!--<ion-icon slot="icon-only" name="bookmarks"></ion-icon>-->

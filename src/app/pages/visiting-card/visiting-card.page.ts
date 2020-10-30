@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 import { NavController } from '@ionic/angular';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
@@ -11,6 +11,7 @@ import { ServiceProvider } from 'src/app/models/service-provider.model';
 import { ActionService } from 'src/app/services/component/action.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { NotificationApiService } from 'src/app/services/api/notification.api.service';
+import { NotificatonService } from 'src/app/services/notification/notificaton.service';
 
 @Component({
 	selector: 'app-visiting-card',
@@ -25,31 +26,40 @@ export class VisitingCardPage {
 	serviceDetails: ServiceProvider;
 	professions = Professions;
 	userService: boolean;
+	notificationsCount: number = 0;
 
 	constructor(
 		private navCtrl: NavController,
 		private route: ActivatedRoute,
+		private router: Router,
 		private feedService: FeedsApiService,
 		private actionService: ActionService,
 		private socialSharing: SocialSharing,
 		private authService: AuthenticationService,
-		private notificationService: NotificationApiService
-	) { }
+		private notificationApiService: NotificationApiService,
+		 private notificationService: NotificatonService
+	) {
+		this.notificationService.notificationsCount.subscribe((count) => this.notificationsCount = count);
+	}
 
 	ionViewWillEnter() {
+		let notificationSent = false;
 		this.route.params.subscribe((params: { id: string }) => {
 			const user = this.authService.getUser();
 			this.userService = user.shopOwner && user.serviceId === params.id;
 			this.feedService.getById(params.id)
 				.then((response) => {
 					this.serviceDetails = response.serviceProvider;
-					if (!this.userService) {
+					if (!this.userService && !notificationSent) {
+						notificationSent = true;
 						const notification = {
-							title: 'shop visited',
-							description: `${user.name} viited the shop`,
-							user: response.serviceProvider.user._id
+							title: 'Shop Visit',
+							description: `${user.name} visited the shop`,
+							for: response.serviceProvider.user._id,
+							user: user._id,
+							type: 'visit'
 						} as any;
-						this.notificationService.addNotification(notification);
+						this.notificationApiService.addNotification(notification);
 					}
 				})
 				.catch((error) => {
@@ -84,6 +94,10 @@ export class VisitingCardPage {
 
 	async presentActionSheet() {
 		await this.actionService.presentActionSheet();
+	}
+
+	showNotifications() {
+		this.notificationService.showNotifications();
 	}
 
 }

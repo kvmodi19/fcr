@@ -15,6 +15,8 @@ import { User } from '../../models/users.model';
 import { FeedsApiService } from '../../services/api/feeds.api.service';
 import { NotificationApiService } from '../../services/api/notification.api.service';
 import { AuthenticationService } from '../../services/authentication.service';
+import { NotificationsComponent } from 'src/app/components/notifications/notifications.component';
+import { NotificatonService } from 'src/app/services/notification/notificaton.service';
 
 @Component({
 	selector: 'app-feeds',
@@ -32,15 +34,17 @@ export class FeedsPage {
 	search;
 	defaultAvatar = 'assets/images/avatar.svg';
 	user: User;
+	notificationsCount: number;
 
 	constructor(
 		private navCtrl: NavController,
 		public modalController: ModalController,
 		private feedsService: FeedsApiService,
 		private actionService: ActionService,
-		private authenticationService: AuthenticationService,
-		private notificationService: NotificationApiService,
-	) { }
+		private notificationService: NotificatonService
+	) {
+		this.notificationService.notificationsCount.subscribe((count) => this.notificationsCount = count);
+	 }
 
 	ionViewWillEnter() {
 		this.createModal();
@@ -65,17 +69,6 @@ export class FeedsPage {
 			});
 	}
 
-	getNotifications() {
-		this.user = this.authenticationService.getUser();
-		this.notificationService.getAllNotificationsByUserID(this.user['_id'])
-			.then((response) => {
-				console.log(response);
-			})
-			.catch((error) => {
-				console.log(error);
-			});
-	}
-
 	showVisitingCard(user) {
 		(this.navCtrl as any).navigateForward(`/home/visiting-card/${user._id}`);
 	}
@@ -90,9 +83,13 @@ export class FeedsPage {
 			.then((data: any) => {
 				this.componentLoaded = true;
 				this.search = data.data.search;
+				this.offset = 0;
 				this.getFeedData(null);
-				this.getNotifications();
 			});
 		await modal.present();
+	}
+
+	showNotifications() {
+		this.notificationService.showNotifications();
 	}
 }

@@ -10,6 +10,10 @@
             <ion-button (click)="sharePageLink()">
                 <ion-icon name="share-social"></ion-icon>
             </ion-button>
+            <ion-button (click)="showNotifications()">
+                <ion-icon name="notifications"></ion-icon>
+                <ion-badge slot="end" color="danger">{{notificationsCount}}</ion-badge>
+            </ion-button>
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
