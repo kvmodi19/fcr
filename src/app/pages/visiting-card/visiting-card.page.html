@@ -49,9 +49,14 @@
             <b class="mr-2">Email:</b> {{serviceDetails?.user?.email}}
         </ion-item>
     </ion-list>
-    <ion-fab top right edge>
-        <button ion-fab mini color="primary" (click)="openChatRoom()">
-            <ion-icon name="chatbox-ellipses"></ion-icon>
-        </button>
-    </ion-fab>
+    <ion-list *ngIf="!userService">
+        <ion-item>
+            <b class="mr-2">click icon to chat:</b>
+            <ion-fab edge horizontal="end">
+                <ion-fab-button mini ion-fab color="primary" (click)="openChatRoom()">
+                    <ion-icon name="chatbubbles"></ion-icon>
+                </ion-fab-button>
+            </ion-fab>
+        </ion-item>
+    </ion-list>
 </ion-content>

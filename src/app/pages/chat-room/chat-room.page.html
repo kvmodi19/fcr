@@ -4,7 +4,9 @@
 			<ion-back-button></ion-back-button>
 		</ion-buttons>
 		<ion-title>
-			{{shopKeeperDetail?.name}}
+			<span>
+				{{toUser?.name}}
+			</span>
 		</ion-title>
 	</ion-toolbar>
 </ion-header>
@@ -13,18 +15,19 @@
 	<ion-grid class="page-chat-room">
 		<ion-row *ngFor="let message of messages">
 
-			<ion-col col-9 *ngIf="message.from !== user?._id" class="message"
-				[ngClass]="{'my_message': message.from === user?._id, 'other_message': message.from !== user?._id}">
-				<span class="user_name">{{ shopKeeperDetail.name }}:</span><br>
-				<span>{{ message.message }}</span>
-				<div class="time">{{message.created | date:'dd.MM hh:MM'}}</div>
+			<ion-col col-9 *ngIf="message.from !== fromUser?._id" class="message other_message d-flex">
+				<ion-avatar>
+					<img src="/assets/images/avatar.svg">
+				</ion-avatar>
+				<div class="message-data">
+					<span>{{ message.message }}</span>
+					<div class="time">{{message.created | date:'dd.MM hh:MM'}}</div>
+				</div>
 			</ion-col>
 
-			<ion-col offset-3 col-9 *ngIf="message.from === user?._id" class="message d-flex"
-				[ngClass]="{'my_message': message.from === user?._id, 'other_message': message.from !== user?._id}">
-				<!-- <span class="user_name">{{ user.name }}:</span><br> -->
+			<ion-col offset-3 col-9 *ngIf="message.from === fromUser?._id" class="message my_message d-flex flex-row-reverse">
 				<ion-avatar>
-					<img src="../../../assets/images/avatar.svg">
+					<img src="/assets/images/avatar.svg">
 				</ion-avatar>
 				<div class="message-data">
 					<span>{{ message.message }}</span>
@@ -41,7 +44,9 @@
 	<ion-item no-lines>
 		<ion-input type="text" placeholder="Message" [(ngModel)]="message"></ion-input>
 	</ion-item>
-	<button ion-fab mini clear color="primary" (click)="sendMessage()" [disabled]="message === ''">
-		<ion-icon name="send"></ion-icon>
-	</button>
+	<ion-fab edge horizontal="end">
+		<ion-fab-button mini ion-fab color="primary" (click)="sendMessage()" [disabled]="!message">
+			<ion-icon name="send"></ion-icon>
+		</ion-fab-button>
+	</ion-fab>
 </ion-footer>

@@ -18,8 +18,8 @@ export class ChatRoomPage {
 	messages = [];
 	nickname = '';
 	message = '';
-	user: User;
-	shopKeeperDetail: User;
+	fromUser: User;
+	toUser: User;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -39,9 +39,9 @@ export class ChatRoomPage {
 						'set-user',
 						(response as any)._id
 					);
-					this.shopKeeperDetail = response;
-					this.user = this.authenticationServie.getUser();
-					this.chatService.getChatRoomData(this.user['_id'], this.shopKeeperDetail['_id'])
+					this.toUser = response;
+					this.fromUser = this.authenticationServie.getUser();
+					this.chatService.getChatRoomData(this.fromUser['_id'], this.toUser['_id'])
 						.then((data) => {
 							this.messages = data;
 						}).catch((error) => {
@@ -62,7 +62,7 @@ export class ChatRoomPage {
 	sendMessage() {
 		this.socket.emit(
 			'add-message',
-			{ message: this.message, from: this.user['_id'], to: this.shopKeeperDetail['_id'] }
+			{ message: this.message, from: this.fromUser['_id'], to: this.toUser['_id'] }
 		);
 		this.message = '';
 	}

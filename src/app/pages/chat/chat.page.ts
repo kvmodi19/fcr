@@ -28,6 +28,7 @@ export class ChatPage {
 
 	ionViewWillEnter() {
 		this.user = this.authenticationServie.getUser();
+		this.list = [];
 		this.chatService.getUserChatList(this.user['_id'])
 			.then((data) => {
 				this.list = data;
@@ -36,11 +37,15 @@ export class ChatPage {
 			});
 	}
 
+	ionViewWillLeave() {
+		this.list = [];
+	}
+
 	navigate(item) {
 		(this.navCtrl as any).navigateForward([
 			'home',
 			'chat-room',
-			item.to['_id']
+			item.userId
 		]);
 	}
 

@@ -13,10 +13,10 @@
 	<ion-list>
 		<ion-item *ngFor="let item of list" (click)="navigate(item)">
 			<ion-avatar slot="start">
-				<img [src]="item.to?.avtar">
+				<img [src]="item.avtar">
 			</ion-avatar>
 			<ion-label>
-				<h2>{{item.to?.name}}</h2>
+				<h2>{{item.displayName}}</h2>
 				<h3>{{item.message}}</h3>
 				<p>{{item.date | date: 'h:mm a'}}</p>
 			</ion-label>
