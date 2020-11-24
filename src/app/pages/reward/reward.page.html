@@ -3,6 +3,11 @@
 		<ion-buttons slot="start">
 			<ion-menu-button auto-hide="false" (click)="presentActionSheet()"></ion-menu-button>
 		</ion-buttons>
+		<ion-buttons slot="end" *ngIf="user.shopOwner">
+			<ion-button (click)="addReward()">
+				<ion-icon slot="icon-only" name="add-circle"></ion-icon>
+			</ion-button>
+		</ion-buttons>
 		<ion-title>
 			Rewards
 		</ion-title>

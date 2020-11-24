@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
-import { NavController } from '@ionic/angular';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { NavController } from '@ionic/angular';
 
+import { ServiceProvider } from 'src/app/models/service-provider.model';
+import { NotificationApiService } from 'src/app/services/api/notification.api.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { ActionService } from 'src/app/services/component/action.service';
+import { NotificatonService } from 'src/app/services/notification/notificaton.service';
 import { environment } from '../../../environments/environment';
 import { Professions } from '../../models/users.model';
 import { FeedsApiService } from '../../services/api/feeds.api.service';
-import { ServiceProvider } from 'src/app/models/service-provider.model';
-import { ActionService } from 'src/app/services/component/action.service';
-import { AuthenticationService } from 'src/app/services/authentication.service';
-import { NotificationApiService } from 'src/app/services/api/notification.api.service';
-import { NotificatonService } from 'src/app/services/notification/notificaton.service';
 
 @Component({
 	selector: 'app-visiting-card',
@@ -26,18 +26,17 @@ export class VisitingCardPage {
 	serviceDetails: ServiceProvider;
 	professions = Professions;
 	userService: boolean;
-	notificationsCount: number = 0;
+	notificationsCount = 0;
 
 	constructor(
 		private navCtrl: NavController,
 		private route: ActivatedRoute,
-		private router: Router,
 		private feedService: FeedsApiService,
 		private actionService: ActionService,
 		private socialSharing: SocialSharing,
 		private authService: AuthenticationService,
 		private notificationApiService: NotificationApiService,
-		 private notificationService: NotificatonService
+		private notificationService: NotificatonService
 	) {
 		this.notificationService.notificationsCount.subscribe((count) => this.notificationsCount = count);
 	}
@@ -46,7 +45,7 @@ export class VisitingCardPage {
 		let notificationSent = false;
 		this.route.params.subscribe((params: { id: string }) => {
 			const user = this.authService.getUser();
-			this.userService = user.shopOwner && user.serviceId === params.id;
+			this.userService = !!(user && user.shopOwner && user.serviceId === params.id);
 			this.feedService.getById(params.id)
 				.then((response) => {
 					this.serviceDetails = response.serviceProvider;
@@ -54,9 +53,9 @@ export class VisitingCardPage {
 						notificationSent = true;
 						const notification = {
 							title: 'Shop Visit',
-							description: `${user.name} visited the shop`,
+							description: `${user ? user.name : '1 User'} visited the shop`,
 							for: response.serviceProvider.user._id,
-							user: user._id,
+							user: user ? user._id : null,
 							type: 'visit'
 						} as any;
 						this.notificationApiService.addNotification(notification);

@@ -22,28 +22,30 @@ export class NotificatonService {
 
 	constructor(
 		public modalController: ModalController,
-		private notificationService: NotificationApiService,
+		private notificationApiService: NotificationApiService,
 		private authenticationService: AuthenticationService,
-	) { 
+	) {
 		this.getNotifications();
 	}
 
 	getNotifications() {
 		const user = this.authenticationService.getUser();
-		this.notificationService.getUserNotificationCount()
-			.then((response) => {
-				this.notificationsCount$.next(response.count);
-				this.notifications$.next(response.data);
-				if (this.notificationInterval) {
-					clearInterval(this.notificationInterval);
-				}
-				this.notificationInterval = setInterval(() => {
-					this.getNotifications();
-				}, 10 * 1000);
-			})
-			.catch((error) => {
-				console.log(error);
-			});
+		if (user) {
+			this.notificationApiService.getUserNotificationCount()
+				.then((response) => {
+					this.notificationsCount$.next(response.count);
+					this.notifications$.next(response.data);
+					if (this.notificationInterval) {
+						clearInterval(this.notificationInterval);
+					}
+					this.notificationInterval = setInterval(() => {
+						this.getNotifications();
+					}, 10 * 1000);
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		}
 	}
 
 	async showNotifications() {

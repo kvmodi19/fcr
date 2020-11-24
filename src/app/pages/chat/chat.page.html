@@ -21,13 +21,13 @@
 				<p>{{item.date | date: 'h:mm a'}}</p>
 			</ion-label>
 		</ion-item>
-		<ion-card *ngIf="!list?.length" class="no-chat text-center">
-			<ion-card-header>
-				<h3 class="text-primary mt-0">No Chat History</h3>
-			</ion-card-header>
-			<ion-card-content>
-				<p>No messages in your inbox, yet! Start chatting.</p>
-			</ion-card-content>
-		</ion-card>
 	</ion-list>
+	<ion-card *ngIf="!list?.length" class="no-chat text-center">
+		<ion-card-header>
+			<h3 class="text-primary mt-0">No Chat History</h3>
+		</ion-card-header>
+		<ion-card-content>
+			<p>No messages in your inbox, yet! Start chatting.</p>
+		</ion-card-content>
+	</ion-card>
 </ion-content>

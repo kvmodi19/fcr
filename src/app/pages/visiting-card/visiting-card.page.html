@@ -1,16 +1,16 @@
 <ion-header>
     <ion-toolbar>
         <ion-buttons slot="start">
-            <ion-menu-button auto-hide="false" (click)="presentActionSheet()"></ion-menu-button>
+            <ion-menu-button *ngIf="user" auto-hide="false" (click)="presentActionSheet()"></ion-menu-button>
         </ion-buttons>
         <ion-title>
-            User Details
+            {{serviceDetails?.eCardName}}
         </ion-title>
         <ion-buttons slot="end">
             <ion-button (click)="sharePageLink()">
                 <ion-icon name="share-social"></ion-icon>
             </ion-button>
-            <ion-button (click)="showNotifications()">
+            <ion-button *ngIf="user" (click)="showNotifications()">
                 <ion-icon name="notifications"></ion-icon>
                 <ion-badge slot="end" color="danger">{{notificationsCount}}</ion-badge>
             </ion-button>
@@ -28,7 +28,7 @@
             <ion-label>Contact</ion-label>
         </ion-segment-button>
         <ion-segment-button value="menu">
-            <ion-label>Menu</ion-label>
+            <ion-label>Product Details</ion-label>
         </ion-segment-button>
     </ion-segment>
     <ion-list *ngIf="selectedSegment === 'about'">

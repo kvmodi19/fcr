@@ -47,6 +47,7 @@ export class FeedsPage {
 	 }
 
 	ionViewWillEnter() {
+		this.feeds = [];
 		this.createModal();
 	}
 
