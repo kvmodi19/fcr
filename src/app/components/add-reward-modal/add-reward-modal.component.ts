@@ -13,6 +13,7 @@ export class AddRewardModalComponent {
     name: '',
     description: '',
   };
+  isEdit = false;
 
   constructor(public modalController: ModalController) { }
 

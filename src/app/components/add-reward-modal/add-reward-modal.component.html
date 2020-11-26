@@ -1,6 +1,6 @@
 <ion-header translucent>
   <ion-toolbar>
-    <ion-title>Add reward</ion-title>
+    <ion-title>{{isEdit ? 'Edit' : 'Add'}} reward</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="dismissModal()">Close</ion-button>
     </ion-buttons>
@@ -21,7 +21,7 @@
     </ion-list>
     <div class="ion-padding">
       <ion-button expand="block" class="ion-no-margin" [disabled]="rewardForm.invalid" (click)="dismissModal(reward)">
-        Add
+        {{isEdit ? 'Update' : 'Add'}}
       </ion-button>
     </div>
   </form>

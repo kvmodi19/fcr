@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ModalController } from '@ionic/angular';
+import { LoadingController, ModalController, ToastController } from '@ionic/angular';
 
 import { AddRewardModalComponent } from 'src/app/components/add-reward-modal/add-reward-modal.component';
 import { PromoCode } from 'src/app/models/promoCode.model';
@@ -26,6 +26,8 @@ export class RewardPage implements OnInit {
 		private promoCodeService: PromoCodeApiService,
 		private actionService: ActionService,
 		private modalController: ModalController,
+		public toastController: ToastController,
+		private loadingController: LoadingController,
 	) { }
 
 	ngOnInit() {
@@ -38,7 +40,7 @@ export class RewardPage implements OnInit {
 					this.promoCodes = res;
 				})
 				.catch((err) => {
-					debugger
+					console.log(err);
 				});
 		}
 	}
@@ -49,7 +51,7 @@ export class RewardPage implements OnInit {
 				this.promoCodes = res;
 			})
 			.catch((err) => {
-				debugger
+				console.log(err);
 			});
 	}
 
@@ -64,22 +66,82 @@ export class RewardPage implements OnInit {
 		} as any);
 
 		modal.onDidDismiss()
-			.then((data: any) => {
+			.then(async (data: any) => {
 				if (data.data.reward) {
+					const loading = await this.loadingController.create({
+						cssClass: 'custom-class custom-loading my-custom-class',
+						spinner: 'bubbles',
+						keyboardClose: false,
+						message: 'Adding Reward...',
+						translucent: true,
+					});
+					await loading.present();
 					const reward = {
 						...data.data.reward,
 						serviceProvider: this.user.serviceId
-					}
+					};
 					this.promoCodeService.addPromoCode(reward)
 						.then((response) => {
+							loading.dismiss();
+							this.presentToast('Reward Added...');
 							this.getPromoCodeByProvider();
 						})
 						.catch((error) => {
-							debugger
 							console.log(error);
-						})
+							loading.dismiss();
+							this.presentToast('Reward Added...');
+						});
 				}
 			});
 		await modal.present();
+	}
+
+	async updateReward(item) {
+		const modal = await this.modalController.create({
+			component: AddRewardModalComponent,
+			swipeToClose: true,
+			componentProps: {
+				reward: item,
+				isEdit: true
+			}
+		} as any);
+
+		modal.onDidDismiss()
+			.then(async (data: any) => {
+				if (data.data.reward) {
+					const loading = await this.loadingController.create({
+						cssClass: 'custom-class custom-loading my-custom-class',
+						spinner: 'bubbles',
+						keyboardClose: false,
+						message: 'Updating Reward...',
+						translucent: true,
+					});
+					await loading.present();
+					const reward = {
+						...item,
+						...data.data.reward,
+					};
+					this.promoCodeService.updatePromoCode(item._id, reward)
+						.then((response) => {
+							loading.dismiss();
+							this.presentToast('Reward Updated...');
+							this.getPromoCodeByProvider();
+						})
+						.catch((error) => {
+							loading.dismiss();
+							this.presentToast('Reward Updated...');
+							console.log(error);
+						});
+				}
+			});
+		await modal.present();
+	}
+
+	async presentToast(message) {
+		const toast = await this.toastController.create({
+			message,
+			duration: 2000
+		});
+		toast.present();
 	}
 }
